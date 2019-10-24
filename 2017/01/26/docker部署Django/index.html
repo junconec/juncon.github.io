@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/bt.jpg">
+  <link rel="icon" type="image/png" href="/img/l.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content>
+  <meta name="author" content="Juncon">
+  <meta name="keywords" content>
+  <title>docker部署Django ~ juncon的个人博客</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css">
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css">
+<link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow.min.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css">
+
+
+  
+
+
+
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>juncon的个人博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/bt.jpg')no-repeat center center;
+           background-size: cover;
+           background-attachment: scroll;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              <p class="mt-3">星期四, 一月 26日 2017, 1:23 下午</p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <p>一、安装docker</p>
+<p>二、拉取镜像</p>
+<p>三、运行镜像，映射端口</p>
+<p>四、安装容器内运行环境</p>
+<p>五、主机与容器间资源传输</p>
+<p>六、容器安装+配置 uwsgi</p>
+<p>七、容器安装+ 配置nginx</p>
+<p>八、负载均衡</p>
+<p>九、Docker提交保存镜像</p>
+<p>十、坑点</p>
+<p>#######################################################################</p>
+<p>前言</p>
+<p>Django部署流程如下</p>
+<p>1、docker安装</p>
+<p>2、拉取centos镜像或者Ubuntu镜像  看你用哪个</p>
+<p>3、使用镜像，run出来一个容器A</p>
+<p>4、进入容器A，安装uwsgi，把Django部署在下面</p>
+<p>5、在启动脚本中配置开机自启动脚本(这步有点难，需要命令方面需要使用特权)</p>
+<p>6、提交容器A成为新镜像，run这个新镜像为容器，项目就部署完成</p>
+<p>6、在使用centos镜像或者Ubuntu镜像，run一个容器B，在容器B中安装nginx，配置nginx转发地址即可完成部署</p>
+<p>说明</p>
+<p>1、在以后项目迁移到任何操作系统下通吃</p>
+<p>2、多并发时候，可以通过run多个容器A,在配置nginx即可完成</p>
+<p>#######################################################################</p>
+<p>环境：</p>
+<p>主机环境：windows 10专业版</p>
+<p>一、安装docker</p>
+<p>Hub.docker.com官网下载 docker for windows</p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.38.50.png" srcset="/img/loading.gif" alt="img"></p>
+<p>安装完成后，任务栏会</p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.39.41.png" srcset="/img/loading.gif" alt="img"></p>
+<p>表示已经运行起来，使用注册的账号进行</p>
+<p>登录，显示docker is running表示windows环境下已经开始运行</p>
+<p>注意：注册账号需要你翻墙才可以，因为那个校验码是需要谷歌的一个api</p>
+<p>二、拉取镜像</p>
+<p>Docker 在 windows下安装完成后会同时安装一个shell环境</p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.41.53.png" srcset="/img/loading.gif" alt="img"></p>
+<p>与cmd功能一样</p>
+<p>使用 docker  images 查看当前有哪些镜像文件</p>
+<p>在hub.docker.com上选择好镜像后</p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.42.42.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.42.55.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.43.05.png" srcset="/img/loading.gif" alt="img"></p>
+<p>使用镜像的 pull 命令就可以进行下载</p>
+<p>下载完成就可以使用 docker images看到下载到本地的镜像文件</p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.45.08.png" srcset="/img/loading.gif" alt="img"></p>
+<p>三、运行镜像，映射端口</p>
+<p>启动镜像，在启动镜像的时候可以进行端口映射</p>
+<p>启动命令：</p>
+<p>docker run -d -it -p 805:80 -p 5002:5000 -p 10027:22 -p 20001:8888 -p 8001:8000 –name centos-django –privileged=true -e LANG=zh_CN.utf8 licw1986/centos-django /usr/sbin/init</p>
+<p>说明</p>
+<p>–privileged=true<br>/usr/sbin/init<br>这两行主要解决容器中使用systemctl去启动服务时出现D_Bus错误的问题</p>
+<p>-d: 后台运行<br>-it: 组合使用，创建一个伪终端<br>-p: 端口映射，本机端口：容器端口<br>–name: 容器名，（需要注意命名规范，可自己定义 ，only [a-zA-Z0-9][a-zA-Z0-9_.-]）<br>-e：防止乱码，编码格式<br>最后跟上下载下来的镜像名</p>
+<p>镜像启动成功后会返回一串id号，特别长</p>
+<p>通过 docker ps –a查看当前docker 中哪些容器正在运行</p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.47.12.png" srcset="/img/loading.gif" alt="img"></p>
+<p>第一次初始化的时候，使用run，后来都是用start</p>
+<p>docker start  container Id</p>
+<p>启动后，在次进入docker exec -it  id bash</p>
+<p>重启docker restart id</p>
+<p>停止docker stop id</p>
+<p>删除docker rm id</p>
+<p>注意：删除前需要停止镜像</p>
+<p>四、安装容器内运行环境</p>
+<p>根据所需要的开发项目进行环境搭建，与一般机器配置无异，如果需要图形化界面需要另外安装插件</p>
+<p>由于本人需要运行django项目，所以配置的环境主要是</p>
+<p>Django==1.8.2<br>mysql-connector-python==8.0.12<br>mysqlclient==1.3.13<br>Pillow==5.2.0<br>protobuf==3.6.1<br>six==1.11.0<br>uWSGI==2.0.17.1<br>nginx:<br>nginx version: nginx/1.12.2</p>
+<p>Mysql的坑和uwsgi的坑，请看下面专门描述的坑点</p>
+<p>五、主机与容器间资源传输</p>
+<p>Windows机器与容器间传输文件，由于是文本界面，无法像图形界面一样使用CV大法，一切靠命令</p>
+<p>直接上代码</p>
+<p>sudo docker cp txcrm2:/home/log/production.log /system/logs     ##仔细看 txcrm2是镜像id ，后面就是文件路径以及复制到宿主机的文件路径</p>
+<p>从主机复制到容器sudo docker cp host_path containerID:container_path</p>
+<p>从容器复制到主机sudo docker cp containerID:container_path host_path</p>
+<p>最后拷贝到本地使用scp</p>
+<p>六、容器安装+配置 uwsgi</p>
+<p>安装uwsgi确实花了点功夫，都在处理些奇怪的坑，但好在已经配完，遇到的坑在后面进行了描述</p>
+<p>配置uwsgi</p>
+<p>进入的项目文件夹，新建一个uwsgi.ini的配置文件</p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.49.42.png" srcset="/img/loading.gif" alt="img"></p>
+<p>启动uswsgi  uwsgi –ini uwsgi.ini</p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.50.50.png" srcset="/img/loading.gif" alt="img"></p>
+<p>这里也有一点小坑，就是你在启动uwsgi的时候，会在当前所在目录去创建uwsgi.pid和uwsgi.log，这个可以能过uwsgi的配置文件去固定一个位置进行保存</p>
+<p>Uwsgi 停止</p>
+<p>Uwsgi –stop uwsgi.pid</p>
+<p>可以通过浏览器直接访问测试uwsgi是否启动成功</p>
+<p>七、容器安装+ 配置nginx</p>
+<p>Nginx安容易多了。直接使用yum install nginx就可以安装成功</p>
+<p>Nginx start /etc/nginx/nginx.conf  启动</p>
+<p>Nginx stop  停止</p>
+<p>Nginx –s reload 重启nginx服务</p>
+<p>配置nginx</p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.56.11.png" srcset="/img/loading.gif" alt="img"></p>
+<p>Upstream  主要用来做负载均衡</p>
+<p>其中  location 是定义路由，如果使用location = /  是属于精准匹配，不加 = 就相当于正则匹配   proxy_pass 转发服务到哪里， 后面拼接一定要加上http://  否则也是不成功的，这里要注意，缩进无所谓，能看明白就行，但语法千万不能错，一个单词错就没法启动了（本人粗心大意在这里出了错）</p>
+<p>如果出错：可以使用 systemctl status nginx.service查看错误信息</p>
+<p>静态文件nginx是无法从项目中获取的。需要 自己创建静态文件夹，项目中使用python manage.py collectstatic</p>
+<p>八、负载均衡</p>
+<p>这里其实就是在upstream 当中加入多一条server信息，nginx会自动进行选择转发</p>
+<p>九、Docker提交保存镜像</p>
+<p>1、保存：docker commit  镜像id 自定命名，  保存自定义名时最好保存格式为：账户名/镜像名   方便上传时不需要再更改</p>
+<p>2、登录docker login</p>
+<p>一般如果在软件中已经登录，这里可以不用登录了，可以当成验证是否成功登录check一下</p>
+<p>3、如果是第一次准备上传镜像需要先到 hub.docker.com中登录创建一个镜像仓库</p>
+<p>PS:全英文环境，E文不好的朋友可以用chrome的翻译功能，大致没毛病</p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.58.58.png" srcset="/img/loading.gif" alt="img"></p>
+<p>按照步骤一步步操作就好了</p>
+<p>3、上传自定镜像</p>
+<p>首先查看一下本地的镜像有哪些</p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.59.50.png" srcset="/img/loading.gif" alt="img"></p>
+<p>docker push 镜像名：tags</p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%8810.00.54.png" srcset="/img/loading.gif" alt="img"></p>
+<p>出现进度条，就成功了，等待就可以</p>
+<p>十、坑点</p>
+<p>1、windows下docker下载，需要注册</p>
+<p>2、通过nginx转发时，会丢失掉端口的问题</p>
+<p><a href="http://elim.iteye.com/blog/2286952" target="_blank" rel="noopener">http://elim.iteye.com/blog/2286952</a>，</p>
+<p>在配置nginx时，server内设置：</p>
+<p>proxy_set_header Host $host，</p>
+<p>host是不带端口号的，将其改为proxy_set_header Host $host:805，问题得以解决，其中805是docker容器映射到本机的端口</p>
+<p>3、安装环境时，mysql-python是不支持python3的，所以需要更换其它方式来进行数据库交互工作（在这个地方折腾了很久）</p>
+<p>我在这里使用了mysql官方提供的  mysql-connect-python  和 mysqlclient</p>
+<p>还可以安装pymysql</p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%8810.02.59.png" srcset="/img/loading.gif" alt="img"></p>
+<p>将项目的初始化文件中加入</p>
+<p>Import pymysql</p>
+<p>Pymsql.install_as_MySQLdb()</p>
+<p>更改连接方式使用pymsql进行连接</p>
+<p>另外最好使用离线包安装mysql</p>
+<p>4、安装uwsgi</p>
+<p>安装uwsgi的时候，使用pip3 install uwsgi   明明是已经安装完成，显示安装成功，pip freeze也可以看到安装的版本号，仍然提示uwsgi命令无法找到，多次测试之后还是不行。最后去到uwsgi的安装目录下面查看，确实已经安装成功，而且目录下面是可以启动的，为了方便，做了了软链接，测试成功，这里安装uwsgi使用的是离线包安装</p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%8810.03.54.png" srcset="/img/loading.gif" alt="img"></p>
+<p>5、用docker运行service 时会报错，centos中服务启动和关闭使用systemctl</p>
+<p>但是，问题在于使用docker 的时候，systemctl是用不了的，需要在run时加入两条命令，说实话原理我没搞懂，反正把问题解决就行了</p>
+<p>加入的命令是：</p>
+<p>–privileged=true<br>/usr/sbin/init<br>这两行主要解决容器中使用systemctl去启动服务时出现D_Bus错误的问题</p>
+<p>重新启动容器就正常了</p>
+<p>6、无关docker的坑…… 在项目中生成静态文件时出的错，也提一下</p>
+<p>使用python manage.py collectstatic的时候确认要求输入 yes or no，自己傻输入的是y, 然后、、、、就傻了</p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%8810.04.55.png" srcset="/img/loading.gif" alt="img"></p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            
+              <p>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/Django">Django</a>
+                  &nbsp;
+                
+              </p>
+            
+            <p>
+              <i class="iconfont icon-tag"></i>
+              
+                <a class="hover-with-bg" href="/tags/python">python</a>
+              
+                <a class="hover-with-bg" href="/tags/docker">docker</a>
+              
+                <a class="hover-with-bg" href="/tags/Django">Django</a>
+              
+                <a class="hover-with-bg" href="/tags/%E9%83%A8%E7%BD%B2">部署</a>
+              
+              <span id="/2017/01/26/docker部署Django/" class="visitors leancloud_visitors" data-flag-title="docker部署Django">
+                <em id="visitors-text" class="post-meta-item-text"></em>
+                <i id="visitors-count"></i>
+              </span>
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "docker部署Django&nbsp;",
+      ],
+      cursorChar: "The greatest generosity to the future is to give something",
+      typeSpeed: 50,
+      loop: true,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "true",
+      
+      icon: "❡"
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $('#post').find('img').each(
+      function () {
+        var _this = $(this);
+        var _src = _this.attr("src");
+        _this.wrap('<a data-fancybox="images" href="' + _src + '" ></a>');
+      }
+    );
+  </script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/bt.jpg">
+  <link rel="icon" type="image/png" href="/img/l.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content>
+  <meta name="author" content="Juncon">
+  <meta name="keywords" content>
+  <title>scrapy-2-数据解析 ~ juncon的个人博客</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css">
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css">
+<link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow.min.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css">
+
+
+  
+
+
+
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>juncon的个人博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/bt.jpg')no-repeat center center;
+           background-size: cover;
+           background-attachment: scroll;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              <p class="mt-3">星期日, 十一月 27日 2016, 10:18 上午</p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <p>1、Request和Respose对象</p>
+<p>2、Selector对象</p>
+<p>3、xpath使用</p>
+<p>4、css选择器</p>
+<p>一、Request和Respose对象</p>
+<p><strong>1.1 Request对象</strong></p>
+<p>Request对象是要请求一个连接所使用的对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Request(url[,call,method=‘GET’,headers,body,cookies,meta,encoding=‘utf<span class="number">-8</span>’,priority=<span class="number">0</span>,dont_filter=<span class="literal">False</span>,errback])</span><br></pre></td></tr></table></figure>
+
+<p>Url是请求地址</p>
+<p>callback是页面回调地址</p>
+<p>method是请求方法，get或者post</p>
+<p>headers是请求头</p>
+<p>body是html正文</p>
+<p>cookies字典类型</p>
+<p>Meta字典类型</p>
+<p>encoding是编码格式</p>
+<p>priority优先级 0是最高级</p>
+<p>dont_filter=False对重复地址自动过滤，如果设置为True会强制请求，适合重复地址随时间变化的</p>
+<p>errback请求错误</p>
+<p><strong>1.2 Respose对象</strong></p>
+<p>Respose对象是当发起请求后，返回的对象，比如下列代码中parse参数中的response</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookSpider</span><span class="params">(scrapy.spiders.Spider)</span>:</span>     </span><br><span class="line">    name = <span class="string">'book'</span>     </span><br><span class="line">    start_urls = [<span class="string">'http://books.toscrape.com/'</span>]     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self,response)</span>:</span>         </span><br><span class="line">        print(<span class="string">"收到数据"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Url  响应地址</p>
+<p>status 状态码</p>
+<p>headers 获得响应头</p>
+<p>Body 响应的正文  bytes类型</p>
+<p>Text 文本形式str类型，是有body解码获得的，</p>
+<p>实现方式response.text=respose.body.decode(response.encoding)</p>
+<p><strong>1.3 start_request(self)方法</strong></p>
+<p>当start_urls这个数组无法满足你，你就需要自定义这个start_urls，通过重写start_request的方法来完成</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">demoSpider</span><span class="params">(RedisSpider)</span>:</span>    </span><br><span class="line">    name = <span class="string">"demospider"</span>    </span><br><span class="line">    redis_key = <span class="string">'demospider:start_urls'</span>    </span><br><span class="line">    start_urls = [<span class="string">'http://www.example.com'</span>]    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span>        </span><br><span class="line">        pages=[]        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">10</span>):            </span><br><span class="line">            url=<span class="string">'http://www.mmonly.cc/mmtp/xgmn/126808_%s.html'</span> % i           page=scrapy.Request(url)            </span><br><span class="line">            pages.append(page)        </span><br><span class="line">            <span class="keyword">return</span> pages</span><br></pre></td></tr></table></figure>
+
+<p>注意:这个start_request只会调用一次,并且在重写了start_request后，start_urls就无效了</p>
+<p>二、Selector对象</p>
+<p>Html转换为对象，转换方法有很多种  BeautifulSoup  lxml</p>
+<p>在scrapy中自带selector 可以对html的字符串进行格式</p>
+<p>比如text是我们的html字符串</p>
+<p>导入包</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.selector <span class="keyword">import</span> Selector</span><br><span class="line">text=<span class="string">"&lt;html&gt;&lt;body&gt;今天天气很好&lt;/body&gt;&lt;/html&gt;"</span></span><br><span class="line">selector = Selector(text=text)</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以对selector使用xpath和css方法读取数据了</p>
+<p>//h1  选中文档内所有的h1标签</p>
+<p>text()  获得text属性值</p>
+<p>.//li/b/text() 获得当前标签下的所有li下的b标签的text</p>
+<p>提取内容</p>
+<p>extract、re    这2个返回数组内容</p>
+<p>extract_first、re_first 这2个返回第一个标签内容</p>
+<p>具体实例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获得当前标签下的h1下的text内容</span></span><br><span class="line">response.xpath(<span class="string">'.//h1/text()'</span>).extrat()</span><br></pre></td></tr></table></figure>
+
+<p>注：Selector主要是在后面使用requests对获得html解析的时候使用的，单纯使用scrapy的时候，是不需要去手动创建Selector</p>
+<p>三、xpath基本使用</p>
+<p>3.1 xpath语法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/  选中文档的根    </span><br><span class="line">. 选中当前节点     </span><br><span class="line">.. 选中当前节点的父节点ELEMENT 选中子节点的所有ELEMENT元素节点</span><br><span class="line">//ELEMENT 选中后代节点中所有ELEMENT元素节点</span><br><span class="line">* 选中所有元素子节点  不常用</span><br><span class="line">text()选中所有文本子节点</span><br><span class="line"><span class="meta">@ATTR 选中所有属性节点</span></span><br><span class="line"><span class="meta">@* 选中所有属性节点  不常用</span></span><br><span class="line">[谓语]  谓语用来查找某个特定的节点或者包含某个特定值的节点</span><br></pre></td></tr></table></figure>
+
+<p>使用示例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/body/div/a    选取body下的div下的a标签</span><br><span class="line">//a               基于当前节点下提取所有a标签</span><br><span class="line">/body//img   在body下的所有img标签</span><br><span class="line">//a/text()      获得所有a标签下的文字节点</span><br><span class="line">/body/div//*  选中div下的所有后代元素，一般结合后续筛选,不会作为单独使用</span><br><span class="line">//div/*/img 获得div孙节点下所有的img标签</span><br><span class="line">//img/@src  选中所有img的src属性</span><br><span class="line">//@href  选中文档中所有的ATTR属性</span><br><span class="line">//a[<span class="number">1</span>]/img/@*  获得第一个a下的img的所有属性</span><br><span class="line">.  用来描述当前节点，也就是表示一个相对路径</span><br><span class="line">.. 用来获得上一层节点的路径</span><br><span class="line">//img/..  获得所有img，读取img上一层的节点</span><br><span class="line">//a[last()] 获得所有的a标签，选中最后一个</span><br><span class="line">//a[position()&lt;=<span class="number">3</span>] 使用position()  选中前三个</span><br><span class="line">//div[@id] 选中所有包含id属性的div</span><br><span class="line">//div[@id=images]  选择所有id属性，且值为images的div</span><br></pre></td></tr></table></figure>
+
+<p>注意:/和//的区别  在于/是基于当前节点下，不会继续向下穿透其他节点，而//会向下穿透获得所有这个节点</p>
+<p>3.2 XPath常用函数</p>
+<p>string</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sel.xpath(<span class="string">'/body/a//text()'</span>)  获得的是每个a标签内容</span><br><span class="line">sel.xpath(<span class="string">'string(/body/a)'</span>)   string是把每个a标签内容进行拼接</span><br></pre></td></tr></table></figure>
+
+<p><strong>四、CSS选择器</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">* 选中所有元素</span><br><span class="line">p  选中p元素</span><br><span class="line">div,p 选中div和p元素</span><br><span class="line">div p  选中div后代元素中的p元素</span><br><span class="line">div&gt;p  选中div子元素中的p元素</span><br><span class="line">p+div  选中p标签的兄弟元素中的div元素</span><br><span class="line">.info    选中class属性包含info的元素</span><br><span class="line">#main  选中id属性为main的元素</span><br><span class="line">[href]   选中属性为href的元素</span><br><span class="line">[href='www.baidu.com'] 选中属性为href元素，并且值为www.baidu.com的元素</span><br><span class="line">[href~='baidu'] 选中属性为href元素，并且值包含为baidu的元素</span><br><span class="line">p::text  选中p元素的文本节点</span><br><span class="line">a:nth-child(1)  选中a元素，且该元素必须是其父元素的第1个子元素</span><br><span class="line">a:nth-last-child(2)  选中a元素，且该元素必须是其父元素的倒数第2个子元素</span><br><span class="line">a:first-child(1) 选中a元素，且该元素必须是其父元素的第1个子元素</span><br><span class="line">a:last-child(2)  选中a元素，且该元素必须是其父元素的倒数第2个子元素</span><br></pre></td></tr></table></figure>
+
+<p>使用示例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获得当前li标签下的text    </span></span><br><span class="line">response.css(<span class="string">'li::text'</span>).extrat()</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在下一章节介绍数据解析完成后，如何处理</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            
+              <p>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/%E7%88%AC%E8%99%AB">爬虫</a>
+                  &nbsp;
+                
+                  <a class="hover-with-bg" href="/categories/scrapy-2-%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90">scrapy-2-数据解析</a>
+                  &nbsp;
+                
+              </p>
+            
+            <p>
+              <i class="iconfont icon-tag"></i>
+              
+                <a class="hover-with-bg" href="/tags/python">python</a>
+              
+                <a class="hover-with-bg" href="/tags/%E7%88%AC%E8%99%AB">爬虫</a>
+              
+                <a class="hover-with-bg" href="/tags/scrapy">scrapy</a>
+              
+                <a class="hover-with-bg" href="/tags/scrapy-2-%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90">scrapy-2-数据解析</a>
+              
+              <span id="/2016/11/27/scrapy-2-数据解析/" class="visitors leancloud_visitors" data-flag-title="scrapy-2-数据解析">
+                <em id="visitors-text" class="post-meta-item-text"></em>
+                <i id="visitors-count"></i>
+              </span>
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "scrapy-2-数据解析&nbsp;",
+      ],
+      cursorChar: "The greatest generosity to the future is to give something",
+      typeSpeed: 50,
+      loop: true,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "true",
+      
+      icon: "❡"
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $('#post').find('img').each(
+      function () {
+        var _this = $(this);
+        var _src = _this.attr("src");
+        _this.wrap('<a data-fancybox="images" href="' + _src + '" ></a>');
+      }
+    );
+  </script>
+
+
+
+
+</body>
+</html>
