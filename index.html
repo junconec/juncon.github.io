@@ -137,6 +137,53 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/12/24/关于爬虫的几种常见的反爬/">
+        <p class="h4 index-header">关于爬虫的几种常见的反爬</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">#关于爬虫的几种常见的反爬
+
+Spdirs
+
+1.基于useragent反爬思想：服务器后台对访问的User_Agent进行统计，单位时间内同一User_Agent访问的次数超过特定的阀值，则会被不同程度的封禁IP，从而造成无法进行爬虫的状况。
+我提供给大家两种方案，
+方案一：
+将常见的User-Agent封装到一个.py文件中，命名为useragent.py
+12345# 列表存储不同的User-Agent,这里仅示例三个,详情可百度百度搜索,链接在代码下方ua_list = ['Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1',            'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0',            'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1;</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-12-24&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%88%AC%E8%99%AB">爬虫</a>&nbsp;
+          
+            <a href="/categories/%E5%8F%8D%E7%88%AC">反爬</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E7%88%AC%E8%99%AB">爬虫</a>&nbsp;
+          
+            <a href="/tags/python%EF%BC%8C%E5%8F%8D%E7%88%AC">python，反爬</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2019/08/26/Excel-openpyxl-数据梳理/">
         <p class="h4 index-header">Excel-openpyxl--数据梳理</p>
         
@@ -573,56 +620,6 @@ http://localhost:6080</div>
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/docker">docker</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2018/08/25/mysql-win/">
-        <p class="h4 index-header">mysql_win</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">严格意义上来说mysql8和win10都是大坑，里面有着无数不一样的地方
-1：首先去官网下载安装包
-下载地址：https://dev.mysql.com/downloads/mysql/
-选择对应5.7.24版本的
-2：将解压文件解压到你安装的目录：E:\mysql-5.7.24-winx64  （我这是放在E盘根目录，不要放在有中文名字和空格的的目录下.例如
-
-3：在mysql-5.7.24-winx64文件夹下面新建一个my.ini文件和一个data文件夹，(注意my.ini后缀名是ini,别弄个my.ini.txt我也为你准备了这个文件，记得下载下来以后解压缩) 注意我这里里面写的路径和版本号你需要修改下
-my.ini
-不想下载，可以创建my.ini,复制以下内容
-my.ini内容：
-5：以管理员的身份打开cmd窗口跳转路径到E:\mysql-8.0.11-winx64\bin
-初始化命令
-1./mysqld --initialize --user=mysql --console
-
-(记住一定要进行初始化，很多人不进行初始化，就出现了1067错误，怎么弄都搞不定)
-初始化完成之后</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2018-08-25&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/bug">bug</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/mysql">mysql</a>&nbsp;
           
         
       </div>
