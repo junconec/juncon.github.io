@@ -14,7 +14,7 @@
   <meta name="description" content>
   <meta name="author" content="Juncon">
   <meta name="keywords" content>
-  <title>Excel-openpyxl-3-增删改查 ~ juncon的个人博客</title>
+  <title>什么才算是真正的编程能力？ ~ juncon的个人博客</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
@@ -111,7 +111,7 @@
 
             
               <br>
-              <p class="mt-3">星期六, 九月 30日 2017, 10:10 晚上</p>
+              <p class="mt-3">星期四, 五月 21日 2020, 11:36 晚上</p>
               
             
           </div>
@@ -133,61 +133,20 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <h1 id="Excel-openpyxl-3-增删改查"><a href="#Excel-openpyxl-3-增删改查" class="headerlink" title="Excel-openpyxl-3-增删改查"></a>Excel-openpyxl-3-增删改查</h1><p>通过这篇文章，你能学习到以下内容<br>1、openpyxl的增加数据<br>2、openpyxl删除数据<br>3、更新数据<br>4、查找数据</p>
-<p>1、openpyxl的增加数据</p>
-<p>使用上一个文件创建的create_excel.xlsx</p>
-<p><a href="http://47.93.248.15/wp-content/uploads/2018/05/create_excel.xlsx" target="_blank" rel="noopener">create_excel </a>     原始文件，数据源</p>
-<p><a href="http://47.93.248.15/wp-content/uploads/2018/05/openpyxledit.py_.zip" target="_blank" rel="noopener">openpyxledit.py</a>   相关代码</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/05/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-05-09-%E4%B8%8B%E5%8D%883.25.27.png" srcset="/img/loading.gif" alt="img"></p>
-<p>每次调用，在最后一列，多增加一列数据</p>
-<p>引用模块openpyxl</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from openpyxl import load_workbookfrom openpyxl import Workbook# 一个eggache的数字转为列字母的方法from openpyxl.utils import get_column_letter</span><br></pre></td></tr></table></figure>
+            <h3 id="什么才算是真正的编程能力？"><a href="#什么才算是真正的编程能力？" class="headerlink" title="什么才算是真正的编程能力？"></a>什么才算是真正的编程能力？</h3><p>计算机科学有两类根本问题。一类是理论：算法，数据结构，复杂度，机器学习，模式识别，等等等。一类是系统：操作系统，网络系统，分布式系统，存储系统，游戏引擎，等等等等。</p>
+<p>理论走的是深度，是在追问在给定的计算能力约束下如何把一个问题解决得更快更好。而系统走的是广度，是在追问对于一个现实的需求如何在众多的技术中设计出最多快好省的技术组合。</p>
+<p>搞ACM的人，只练第一类。像你这样的更偏向于第二类。其实挺难得的，但很可惜的是第二类能力没有简单高效的测量考察方法，不像算法和数据结构有ACM竞赛，所以很多系统的苗子都因为缺少激励和正确引导慢慢就消隐了。</p>
+<p>所以比尔盖茨才会说，看到现在学编程的人经常都把编程看作解各种脑筋急转弯的问题，他觉得很遗憾。</p>
+<p>做系统，确实不提倡“重复发明轮子”。但注意，是不提倡“重复发明”，不是不提倡“重新制造”。恰恰相反的，我以为，系统的编程能力正体现在“重新制造”的能力。</p>
+<p>能把已有的部件接起来，这很好。但当你恰好缺一种关键的胶水的时候，你能写出来吗？当一个已有的部件不完全符合你的需求的时候，你能改进它吗？如果你用的部件中有bug，你能把它修好吗？在网上繁多的类似功能的部件中，谁好谁坏？为什么？差别本质吗？一个开源代码库，你能把它从一个语言翻译到另一个语言吗？从一个平台移植到另一个平台吗？能准确估计自己翻译和移植的过程需要多少时间吗？能准确估计翻译和移植之后性能是会有提升还是会有所下降吗？</p>
+<p>系统编程能力体现在把已有的代码拿来并变成更好的代码，体现在把没用的代码拿来并变成有用的代码，体现在把一个做好的轮子拿来能画出来轮子的设计蓝图，并用道理解释出设计蓝图中哪些地方是关键的，哪些地方是次要的，哪些地方是不容触碰的，哪些地方是还可以改进的。</p>
+<p>如果你一点不懂理论，还是应该学点的。对于系统性能的设计上，算法和数据结构就像在自己手头的钱一样，它们不是万能的，但不懂是万万不行的。</p>
+<p>怎么提高系统编程能力呢？土办法：多造轮子。就像学画画要画鸡蛋一样，不是这世界上没有人会画鸡蛋，但画鸡蛋能驯服手指，感受阴影线条和笔触。所以，自己多写点东西吧。写个编译器？渲染器？操作系统？web服务器？web浏览器？部件都一个个换成自己手写的，然后和已有的现成部件比一比，看看谁的性能好，谁的易用性好？好在哪儿？差在哪儿？为什么？</p>
+<p>更聪明一点的办法：多拆轮子。多研究别人的代码是怎么写的。然而这个实践起来经常很难。原因：大部分工业上用的轮子可能设计上的思想和技术是好的，都设计和制造过程都很烂，里面乱成一团，让人乍一看毫无头绪，导致其对新手来说非常难拆。这种状况其实非常糟糕。所以，此办法一般只对比较简单的轮子好使，对于复杂的轮子，请量力而行。</p>
+<p>轮子不好拆，其实是一个非常严重的问题。重复发明轮子固然是时间的浪费，但当轮子复杂而又不好拆的时候，尤其是原来造轮子的人已经不在场的时候，重新发明和建造轮子往往会成为无奈之下最好的选择。这是为什么工业界在明知道重复发明/制造轮子非常不好的情况下还在不断重复发明/制造轮子的根本原因。</p>
+<p>程序本质是逻辑演绎的形式化表达，记载的是人类对这个世界的数字化理解。不能拆的轮子就像那一篇篇丢了曲谱的宋词一样，能读，却不能唱。</p>
+<p>鄙人不才，正在自己研究怎么设计建造一种既好用又好拆的轮子。您没那么幸运，恐怕是等不到鄙人的技术做出来并发扬光大了。在那之前，多造轮子，多拆好拆的小轮子，应该是提高编程能力最好的办法了。</p>
 
-<p>目标:调用一次，最后一列增加一列</p>
-<p>思路:</p>
-<p>获得最后一列或者一行的位置</p>
-<p>增加一列:通过cell指定最后一列的位置增加1，依次对这一列的每一行赋值</p>
-<p>增加一行:通过cell指定最后一行位置增加1，依次对这行的每一列进行赋值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#增加数据def addExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;, data_only=True)  # data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet = wb.get_sheet_by_name(&quot;create_sheet&quot;)    #获得最大行数    row=sheet.max_row    #获得最大列数    column=sheet.max_column    #循环插入一列数据    for i in range(row):        #列数+1转换为字母        h_col = get_column_letter(column+1)        #行数从1开始,从0会报错        xx=h_col+str(i+1)        #可以使用sheet[xx].value=xx方式进行赋值        # sheet[xx].value=xx        #row是数字，column是数字，都是从1开始        sheet.cell(row=(i+1),column=column+1).value=xx    wb.save(&quot;create_excel.xlsx&quot;)</span><br></pre></td></tr></table></figure>
-
-<p>调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addExcel()</span><br></pre></td></tr></table></figure>
-
-
-
-<p>2、 openpyxl删除数据</p>
-<p>目标:调用一次，最后一行删除一行</p>
-<p>思路：</p>
-<p>openpyxl本身不提供删除，原因在于删除涉及移动数据，但是如果行或者列的数据本身都为None时候，默认这行就是没有的，利用这个规则，可以把一行或者一列的数据全部设置为None即可删除</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def deleteExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;, data_only=True)  # data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet = wb.get_sheet_by_name(&quot;create_sheet&quot;)    # 获得最大行数    row = sheet.max_row    # 获得最大列数    column = sheet.max_column    print(column)    # 删除最后一列数据    #for i in range(row):    #    sheet.cell(row=(i+1), column=column).value = None    # 删除最后一行数据    for i in range(column):        sheet.cell(row=row,column=i+1).value=None    wb.save(&quot;create_excel.xlsx&quot;)</span><br></pre></td></tr></table></figure>
-
-<p>调用删除数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deleteExcel()</span><br></pre></td></tr></table></figure>
-
-
-
-<p>3、  更新数据</p>
-<p>目标:修改任意数据，进行保存</p>
-<p>思路</p>
-<p>基本思路和增加是一样的，但是比较简单的是不获取一列数据，而是单独的一个cell</p>
-<p>对单独cell赋值后进行保存，即可完成更新</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def updateExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;, data_only=True)  # data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet = wb.get_sheet_by_name(&quot;create_sheet&quot;)    sheet[&apos;C3&apos;] = &apos;new data&apos;    wb.save(&quot;create_excel.xlsx&quot;)</span><br></pre></td></tr></table></figure>
-
-<p>调用更新数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">updateExcel()</span><br></pre></td></tr></table></figure>
-
-
-
-<p>4、 查找数据</p>
-<p>目标:查找所有数据</p>
-<p>思路</p>
-<p>获得最大列和最大行，进行遍历，需要注意行和列都是从1开始的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def selectExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;,data_only=True) #data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet=wb.get_sheet_by_name(&quot;create_sheet&quot;)    # 获取A1格的值    print(&quot;A1的值  &quot;,sheet[&apos;A1&apos;].value)    # 获取表的内容的最大工作行数    print(&quot;表最大工作行数  &quot;,sheet.max_row)    # 获取表的内容的最大工作列数    print(&quot;表最大工作列数  &quot;,sheet.max_column)    # 遍历表中所有内容    for row in sheet.rows:        #row是每一行中的数据        for cell in row:            print(cell.value,end=&quot; &quot;)        print(&quot;&quot;)</span><br></pre></td></tr></table></figure>
-
-
-
-<p>调用查询</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">selectExcel()</span><br></pre></td></tr></table></figure>
             <hr>
           </div>
           <br>
@@ -196,10 +155,7 @@
               <p>
                 <i class="iconfont icon-inbox"></i>
                 
-                  <a class="hover-with-bg" href="/categories/Excel">Excel</a>
-                  &nbsp;
-                
-                  <a class="hover-with-bg" href="/categories/Excel-openpyxl-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5">Excel-openpyxl-增删改查</a>
+                  <a class="hover-with-bg" href="/categories/%E6%B5%85%E8%B0%88">浅谈</a>
                   &nbsp;
                 
               </p>
@@ -207,11 +163,9 @@
             <p>
               <i class="iconfont icon-tag"></i>
               
-                <a class="hover-with-bg" href="/tags/python">python</a>
+                <a class="hover-with-bg" href="/tags/%E6%B5%85%E8%B0%88">浅谈</a>
               
-                <a class="hover-with-bg" href="/tags/Excel">Excel</a>
-              
-              <span id="/2017/09/30/Excel-openpyxl-3-增删改查/" class="visitors leancloud_visitors" data-flag-title="Excel-openpyxl-3-增删改查">
+              <span id="/2020/05/21/什么才算是真正的编程能力？/" class="visitors leancloud_visitors" data-flag-title="什么才算是真正的编程能力？">
                 <em id="visitors-text" class="post-meta-item-text"></em>
                 <i id="visitors-count"></i>
               </span>
@@ -319,7 +273,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Excel-openpyxl-3-增删改查&nbsp;",
+        "什么才算是真正的编程能力？&nbsp;",
       ],
       cursorChar: "The greatest generosity to the future is to give something",
       typeSpeed: 50,

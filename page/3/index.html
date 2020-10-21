@@ -137,6 +137,99 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2017/03/25/python/">
+        <p class="h4 index-header">Django序列化器问题</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">序列化器
+12345678class BookInfoSerializer(serializers.Serializer):        """图书数据序列化器"""        id = serializers.IntegerField(label='ID', read_only=True)        btitle = serializers.CharField(label='名称', max_length=20)        bpub_date = serializers.DateField(label='发布日期', required=False)        bread = serializers.IntegerField(label='阅读量', required=False)        bcomment = serializers.IntegerField(label='评论量', required=False)        image = serializers.ImageField(label='图片', required=False)#     在这</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2017-03-25&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/python">python</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/python">python</a>&nbsp;
+          
+            <a href="/tags/Django">Django</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2017/03/02/scrapy-3-数据处理/">
+        <p class="h4 index-header">scrapy-3-数据处理</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">####itemPipeline数据处理
+介绍
+启动方式
+导出数据
+一、介绍
+在scrapy中，数据经过spider请求解析后，就需要进行对应模型化处理，在scrapy中itemPipeline负责数据处理
+   itemPipeline相当于数据处理的过滤器一样，可以配置多个，每一个itemPipline处理完成return后，会进入下一个itemPipeline中，如果不return，则表示放弃这段数据
+   每一个itemPipeline中，需要实现process_item(self,item,spider):这个方法，在这个方法中进行处理数据
+   open_spider(self,spider) 一般Spider打开时，回调该方法，通常用于处理数据之前的某些初始化工作，比如连接数据库
+   close_spider(self,spider)一般Spider关闭时，回调该方法，通常用于处理完成所有数据之后，如关闭数据库
+   from_crawler(cls,crawler) 一般没啥用，创建ItemPipeline对象时候回调该类方法
+二、启动方式
+启动方式有2种方式，一种在</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2017-03-02&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%88%AC%E8%99%AB">爬虫</a>&nbsp;
+          
+            <a href="/categories/scrapy-3-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86">scrapy-3-数据处理</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/python">python</a>&nbsp;
+          
+            <a href="/tags/%E7%88%AC%E8%99%AB">爬虫</a>&nbsp;
+          
+            <a href="/tags/scrapy">scrapy</a>&nbsp;
+          
+            <a href="/tags/scrapy-3-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86">scrapy-3-数据处理</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2017/02/27/scrapy-2-数据解析/">
         <p class="h4 index-header">scrapy-2-数据解析</p>
         
