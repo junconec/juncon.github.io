@@ -14,7 +14,7 @@
   <meta name="description" content>
   <meta name="author" content="Juncon">
   <meta name="keywords" content>
-  <title>Excel-openpyxl-创建和读取 ~ juncon的个人博客</title>
+  <title>少儿编程 ~ juncon的个人博客</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
@@ -111,7 +111,7 @@
 
             
               <br>
-              <p class="mt-3">星期六, 八月 5日 2017, 8:21 晚上</p>
+              <p class="mt-3">星期一, 十月 21日 2019, 6:15 晚上</p>
               
             
           </div>
@@ -133,46 +133,37 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <p>####Excel-openpyxl-创建和读取</p>
-<p>通过这篇文章你能够学习到以下内容**</p>
-<ol>
-<li>操作excel有哪些库</li>
-<li>openpyxl是什么</li>
-<li>openpyxl读取、创建excel</li>
-</ol>
-<p><strong>1、操作**</strong>excel<strong>**有哪些库</strong></p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/05/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-05-10-%E4%B8%8B%E5%8D%886.11.49-1024x870.png" srcset="/img/loading.gif" alt="img"></p>
-<p>wlrd：只能处理65535行内的数据，如果数据量超过65535行，则会出现报错</p>
-<p><strong>2、openpyxl是什么</strong></p>
-<p>openpyxl模块是一个对Excel操作Python库，能够处理更多数据的内容，但是相对与xlrd，openpyxl的读取效率要远远低于xlrd</p>
-<p>以上需要根据实际业务需求进行选择，这里主要讲解openpyxl库</p>
-<p>首先先清楚一些excel的基本概念：</p>
-<p>在openpyxl中，主要用到三个概念：Workbooks，Sheets，Cells。Workbook就是一个excel工作表；Sheet是工作表中的一张表页；Cell就是简单的一个格。openpyxl就是围绕着这三个概念进行的，不管读写都是“三板斧”：打开Workbook，定位Sheet，操作Cell。</p>
-<p>总结:</p>
-<ul>
-<li>workbooks是excel一个工作表，一个工作表包含多个页，即包含多个sheet</li>
-<li>sheet是excel当中的一页，一个工作页包含多个表格，即包含多个cell</li>
-<li>cell是excel当中的一个工作表格</li>
-</ul>
-<p><strong>3、openpyxl读取、创建excel</strong></p>
-<p><a href="http://47.93.248.15/wp-content/uploads/2018/05/openpyxldemo.py_.zip" target="_blank" rel="noopener">openpyxl读写、创建代码下载</a></p>
-<p>3.1  安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install openpyxl</span><br></pre></td></tr></table></figure>
-
-<p>(简便安装:使用pycharm，导入模块，按alt+回车自动安装，其实后面实现也是pip install openpyxl)</p>
-<p>3.2 创建Excel</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from openpyxl import load_workbookfrom openpyxl import Workbookdef createExcel():    #创建一个工作薄    wb = Workbook()    #通过工作簿创建一个工作表，默认是第一个工作表    sheet = wb.active    #可以通过create_sheet来指定创建第几个sheet    #ws = wb.create_sheet(1,&apos;custom&apos;)    # excel创建的工作表名默认为sheet1    sheet.title = &apos;create_sheet&apos;    # 向工作表中输入内容(C3对应是ExcelC3的位置)    sheet[&apos;C3&apos;] = &apos;hello word&apos;    #对A列1-10输入内容    for i in range(10):      sheet[&apos;A%d&apos; % (i+1)] = i+1    # 向excel表中输入表达式 C2显示内容为A列求和    sheet[&apos;C2&apos;] = &apos;=SUM(A:A)&apos;    # 保存一个文档    wb.save(&apos;create_excel.xlsx&apos;)createExcel()</span><br></pre></td></tr></table></figure>
-
-<p>这样在这个py文件的同一文件夹下，会生成一个create_excel.xlsx</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/05/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-05-09-%E4%B8%8A%E5%8D%8811.19.37.png" srcset="/img/loading.gif" alt="img"></p>
-<p>3.3 读取Excel</p>
-<p>在刚才我们创建了这个Excel文件，现在来进行读取Excel文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def loadExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;,data_only=True) #data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet=wb.get_sheet_by_name(&quot;create_sheet&quot;)    # 获取A1格的值    print(&quot;A1的值  &quot;,sheet[&apos;A1&apos;].value)    # 获取表的内容的最大工作行数    print(&quot;表最大工作行数  &quot;,sheet.max_row)    # 获取表的内容的最大工作列数    print(&quot;表最大工作列数  &quot;,sheet.max_column)    # 遍历表中所有内容    for row in sheet.rows:        #row是每一行中的数据        for cell in row:            print(cell.value,end=&quot; &quot;)        print(&quot;&quot;)        # row[2].valueloadExcel()</span><br></pre></td></tr></table></figure>
-
-<p>显示结果如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A1的值 1表最大工作行数 10表最大工作列数 31 None None 2 None 55 3 None hello word 4 None None 5 None None 6 None None 7 None None 8 None None 9 None None 10 None None</span><br></pre></td></tr></table></figure>
-
-<p>通过结果，会发现最大行数和最大列数指的是我们文档中写入的数据最后一行和最后一列</p>
+            <p>今天无意当中看到了我弟弟的卷子中既然出现了编程题，勾起了我的兴趣并对这个行业并做了一些调查，有了一种转行做少儿编程的冲动</p>
+<p>自从孩子上了初中，孩子妈就开始盯着各种真假难辨的中考、高考新政传言。当她从铺天盖地的少儿编程广告里获悉，编程将纳入中考，高考范围，并且2018年高考，多个省份的数学卷甚至都出现了编程题时，就变得异常兴奋。我这个写了近20年代码，家庭地位本来十分低下的资深码农，一夜之间变身“宝藏男孩”。</p>
+<p>中考、高考政策一天一个新花样，谁也不知道将来要不要考编程。不过2018年，江苏省、天津市、北京市等省份高考数学卷出现了编程题倒是真的。所以，即使一直反对少儿学编程，我也不得不认真思考</p>
+<p>​    少儿学编程有没有必要？</p>
+<p>​    花多长时间学编程上，才不会影响主课学习时间？</p>
+<p>​    怎么教，才能避免借口学编程，实际玩游戏？</p>
+<h3 id="少儿编程三问"><a href="#少儿编程三问" class="headerlink" title="少儿编程三问"></a>少儿编程三问</h3><p><strong>少儿学编程有没有必要</strong></p>
+<p>​    编程语言也是一种语言，只不过打交道的是电脑而已。</p>
+<p>​    学语言，一般都会有两个很深的体会。</p>
+<p>​    有使用环境，学起来快，比如语文；没有使用环境，学起来痛苦，比如英语。</p>
+<p>​    会用和用得好完全是两回事。《新华字典》背得滚瓜烂熟也不一定能写出好文章。</p>
+<p>​    学编程和学别的语言一样，只学不用，不仅学得很辛苦，如果不用，还忘得快。少儿学编程，即使死记硬背把语法都记住了，生活中没有使用的场景，渐渐也会都忘光。这也是我之前一直反对少儿学编程的主要原因。</p>
+<p>​    但学编程又和学别的语言不完全一样。能不能写出好作文，更多是看天赋：情感细腻、想象力丰富，有同理心……；但能不能写出好程序，却是可以培训和锻炼的。</p>
+<p><strong>程序的核心是算法，算法的本质是数学。</strong></p>
+<p>​    就像2018年各省高考数学卷里的编程题，表面上看是编程题，实际上考察的还是数学上的逻辑思维能力。所以，少儿学编程，关键要看学的是什么。</p>
+<p>​    死记硬背语法，或者拖拽几个小方块，快速做出一个小游戏。开始兴致盎然，但兴头一过，用不了多久就忘得差不多了。</p>
+<p>​    但如果能学的是编程里最有价值的东西，数学逻辑和解决问题的思维方式。不仅高考用得着，以后工作、生活中都用得着。</p>
+<p><strong>花多长时间学编程</strong> </p>
+<p>​    孩子学习压力已经够重了，即使学编程有好处。但是花费大量的时间，性价比高吗？会不会得不偿失，反而影响了主课的学习？</p>
+<p>  这种担忧的本质是：主课学习和编程学习是对立的。</p>
+<p>​    但假设我们学习编程的方式是：</p>
+<p>​    每周大约30分钟。围绕的是一个数学或者逻辑思维问题。</p>
+<p>​    20分钟用来思考、讨论、写写画画，电脑都不需要打开。</p>
+<p>​    10分钟用来教可以用来解决这个问题的编程知识，程序只是一个工具，帮助我们提高解决问题的效率。</p>
+<p>​    不能说完全消除了两者的对立，但至少每周花的时间不多，大多数时间是花在逻辑思考上，顺便学会了编程。</p>
+<p><strong>怎么教，不会让学编程变成玩游戏</strong></p>
+<p>​    80后家长应该都记得“小霸王”学习机，当年几乎每个小孩人手一台。号称也是用来学电脑，学编程的。但实际上，差不多都用来玩游戏了。“魂斗罗”、“坦克大战”，……是我们最美好的童年回忆之一，甚至连“之一”都没有。</p>
+<p>怎么让学编程不成为玩游戏的借口，说实话是一个巨大的挑战。我的实践经验是：</p>
+<p>​    ● <strong>每周的题目足够有趣</strong>。找到足够多有趣，能引发孩子思考，又能由易到难把编程语言知识点成体系串联起来的题目，是最大的挑战。</p>
+<p>​    ● <strong>父母的参与</strong>。这些题目都是不借助电脑也能做的，前20分钟父母一起参与讨论，思考，不仅能让孩子更投入，也能增进和孩子的感情。这也是我把公众号取名“和孩子一起学Python”的初衷。</p>
+<p>​    ● <strong>尽可能减少电脑操作的时间</strong>。思路理顺之后，需要电脑操作的时间不多，完全可以控制孩子用电脑的时间，像我家小朋友是个小近视，每周用电脑的时间要求她不能超过1个小时。</p>
 
             <hr>
           </div>
@@ -182,10 +173,7 @@
               <p>
                 <i class="iconfont icon-inbox"></i>
                 
-                  <a class="hover-with-bg" href="/categories/Excel">Excel</a>
-                  &nbsp;
-                
-                  <a class="hover-with-bg" href="/categories/Excel-openpyxl-%E5%88%9B%E5%BB%BA%E5%92%8C%E8%AF%BB%E5%8F%96">Excel-openpyxl-创建和读取</a>
+                  <a class="hover-with-bg" href="/categories/bug">bug</a>
                   &nbsp;
                 
               </p>
@@ -193,11 +181,11 @@
             <p>
               <i class="iconfont icon-tag"></i>
               
-                <a class="hover-with-bg" href="/tags/Excel">Excel</a>
-              
                 <a class="hover-with-bg" href="/tags/python">python</a>
               
-              <span id="/2017/08/05/Excel-openpyxl-创建和读取/" class="visitors leancloud_visitors" data-flag-title="Excel-openpyxl-创建和读取">
+                <a class="hover-with-bg" href="/tags/%E5%B0%91%E5%84%BF%E7%BC%96%E7%A8%8B">少儿编程</a>
+              
+              <span id="/2019/10/21/少儿编程-1/" class="visitors leancloud_visitors" data-flag-title="少儿编程">
                 <em id="visitors-text" class="post-meta-item-text"></em>
                 <i id="visitors-count"></i>
               </span>
@@ -305,7 +293,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Excel-openpyxl-创建和读取&nbsp;",
+        "少儿编程&nbsp;",
       ],
       cursorChar: "The greatest generosity to the future is to give something",
       typeSpeed: 50,
