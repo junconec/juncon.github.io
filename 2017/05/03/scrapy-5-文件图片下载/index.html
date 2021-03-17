@@ -166,7 +166,7 @@ ImagesPipline  提供图片的下载，额外提供缩略图
 <p>在setting.py中设置IMAGES_MIN_WIDTH和IMAGES_MIN_HEIGHT</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IMAGES_MIN_WIDTH=<span class="number">110</span>IMAGES_MIN_HEIGHT=<span class="number">110</span></span><br></pre></td></tr></table></figure>
 
-<p>开启该功能后，如果下载了一张105<img src="https://s.w.org/images/core/emoji/11/svg/2716.svg" srcset="/img/loading.gif" alt="✖">200的图片，该图片就会被抛弃掉，因为宽度不符合</p>
+<p>开启该功能后，如果下载了一张105<img src="https://s.w.org/images/core/emoji/11/svg/2716.svg" alt="✖">200的图片，该图片就会被抛弃掉，因为宽度不符合</p>
 <p>文件下载例子</p>
 <p>爬取matplotlib网站源码文件  html解析下载文件</p>
 <p>创建项目</p>
@@ -178,7 +178,7 @@ ImagesPipline  提供图片的下载，额外提供缩略图
 <p>爬虫模板</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy genspider examples matplotlib.org</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/05/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-05-02-%E4%B8%8B%E5%8D%886.07.23.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/05/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-05-02-%E4%B8%8B%E5%8D%886.07.23.png" alt="img"></p>
 <p>编辑items.py增加模型</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">     file_urls=scrapy.Field()</span><br><span class="line">     files=scrapy.Field()</span><br></pre></td></tr></table></figure>
 
@@ -193,7 +193,7 @@ ImagesPipline  提供图片的下载，额外提供缩略图
 
 <p>运行run.py</p>
 <p>最后产生一个examples.json文件和一个examples_src文件夹，examples.json文件保存抓取下的数据,文件夹中保存的下载后的文件</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/05/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-05-02-%E4%B8%8B%E5%8D%886.08.16.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/05/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-05-02-%E4%B8%8B%E5%8D%886.08.16.png" alt="img"></p>
 <p>但是下载的内容，会全部保存在full这个我们指定的文件夹下，但是文件名称为一段很长的sha散列值的文件，这是为了防止文件覆盖，但是这样很不方便阅读</p>
 <p>我们期望每个文件都存入我们指定的地方，实际上FilesPipline里面的file_path方法决定了文件名，所以就需要我们继承FilesPipline重写file_path的方法</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> urlparse</span><br><span class="line"> <span class="keyword">from</span> os.path <span class="keyword">import</span>  basename,dirname,join</span><br><span class="line"> <span class="keyword">from</span> scrapy.pipelines.files <span class="keyword">import</span> FilesPipeline</span><br><span class="line"> </span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">MyFilePipeline</span><span class="params">(FilesPipeline)</span>:</span></span><br><span class="line">     <span class="function"><span class="keyword">def</span> <span class="title">file_path</span><span class="params">(self, request, response=None, info=None)</span>:</span></span><br><span class="line">         path=urlparse(request.url).path</span><br><span class="line">         <span class="keyword">return</span> join(basename(dirname(path)),basename(path))</span><br></pre></td></tr></table></figure>

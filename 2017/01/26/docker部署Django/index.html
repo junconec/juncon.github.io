@@ -93,7 +93,7 @@
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                    8.2k
+                    7.7k
                 </span>
                 
                 
@@ -161,24 +161,24 @@
 <p>主机环境：windows 10专业版</p>
 <p>一、安装docker</p>
 <p>Hub.docker.com官网下载 docker for windows</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.38.50.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.38.50.png" alt="img"></p>
 <p>安装完成后，任务栏会</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.39.41.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.39.41.png" alt="img"></p>
 <p>表示已经运行起来，使用注册的账号进行</p>
 <p>登录，显示docker is running表示windows环境下已经开始运行</p>
 <p>注意：注册账号需要你翻墙才可以，因为那个校验码是需要谷歌的一个api</p>
 <p>二、拉取镜像</p>
 <p>Docker 在 windows下安装完成后会同时安装一个shell环境</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.41.53.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.41.53.png" alt="img"></p>
 <p>与cmd功能一样</p>
 <p>使用 docker  images 查看当前有哪些镜像文件</p>
 <p>在hub.docker.com上选择好镜像后</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.42.42.png" srcset="/img/loading.gif" alt="img"></p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.42.55.png" srcset="/img/loading.gif" alt="img"></p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.43.05.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.42.42.png" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.42.55.png" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.43.05.png" alt="img"></p>
 <p>使用镜像的 pull 命令就可以进行下载</p>
 <p>下载完成就可以使用 docker images看到下载到本地的镜像文件</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.45.08.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.45.08.png" alt="img"></p>
 <p>三、运行镜像，映射端口</p>
 <p>启动镜像，在启动镜像的时候可以进行端口映射</p>
 <p>启动命令：</p>
@@ -188,7 +188,7 @@
 <p>-d: 后台运行<br>-it: 组合使用，创建一个伪终端<br>-p: 端口映射，本机端口：容器端口<br>–name: 容器名，（需要注意命名规范，可自己定义 ，only [a-zA-Z0-9][a-zA-Z0-9_.-]）<br>-e：防止乱码，编码格式<br>最后跟上下载下来的镜像名</p>
 <p>镜像启动成功后会返回一串id号，特别长</p>
 <p>通过 docker ps –a查看当前docker 中哪些容器正在运行</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.47.12.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.47.12.png" alt="img"></p>
 <p>第一次初始化的时候，使用run，后来都是用start</p>
 <p>docker start  container Id</p>
 <p>启动后，在次进入docker exec -it  id bash</p>
@@ -212,9 +212,9 @@
 <p>安装uwsgi确实花了点功夫，都在处理些奇怪的坑，但好在已经配完，遇到的坑在后面进行了描述</p>
 <p>配置uwsgi</p>
 <p>进入的项目文件夹，新建一个uwsgi.ini的配置文件</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.49.42.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.49.42.png" alt="img"></p>
 <p>启动uswsgi  uwsgi –ini uwsgi.ini</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.50.50.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.50.50.png" alt="img"></p>
 <p>这里也有一点小坑，就是你在启动uwsgi的时候，会在当前所在目录去创建uwsgi.pid和uwsgi.log，这个可以能过uwsgi的配置文件去固定一个位置进行保存</p>
 <p>Uwsgi 停止</p>
 <p>Uwsgi –stop uwsgi.pid</p>
@@ -225,7 +225,7 @@
 <p>Nginx stop  停止</p>
 <p>Nginx –s reload 重启nginx服务</p>
 <p>配置nginx</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.56.11.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.56.11.png" alt="img"></p>
 <p>Upstream  主要用来做负载均衡</p>
 <p>其中  location 是定义路由，如果使用location = /  是属于精准匹配，不加 = 就相当于正则匹配   proxy_pass 转发服务到哪里， 后面拼接一定要加上http://  否则也是不成功的，这里要注意，缩进无所谓，能看明白就行，但语法千万不能错，一个单词错就没法启动了（本人粗心大意在这里出了错）</p>
 <p>如果出错：可以使用 systemctl status nginx.service查看错误信息</p>
@@ -238,13 +238,13 @@
 <p>一般如果在软件中已经登录，这里可以不用登录了，可以当成验证是否成功登录check一下</p>
 <p>3、如果是第一次准备上传镜像需要先到 hub.docker.com中登录创建一个镜像仓库</p>
 <p>PS:全英文环境，E文不好的朋友可以用chrome的翻译功能，大致没毛病</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.58.58.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.58.58.png" alt="img"></p>
 <p>按照步骤一步步操作就好了</p>
 <p>3、上传自定镜像</p>
 <p>首先查看一下本地的镜像有哪些</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.59.50.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%889.59.50.png" alt="img"></p>
 <p>docker push 镜像名：tags</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%8810.00.54.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%8810.00.54.png" alt="img"></p>
 <p>出现进度条，就成功了，等待就可以</p>
 <p>十、坑点</p>
 <p>1、windows下docker下载，需要注册</p>
@@ -256,7 +256,7 @@
 <p>3、安装环境时，mysql-python是不支持python3的，所以需要更换其它方式来进行数据库交互工作（在这个地方折腾了很久）</p>
 <p>我在这里使用了mysql官方提供的  mysql-connect-python  和 mysqlclient</p>
 <p>还可以安装pymysql</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%8810.02.59.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%8810.02.59.png" alt="img"></p>
 <p>将项目的初始化文件中加入</p>
 <p>Import pymysql</p>
 <p>Pymsql.install_as_MySQLdb()</p>
@@ -264,7 +264,7 @@
 <p>另外最好使用离线包安装mysql</p>
 <p>4、安装uwsgi</p>
 <p>安装uwsgi的时候，使用pip3 install uwsgi   明明是已经安装完成，显示安装成功，pip freeze也可以看到安装的版本号，仍然提示uwsgi命令无法找到，多次测试之后还是不行。最后去到uwsgi的安装目录下面查看，确实已经安装成功，而且目录下面是可以启动的，为了方便，做了了软链接，测试成功，这里安装uwsgi使用的是离线包安装</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%8810.03.54.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%8810.03.54.png" alt="img"></p>
 <p>5、用docker运行service 时会报错，centos中服务启动和关闭使用systemctl</p>
 <p>但是，问题在于使用docker 的时候，systemctl是用不了的，需要在run时加入两条命令，说实话原理我没搞懂，反正把问题解决就行了</p>
 <p>加入的命令是：</p>
@@ -272,7 +272,7 @@
 <p>重新启动容器就正常了</p>
 <p>6、无关docker的坑…… 在项目中生成静态文件时出的错，也提一下</p>
 <p>使用python manage.py collectstatic的时候确认要求输入 yes or no，自己傻输入的是y, 然后、、、、就傻了</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%8810.04.55.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://47.93.248.15/wp-content/uploads/2018/10/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-10-10-%E4%B8%8A%E5%8D%8810.04.55.png" alt="img"></p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
