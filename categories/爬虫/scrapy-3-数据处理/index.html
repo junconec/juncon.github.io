@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<script src="/js/src/clicklove.js"></script>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>分类: scrapy-3-数据处理 - JUNCON个人博客</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="JUNCON个人博客">
+<meta property="og:url" content="http://yoursite.com/categories/爬虫/scrapy-3-数据处理/index.html">
+<meta property="og:site_name" content="JUNCON个人博客">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JUNCON个人博客">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="JUNCON个人博客" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/about">支持</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/junconec/juncon.github.io">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">分类</a></li>
+            
+            <li><a href="/categories/爬虫/">爬虫</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">scrapy-3-数据处理</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-03-02T14:16:57.000Z">2017-03-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/爬虫/">爬虫</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/爬虫/scrapy-3-数据处理/">scrapy-3-数据处理</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    11 分钟 读完 (大约 1622 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2017/03/02/scrapy-3-数据处理/">scrapy-3-数据处理</a>
+            
+        </h1>
+        <div class="content">
+            <p>####itemPipeline数据处理</p>
+<p>介绍</p>
+<p>启动方式</p>
+<p>导出数据</p>
+<p>一、介绍</p>
+<p>在scrapy中，数据经过spider请求解析后，就需要进行对应模型化处理，在scrapy中itemPipeline负责数据处理</p>
+<p>   itemPipeline相当于数据处理的过滤器一样，可以配置多个，每一个itemPipline处理完成return后，会进入下一个itemPipeline中，如果不return，则表示放弃这段数据</p>
+<p>   每一个itemPipeline中，需要实现process_item(self,item,spider):这个方法，在这个方法中进行处理数据</p>
+<p>   open_spider(self,spider) 一般Spider打开时，回调该方法，通常用于处理数据之前的某些初始化工作，比如连接数据库</p>
+<p>   close_spider(self,spider)一般Spider关闭时，回调该方法，通常用于处理完成所有数据之后，如关闭数据库</p>
+<p>   from_crawler(cls,crawler) 一般没啥用，创建ItemPipeline对象时候回调该类方法</p>
+<p>二、启动方式</p>
+<p>启动方式有2种方式，一种在setting.py进行配置，一种在爬虫文件中配置</p>
+<p>方式1 在setting.py中进行配置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;<span class="string">'example.pipelines.PriceConverterPipeline'</span>:<span class="number">300</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>example是工程名字，pipelines是所在文件夹，PriceConverterPipeline自定义的itemPipeline，300是优先级，数值越小优先度越大</p>
+<p>多个ItemPipLine的应用，可以使用去重操作，在自定义的ItemPipLine中init初始化时候，初始一个set集合，在每次响应process_item时候对比name，从set中进行对比即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DuplicatesPipeline</span><span class="params">(object)</span>:</span>   </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>      </span><br><span class="line">        self.book_set=set()   </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self,item,spider)</span>:</span>      </span><br><span class="line">            name=item[<span class="string">'name'</span>]      </span><br><span class="line">            <span class="keyword">if</span> name <span class="keyword">in</span> self.book_set:      </span><br><span class="line">                <span class="comment">#数据重复不进行返回即可      </span></span><br><span class="line">                self.book_sett.add(name)      </span><br><span class="line">                <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
+
+<p>建立完成DuplicatesPipeline后需要在Setting.py中配置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;<span class="string">'example.pipelines,PriceConverterPipeline'</span>:<span class="number">300</span>,<span class="string">'example.pipelines.TestPipeline'</span>:<span class="number">400</span>,&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>方式2 在Spider文件中可以指定</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class Spider1(scrapy.Spider):     </span><br><span class="line">    name = <span class="string">'book1'</span>     </span><br><span class="line">    custom_settings = &#123;     <span class="string">'ITEM_PIPELINES'</span>:&#123;<span class="string">'pipelineClass1'</span>: <span class="number">300</span>,<span class="string">'pipelineClass2'</span>: <span class="number">400</span>&#125;,                   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样可以解决多个Spider1时候指定ITEM_PIPELINES的问题，可以为每一个Spider指定数据处理的方式</p>
+<p>需要注意的是最后一个ItemPipLine处理完成后，会根据命令行来进行处理后输出到哪里</p>
+<p>scrapy crawl books -o books.csv</p>
+<p>以上这段命令行中的-o books.csv是写入的文件，就是在最后一个ItemPipeline最后return的数据</p>
+<p><strong>四、数据导出</strong></p>
+<p>scrapy默认导出数据支持5种方式</p>
+<p>JSON   JsonItemExporter</p>
+<p>JSON lines   JsonLinesItemExporter</p>
+<p>CSV  CsvItemExporter</p>
+<p>XML  XmlItemExporter</p>
+<p>Pickle  PickleItemExporter</p>
+<p>Marshal MarsshallItemExporter</p>
+<p>前4种是极为常用的文本数据格式，后面2种是Python特有的，scrapy本身没有准备Excel格式数据导出</p>
+<p>如何导出？</p>
+<p>方式一   命令行参数</p>
+<p>-o -t参数指定导出文件路径和导出格式，通常t可以由o进行推测完成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books -o books.csv</span><br></pre></td></tr></table></figure>
+
+<p>scrapy crawl 是固定的</p>
+<p>books是spider中的name</p>
+<p>-o是输出的路径</p>
+<p>books.csv 没有指定其他路径，就是在当前路径下，没有使用o,但是会根据提供的路径，推测出是csv</p>
+<p>以下是指定明确的输出格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books -t json -o books.data</span><br></pre></td></tr></table></figure>
+
+<p>这种数据导出，是依赖什么来进行完成的？</p>
+<p>在配置字典FEED_EXPORTERS中搜索Exporter，FEED_EXPORTERS的内容中搜索Exporter，FEED_EXPORTERS的内容由以下二个字典的内容合并而成</p>
+<p>默认配置文件中的FEED_EXPORTERS_BASE</p>
+<p>用户配置文件中的FEED_EXPORTERS</p>
+<p>前者包含内部支持的数据格式，后者包含用户自定义的导出数据格式，以下是Scrapy源码中定义的FEED_EXPORTERS_BASE，它位于scrapy.settings.default_settings模块：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORTERS_BASE=&#123;<span class="string">'json'</span>:<span class="string">'scrapy.exporters.JsonItemExporter'</span>,<span class="string">'jsonlines'</span>:<span class="string">'scrapy.exporters.JsonLinesItemExporter'</span>,<span class="string">'jl'</span>:<span class="string">'scrapy.exporters.JsonLinesItemExporter'</span>,<span class="string">'csv'</span>:<span class="string">'scrapy.exporters.CsvItemExporter'</span>,<span class="string">'xml'</span>:<span class="string">'scrapy.exporters.XmlItemExporter'</span>,<span class="string">'marshal'</span>:<span class="string">'scrapy.exporters.MarshalItemExporter'</span>,<span class="string">'pickle'</span>:<span class="string">'scrapy.exporters.PickleItemExporter'</span>,&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这里严重不建议修改源码，因为程序最终是要配置在服务器上面的，服务器上面的环境修改源码，可就没那么简单了</p>
+<p>用户添加新的导出格式，通常是在配置文件setting.py中定义FEED_EXPORTERS，比如导出Excel</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORTERS=&#123;<span class="string">'excel'</span>:<span class="string">'my_project.my_exporters.ExcelItemExporter'</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>指定导出文件路径，支持%(name)s和%(time)s这2个特殊变量</p>
+<p>%(name)s 会被替换为Spider的名字</p>
+<p>%(time)s 会被替换为文件创建时间</p>
+<p>假设一个项目爬取的有书籍、游戏信息、新闻3个spider</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books  -o <span class="string">'/export_data/%(name)s/%(time)s.csv'</span></span><br><span class="line">scrapy crawl games  -o <span class="string">'/export_data/%(name)s/%(time)s.csv'</span></span><br><span class="line">scrapy crawl news  -o <span class="string">'/export_data/%(name)s/%(time)s.csv'</span></span><br></pre></td></tr></table></figure>
+
+<p>以上是爬取的内容，根据书名存放在export_data文件夹下的对应书名目录下，每个目录下根据时间进行保存</p>
+<p>方式二 配置文件方式</p>
+<p>在setting.py中设置以下参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FEED_URI=<span class="string">'export_data/%(name)s.data'</span>            导出数据的位置</span><br><span class="line">FEED_FORMAT=<span class="string">'csv'</span>                               导出数据的格式</span><br><span class="line">FEED_EXPORT_ENCODING=<span class="string">'gbk'</span>                      导出数据的编码</span><br><span class="line">FEED_EXPORT_FIELDS=[<span class="string">'name'</span>,<span class="string">'author'</span>,<span class="string">'price'</span>]    导出数据的字段</span><br><span class="line">FEED_EXPORTERS=&#123;<span class="string">'excel'</span>:<span class="string">'my_project.my_exporters.ExcelItemExporter'</span>&#125;   新添加导出的格式</span><br></pre></td></tr></table></figure>
+
+<p>如何实现一个自定义的导出的Excel类</p>
+<p>1、继承BaseItemExporter</p>
+<p>其中有3个方法</p>
+<p>export_item(self,item) 负责导出爬取的每一项数据，参数item为一项爬取的数据，每一个子类必须实现该方法</p>
+<p>start_exporting(self)   在导出开始时被调用，可在该方法执行某些初始化工作</p>
+<p>finish_exporting(self) 在导出完成时候被调用，可在该方法中执行某些清理工作</p>
+<p>以下实现一个导出Excel,注意这里使用的是xlwt，这个库最多只能在一个sheet中插入65535行数据，如果要插入更多数据，需要切换为openxl来进行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.exporters <span class="keyword">import</span> BaseItemExporter</span><br><span class="line"> </span><br><span class="line">impoort xlwt</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExcelItemExporter</span><span class="params">(BaseItemExporter)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,file,**kwargs)</span>:</span></span><br><span class="line">       self._configure(kwargs)</span><br><span class="line">       self.file=file</span><br><span class="line">       self.wbook=xlwt.Workbook()</span><br><span class="line">       self.wsheet=self.wbook.add_sheet(<span class="string">'scrapy'</span>)</span><br><span class="line">       self.row=<span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">finish_exporting</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.wbook.save(self.file)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">export_item</span><span class="params">(self,item)</span>:</span></span><br><span class="line">        fields=self._get_serialized_fields(item)</span><br><span class="line">    <span class="keyword">for</span> col,v <span class="keyword">in</span> enumerate(x <span class="keyword">for</span> _,x <span class="keyword">in</span> fields):</span><br><span class="line">        self.wsheet.write(self.row,col,v)</span><br><span class="line"> </span><br><span class="line">    self.row +=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>编写完成后再setting.py中添加这个类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORTERS=&#123;<span class="string">'excel'</span>:<span class="string">'my_project.my_exporters.ExcelItemExporter'</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>之后终端命令行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books -t excel -o books.xls</span><br></pre></td></tr></table></figure>
+
+<p>这样就导出excel了，当然你可以封装一个Excel导出类，这样可以更加通用，在web框架下，爬虫框架下都可以使用</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/cat/junc.jpg" alt="JUNCON">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        JUNCON
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        The greatest generosity to the future is to give something
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Beijing.China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        29
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        22
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        22
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/junconec" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/junconec">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Django/">
+            <span class="level-start">
+                <span class="level-item">Django</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Excel/">
+            <span class="level-start">
+                <span class="level-item">Excel</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-数据梳理/">
+            <span class="level-start">
+                <span class="level-item">Excel-openpyxl--数据梳理</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-创建和读取/">
+            <span class="level-start">
+                <span class="level-item">Excel-openpyxl-创建和读取</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-增删改查/">
+            <span class="level-start">
+                <span class="level-item">Excel-openpyxl-增删改查</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Selenium/">
+            <span class="level-start">
+                <span class="level-item">Selenium</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Selenium/爬虫-selenium/">
+            <span class="level-start">
+                <span class="level-item">爬虫+selenium</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/bug/">
+            <span class="level-start">
+                <span class="level-item">bug</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/docker/">
+            <span class="level-start">
+                <span class="level-item">docker</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/mysql/">
+            <span class="level-start">
+                <span class="level-item">mysql</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/python/">
+            <span class="level-start">
+                <span class="level-item">python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/smscode/">
+            <span class="level-start">
+                <span class="level-item">smscode</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/smscode/sendemail/">
+            <span class="level-start">
+                <span class="level-item">sendemail</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/浅谈少儿编程/">
+            <span class="level-start">
+                <span class="level-item">浅谈少儿编程</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/爬虫/">
+            <span class="level-start">
+                <span class="level-item">爬虫</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/爬虫/scrapy-1-快速入门/">
+            <span class="level-start">
+                <span class="level-item">scrapy-1-快速入门</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/爬虫/scrapy-2-数据解析/">
+            <span class="level-start">
+                <span class="level-item">scrapy-2-数据解析</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/爬虫/scrapy-3-数据处理/">
+            <span class="level-start">
+                <span class="level-item">scrapy-3-数据处理</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/爬虫/scrapy-4-链接提取器/">
+            <span class="level-start">
+                <span class="level-item">scrapy-4-链接提取器</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/爬虫/scrapy-5-文件图片下载/">
+            <span class="level-start">
+                <span class="level-item">scrapy-5-文件图片下载</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/爬虫/反爬/">
+            <span class="level-start">
+                <span class="level-item">反爬</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/环境配置/">
+            <span class="level-start">
+                <span class="level-item">环境配置</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/09/浅谈【站在孩子的角度，课程的乐趣有几层？】/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="浅谈【站在孩子的角度，课程的乐趣有几层？】">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-09T10:01:17.000Z">2021-05-09</time></div>
+                    <a href="/2021/05/09/浅谈【站在孩子的角度，课程的乐趣有几层？】/" class="has-link-black-ter is-size-6">浅谈【站在孩子的角度，课程的乐趣有几层？】</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/浅谈少儿编程/">浅谈少儿编程</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/04/09/浅谈【少儿编程行业当前阶段】/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="浅谈【少儿编程行业当前阶段】">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-04-09T09:51:36.000Z">2021-04-09</time></div>
+                    <a href="/2021/04/09/浅谈【少儿编程行业当前阶段】/" class="has-link-black-ter is-size-6">浅谈【少儿编程行业当前阶段】</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/浅谈少儿编程/">浅谈少儿编程</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/09/感-《终身幼儿园》/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="感-《终身幼儿园》">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T09:39:28.000Z">2020-03-09</time></div>
+                    <a href="/2020/03/09/感-《终身幼儿园》/" class="has-link-black-ter is-size-6">感-《终身幼儿园》</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/浅谈少儿编程/">浅谈少儿编程</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/24/关于爬虫的几种常见的反爬/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="关于爬虫的几种常见的反爬">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-24T11:29:19.000Z">2019-12-24</time></div>
+                    <a href="/2019/12/24/关于爬虫的几种常见的反爬/" class="has-link-black-ter is-size-6">关于爬虫的几种常见的反爬</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/爬虫/">爬虫</a> / <a class="has-link-grey -link" href="/categories/爬虫/反爬/">反爬</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/01/少儿编程教研/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="少儿编程教研必备">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-01T15:28:59.000Z">2019-12-01</time></div>
+                    <a href="/2019/12/01/少儿编程教研/" class="has-link-black-ter is-size-6">少儿编程教研必备</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/浅谈少儿编程/">浅谈少儿编程</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Bug/" style="font-size: 12px;">Bug</a> <a href="/tags/Django/" style="font-size: 12px;">Django</a> <a href="/tags/Excel/" style="font-size: 14px;">Excel</a> <a href="/tags/MongoDB数据库/" style="font-size: 10px;">MongoDB数据库</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/mysql-ubuntu/" style="font-size: 10px;">mysql+ubuntu</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/python，反爬/" style="font-size: 10px;">python，反爬</a> <a href="/tags/scrapy/" style="font-size: 16px;">scrapy</a> <a href="/tags/scrapy-1-快速入门/" style="font-size: 10px;">scrapy-1-快速入门</a> <a href="/tags/scrapy-2-数据解析/" style="font-size: 10px;">scrapy-2-数据解析</a> <a href="/tags/scrapy-3-数据处理/" style="font-size: 10px;">scrapy-3-数据处理</a> <a href="/tags/scrapy-4-链接提取器/" style="font-size: 10px;">scrapy-4-链接提取器</a> <a href="/tags/scrapy-5-文件图片下载/" style="font-size: 10px;">scrapy-5-文件图片下载</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/浅谈少儿编程/" style="font-size: 16px;">浅谈少儿编程</a> <a href="/tags/爬虫/" style="font-size: 18px;">爬虫</a> <a href="/tags/爬虫-selenium/" style="font-size: 10px;">爬虫+selenium</a> <a href="/tags/环境配置/" style="font-size: 14px;">环境配置</a> <a href="/tags/短信与邮件服务/" style="font-size: 10px;">短信与邮件服务</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a>
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2021/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Bug/">
+                        <span class="tag">Bug</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Django/">
+                        <span class="tag">Django</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Excel/">
+                        <span class="tag">Excel</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MongoDB数据库/">
+                        <span class="tag">MongoDB数据库</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/docker/">
+                        <span class="tag">docker</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/mysql/">
+                        <span class="tag">mysql</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/mysql-ubuntu/">
+                        <span class="tag">mysql+ubuntu</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/python/">
+                        <span class="tag">python</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/python，反爬/">
+                        <span class="tag">python，反爬</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy/">
+                        <span class="tag">scrapy</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy-1-快速入门/">
+                        <span class="tag">scrapy-1-快速入门</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy-2-数据解析/">
+                        <span class="tag">scrapy-2-数据解析</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy-3-数据处理/">
+                        <span class="tag">scrapy-3-数据处理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy-4-链接提取器/">
+                        <span class="tag">scrapy-4-链接提取器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy-5-文件图片下载/">
+                        <span class="tag">scrapy-5-文件图片下载</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/selenium/">
+                        <span class="tag">selenium</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/浅谈少儿编程/">
+                        <span class="tag">浅谈少儿编程</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫-selenium/">
+                        <span class="tag">爬虫+selenium</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/环境配置/">
+                        <span class="tag">环境配置</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/短信与邮件服务/">
+                        <span class="tag">短信与邮件服务</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/部署/">
+                        <span class="tag">部署</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+            
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://www.jianshu.com/u/bf4c0b4a8c83" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">简书</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.jianshu.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/junconec" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">GitHub</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Bug/" style="font-size: 12px;">Bug</a> <a href="/tags/Django/" style="font-size: 12px;">Django</a> <a href="/tags/Excel/" style="font-size: 14px;">Excel</a> <a href="/tags/MongoDB数据库/" style="font-size: 10px;">MongoDB数据库</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/mysql-ubuntu/" style="font-size: 10px;">mysql+ubuntu</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/python，反爬/" style="font-size: 10px;">python，反爬</a> <a href="/tags/scrapy/" style="font-size: 16px;">scrapy</a> <a href="/tags/scrapy-1-快速入门/" style="font-size: 10px;">scrapy-1-快速入门</a> <a href="/tags/scrapy-2-数据解析/" style="font-size: 10px;">scrapy-2-数据解析</a> <a href="/tags/scrapy-3-数据处理/" style="font-size: 10px;">scrapy-3-数据处理</a> <a href="/tags/scrapy-4-链接提取器/" style="font-size: 10px;">scrapy-4-链接提取器</a> <a href="/tags/scrapy-5-文件图片下载/" style="font-size: 10px;">scrapy-5-文件图片下载</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/浅谈少儿编程/" style="font-size: 16px;">浅谈少儿编程</a> <a href="/tags/爬虫/" style="font-size: 18px;">爬虫</a> <a href="/tags/爬虫-selenium/" style="font-size: 10px;">爬虫+selenium</a> <a href="/tags/环境配置/" style="font-size: 14px;">环境配置</a> <a href="/tags/短信与邮件服务/" style="font-size: 10px;">短信与邮件服务</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a>
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2021/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Bug/">
+                        <span class="tag">Bug</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Django/">
+                        <span class="tag">Django</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Excel/">
+                        <span class="tag">Excel</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MongoDB数据库/">
+                        <span class="tag">MongoDB数据库</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/docker/">
+                        <span class="tag">docker</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/mysql/">
+                        <span class="tag">mysql</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/mysql-ubuntu/">
+                        <span class="tag">mysql+ubuntu</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/python/">
+                        <span class="tag">python</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/python，反爬/">
+                        <span class="tag">python，反爬</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy/">
+                        <span class="tag">scrapy</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy-1-快速入门/">
+                        <span class="tag">scrapy-1-快速入门</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy-2-数据解析/">
+                        <span class="tag">scrapy-2-数据解析</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy-3-数据处理/">
+                        <span class="tag">scrapy-3-数据处理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy-4-链接提取器/">
+                        <span class="tag">scrapy-4-链接提取器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy-5-文件图片下载/">
+                        <span class="tag">scrapy-5-文件图片下载</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/selenium/">
+                        <span class="tag">selenium</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/浅谈少儿编程/">
+                        <span class="tag">浅谈少儿编程</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫-selenium/">
+                        <span class="tag">爬虫+selenium</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/环境配置/">
+                        <span class="tag">环境配置</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/短信与邮件服务/">
+                        <span class="tag">短信与邮件服务</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/部署/">
+                        <span class="tag">部署</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://www.jianshu.com/u/bf4c0b4a8c83" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">简书</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.jianshu.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/junconec" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">GitHub</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="JUNCON个人博客" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Juncon&nbsp;
+                Powered &#10084; YH · Lin
+                </p>
+            </div>
+            
+            <script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+            
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/jiaxiaochu/jiaxiaochu.github.io">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        <div align="center">
+            <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+            <script>
+                var now = new Date(); 
+                function createtime() { 
+                    var grt= new Date("4/1/2019 12:49:00");//此处修改你的建站时间或者网站上线时间 
+                    now.setTime(now.getTime()+250); 
+                    days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+                    hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+                    if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+                    mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+                    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+                    snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+                    document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+                    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+                } 
+            setInterval("createtime()",250);
+            </script>
+            <div align="center">
+            <span id="busuanzi_container_site_pv" class="theme-info">本站总访问量-<span id="busuanzi_value_site_pv"></span>-次|
+              </span>
+              <span id="busuanzi_container_site_uv" class="theme-info">您是第-<span id="busuanzi_value_site_uv"></span>-位小伙伴</span>
+
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            </div>
+        </div>
+        <span>
+        <script type="text/javascript" src="//rf.revolvermaps.com/0/0/0.js?i=0xetp0d4rdh&amp;d=2&amp;p=1&amp;b=8&amp;w=193&amp;g=2&amp;f=arial&amp;fs=12&amp;r=0&amp;c0=000000&amp;c1=00a99d&amp;c2=000000&amp;ic0=0&amp;ic1=0" async="async"></script>
+        </span>
+        </div>
+
+    </div>
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            bp.src = '//push.zhanzhang.baidu.com/push.js';
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+        <!-- 雪花特效 -->
+    <script type="text/javascript">
+      var windowWidth = $(window).width();
+      if (windowWidth > 480) {
+        document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+      }
+    </script>
+
+    <script src="//code.tidio.co/wgmwb2zlxrcti0crizzmumshwbxpums2.js"></script>
+    
+</body>
+</html>
