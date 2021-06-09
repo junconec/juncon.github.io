@@ -137,6 +137,63 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/07/23/mysql/">
+        <p class="h4 index-header">mysql忘记密码解决方法</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">mysql 解决忘记密码问题
+mac下mysql 1045 (28000): Access denied for user ‘root’@’localhost’ (using password:
+新入了mac pro，安装好mysql后，用终端进入mysql遇到个问题： 1045 (28000): Access denied for user ‘root’@’localhost’ (using password: N
+讲道理，我还设密码呢，但是第一次进来就报错，goo了一下大概原因可能是mysql创建的时候给自动分配了密码。
+不管分配没分配密码，反正一般的解决方法就是：先跳过验证，再重设密码。
+具体步骤：
+
+先关闭MySQL服务；执行
+ sudo /usr/local/mysql/support-files/mysql.server stop
+
+
+或者在系统偏好设置中关闭MySQL服务(如果电脑有设置密码的，此处会要求输入计算机密码)
+2.去mysql文件夹里设置跳过验证（3步）
+先进入mysql文件夹：
+cd /usr/local/mysql/bin/
+
+
+
+设置权限，如果电脑有设置</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-23&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/bug">bug</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">环境配置</a>&nbsp;
+          
+            <a href="/tags/Bug">Bug</a>&nbsp;
+          
+            <a href="/tags/mysql">mysql</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2018/12/03/selenium安装与使用/">
         <p class="h4 index-header">爬虫+selenium</p>
         
@@ -550,70 +607,18 @@ yum install -y </div>
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2017/05/03/scrapy-5-文件图片下载/">
-        <p class="h4 index-header">scrapy-5-文件图片下载</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">在scrapy中提供了2种下载通道
-FilesPipeline    提供文件下载
-ImagesPipline  提供图片的下载，额外提供缩略图
-这2个ItemPipline作为特殊的下载器，用户使用时，只需要通过item的一个特殊字段，将要下载文件或图片url进行赋值，他们就会自动将文件或者图片下载本地。并将下载结果信息存入到item的另一个特殊字段中
-FilePipline的使用
-导入路径  scrapy.pipelines.files.FilesPipeline
-Item字段  file_urls,files
-下载目录  FILES_STORE
-请看一下前端页面
-12345678&lt;html&gt; &lt;body&gt; &lt;a href='/book/sg.pdf'&gt;下载三国演义&lt;/a&gt; &lt;a href='/book/shz.pdf'&gt;下载水浒传&lt;/a&gt; &lt;a href='/book/hlm.pdf'&gt;下载红楼梦&lt;/a&gt; &lt;a href='/book/xyj.pdf'&gt;下载西游记&lt;/</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2017-05-03&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%88%AC%E8%99%AB">爬虫</a>&nbsp;
-          
-            <a href="/categories/scrapy-5-%E6%96%87%E4%BB%B6%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD">scrapy-5-文件图片下载</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/python">python</a>&nbsp;
-          
-            <a href="/tags/%E7%88%AC%E8%99%AB">爬虫</a>&nbsp;
-          
-            <a href="/tags/scrapy">scrapy</a>&nbsp;
-          
-            <a href="/tags/scrapy-5-%E6%96%87%E4%BB%B6%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD">scrapy-5-文件图片下载</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
     <ul class="pagination pg-blue justify-content-center mt-5">
       
         <li class="page-item">
-          <a class="page-link" href="/#board">上一页</a>
+          <a class="page-link" href="/#board">Previous</a>
         </li>
       
       
         <li class="page-item">
-          <a class="page-link" href="/page/3/#board">下一页</a>
+          <a class="page-link" href="/page/3/#board">Next</a>
         </li>
       
     </ul>
@@ -641,7 +646,7 @@ Item字段  file_urls,files
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -650,7 +655,7 @@ Item字段  file_urls,files
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
