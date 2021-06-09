@@ -137,6 +137,60 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/12/03/selenium安装与使用/">
+        <p class="h4 index-header">爬虫+selenium</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">爬虫使用selenium进行爬取，借助chrome进行调试，
+1pip install selenium
+
+代码测试
+1from selenium import webdriver browser = webdriver.Chrome()browser.get(&apos;http://www.baidu.com/&apos;)
+
+你会欣喜若狂的运行一下，如果你是初次使用，会报错，需要下载一个webdriver的文件，这个文件要放在chrome浏览器下，最坑的是这个文件需要对应你的浏览器版本才可以
+可以访问以下地址查看对应
+https://blog.csdn.net/huilan_same/article/details/51896672
+1、windows下找chrome的安装位置
+2、mac下找chrome.app
+右键显示包内容,实际上这个文件chromedriver 在最新的mac上，需要在/usr/local/bin下也弄一份同样的文件，这样还不够，还需要赋值权限chmod 777 /xxxx/xxxx/xxx/chromedriver才可以
+3、linux下找到安装位置
+以</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-12-03&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Selenium">Selenium</a>&nbsp;
+          
+            <a href="/categories/%E7%88%AC%E8%99%AB+selenium">爬虫+selenium</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/python">python</a>&nbsp;
+          
+            <a href="/tags/selenium">selenium</a>&nbsp;
+          
+            <a href="/tags/%E7%88%AC%E8%99%AB+selenium">爬虫+selenium</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2018/11/02/docker容器网页远程访问桌面/">
         <p class="h4 index-header">docker容器网页远程访问桌面</p>
         
@@ -548,63 +602,18 @@ Item字段  file_urls,files
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2017/04/25/docker/">
-        <p class="h4 index-header">docker</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">####Python操作docker
-通过python调用docker，需要和docker在同一个服务器上才可以
-也可以通过传递
-1unix:///var/run1/docker.sock
-
-来进行在容器内操作你指定想要连接的docker，这个共享需要在容器最开始创建时候，让容器和外部一个文件进行关联才可以，具体可以参照一下
-docker run -d -it -p 805:80 -p 5002:5000 -p 10027:22 -p 20001:8888 -p 20002:3306 –name centos_master –privileged=true -v /var/run/docker.sock:/var/run/docker.sock -v /zc:/zc -e LANG=zh_CN.utf8 zhangcheng0111/centos7-webssh-dockermanager-ssh /usr/sbin/init
-其中比较关键的是-v /var/run/docker.sock:/var/run/docker.sock  映射了容器内部和外部的关联文件
-以下介绍通过pyth</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2017-04-25&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/bug">bug</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/python">python</a>&nbsp;
-          
-            <a href="/tags/docker">docker</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
     <ul class="pagination pg-blue justify-content-center mt-5">
       
         <li class="page-item">
-          <a class="page-link" href="/#board">Previous</a>
+          <a class="page-link" href="/#board">上一页</a>
         </li>
       
       
         <li class="page-item">
-          <a class="page-link" href="/page/3/#board">Next</a>
+          <a class="page-link" href="/page/3/#board">下一页</a>
         </li>
       
     </ul>
@@ -632,7 +641,7 @@ docker run -d -it -p 805:80 -p 5002:5000 -p 10027:22 -p 20001:8888 -p 20002:3306
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -641,7 +650,7 @@ docker run -d -it -p 805:80 -p 5002:5000 -p 10027:22 -p 20001:8888 -p 20002:3306
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
