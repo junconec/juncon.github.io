@@ -14,7 +14,7 @@
   <meta name="description" content>
   <meta name="author" content="Juncon">
   <meta name="keywords" content>
-  <title>Excel-openpyxl-3-增删改查 ~ JUNCON个人博客</title>
+  <title>感-《终身幼儿园》 ~ JUNCON个人博客</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
@@ -111,7 +111,7 @@
 
             
               <br>
-              <p class="mt-3">星期六, 九月 30日 2017, 10:10 晚上</p>
+              <p class="mt-3">星期三, 六月 9日 2021, 5:39 下午</p>
               
             
           </div>
@@ -133,85 +133,50 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <h1 id="Excel-openpyxl-3-增删改查"><a href="#Excel-openpyxl-3-增删改查" class="headerlink" title="Excel-openpyxl-3-增删改查"></a>Excel-openpyxl-3-增删改查</h1><p>通过这篇文章，你能学习到以下内容<br>1、openpyxl的增加数据<br>2、openpyxl删除数据<br>3、更新数据<br>4、查找数据</p>
-<p>1、openpyxl的增加数据</p>
-<p>使用上一个文件创建的create_excel.xlsx</p>
-<p><a href="http://47.93.248.15/wp-content/uploads/2018/05/create_excel.xlsx" target="_blank" rel="noopener">create_excel </a>     原始文件，数据源</p>
-<p><a href="http://47.93.248.15/wp-content/uploads/2018/05/openpyxledit.py_.zip" target="_blank" rel="noopener">openpyxledit.py</a>   相关代码</p>
-<p><img src="http://47.93.248.15/wp-content/uploads/2018/05/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-05-09-%E4%B8%8B%E5%8D%883.25.27.png" srcset="/img/loading.gif" alt="img"></p>
-<p>每次调用，在最后一列，多增加一列数据</p>
-<p>引用模块openpyxl</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from openpyxl import load_workbookfrom openpyxl import Workbook# 一个eggache的数字转为列字母的方法from openpyxl.utils import get_column_letter</span><br></pre></td></tr></table></figure>
+            <h2 id="少儿编程圣经：感-《终身幼儿园》"><a href="#少儿编程圣经：感-《终身幼儿园》" class="headerlink" title="少儿编程圣经：感 -《终身幼儿园》"></a>少儿编程圣经：感 -《终身幼儿园》</h2><p>最近在空闲中翻看了一本所谓少儿编程语言行业的圣经之一《终身幼儿园》。作者Mitchel Resnick(米切尔·雷斯尼克) 是MIT媒体实验室的教授，他开发了儿童编程主流软件Scratch，同时和乐高联手开发出Wedo等编程必备品。刚开始觉得也很平常觉得没什么可以吸取的，但是读着读着 就发发现亮点了。</p>
+<p>关于这本书的一些总结和思考：</p>
+<p>清华大学校长陈吉宁对作者说的话：</p>
+<blockquote>
+<p>中国的教育制度侧重于培养遵守规则和指示的学生，他称这些学生为“A型学生”，这些学生缺乏创造性和创新精神，而这是在未来社会中取得成功所必备的。陈校长认为，中国需要一种新型的学生，他称为“X型学生”，这些学生愿意承担风险，勇于尝试新鲜事物，乐于提出自己的问题，而不是简单地解决教科书里的问题。正是“X型学生”，将提出创造性的想法，改变未来社会。</p>
+</blockquote>
+<p>其实我觉得这个理念对现在的教育培优可能价值不大，但是在课外辅导中，可以往这个方向靠靠。</p>
+<p><strong>在正文中，最有价值的内容可以用“1 + 4”表示。</strong></p>
+<p>1 是指一个核心理念。</p>
+<p>4 是指在这个理念的指导下，作者提出的 4P 学习法。</p>
+<p>从这个脉络中可以看出来，作者是从理念到具体实践方法，提出了一整套可行的框架。在这个框架下，少儿编程将成为培养孩子创造力的利器。</p>
+<h2 id="一-1-个核心理念"><a href="#一-1-个核心理念" class="headerlink" title="一. 1 个核心理念"></a><strong>一. 1 个核心理念</strong></h2><p>这是作者的核心理念。</p>
+<p>为什么要像在幼儿园里一样的学习呢?</p>
+<p>因为在小学、中学的时候，主要学习方式是老师在课堂上面讲课，学生在下面被动接受，很少会有课堂讨论。作者称这种方式为广播模式。</p>
+<p>而<strong>在幼儿园里，是通过孩子自己动手探索、做游戏、玩来学习的</strong>，比如过家家，堆积木，玩橡皮泥。在这个过程中，孩子能创造新事物，发展创造力。作者称这种学习方式为互动学习。</p>
+<p>在这种学习过程中，孩子能够反复地想象、创造、游戏、分享和反思，从而提升创造性思维能力。作者的 cratch 编程语言就是在这个理念下设计的。</p>
+<h2 id="二-4P-学习法"><a href="#二-4P-学习法" class="headerlink" title="二. 4P 学习法"></a><strong>二. 4P 学习法</strong></h2><p><img src="https://pic3.zhimg.com/v2-459db7cd453cb67473ebc5111944f0ea_b.jpg" srcset="/img/loading.gif" alt="img">书本中的</p>
+<p><strong>项目。</strong></p>
+<p>孩子们可以在网站上新建一个项目，然后在这个项目中实现自己的想法（比如一个小游戏）。项目可以发布出来，让别人试用，最后根据实际反馈进行修改和迭代。在这个过程中，很多互不相识的孩子也可以一起合作完成这个项目。</p>
+<p><strong>热情。</strong></p>
+<p><strong>在完成项目的时候，兴趣是第一推动力。</strong>孩子可以选择自己感兴趣的项目（因为 Scratch 能做的事很多，比如小游戏、音乐、动画等）。在学习上，对孩子最好的奖励是他们自己的成就感，而不是外部的表扬或者物质奖励。</p>
+<p><strong>同伴。</strong></p>
+<p>在巴西有一种桑巴舞校模式。到了一定的时候，大人，小孩、专家和新手都会聚集在一起，共同合作创作出具有当地特色的舞蹈和歌曲。这种模式在少儿编程社区中也一样，孩子们的编程水平虽然有高有低，但是却能够很好的合作。</p>
+<p><strong>游戏。</strong></p>
+<p>孩子能玩的游戏有很多。在有的游戏中，孩子能够自己决定做什么，以及怎么做，比如玩积木，这种是构造性游戏。还有的游戏，孩子只能不断地升级打怪，或者是相互 pk，比如打弹珠。而前者更能发展孩子的创造力。</p>
+<p><strong>在玩构造性游戏的过程中，孩子需要不断地修修补补，也有可能经常犯错，但是这些都有助于孩子创造新的事物。</strong></p>
+<p>读完了这本书，发现书中的 4P 学习法是在在线社区的基础之上，但是国内的少儿编程环境还没有那么成熟，没有办法运作起来。但是在线下，这套方法论是可以借鉴的。比如让几个孩子一起用 Scratch 做小游戏， 然后比一比谁做的小游戏更好玩，同时在玩的过程中，可以不断地改进这些游戏。这样，不但孩子们多了一个功能强大的玩具，而且无形中也发展了创新能力。</p>
+<p><img src="https://pic4.zhimg.com/v2-da3124330129082828e69f6e83314fdb_b.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><strong>对教研有什么用</strong></p>
+<p>作为资深的教研来讲做一节课是一件如同吃饭一样简单的事情，而能做出来孩子们都能上的很嗨的课也是如同上厕所一样顺其自然。但是面面都能满足的课是什么样的课呢，或则说”面面“都有哪些”面面“。相信每一个教研老师都有自己的答案，或则都想知道一个标准的答案。这是我最近一段时间最重要的事情了，我也快接近胜利了。</p>
+<p>现在的课程大部分都是脚手架偏多，脚手架的设置要有策略，课设时仍然还要给出孩子自己的发挥空间，”open“和”个性化“更容易激发孩子们兴趣……..</p>
+<p>(不是本人只能观看到此)</p>
 
-<p>目标:调用一次，最后一列增加一列</p>
-<p>思路:</p>
-<p>获得最后一列或者一行的位置</p>
-<p>增加一列:通过cell指定最后一列的位置增加1，依次对这一列的每一行赋值</p>
-<p>增加一行:通过cell指定最后一行位置增加1，依次对这行的每一列进行赋值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#增加数据def addExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;, data_only=True)  # data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet = wb.get_sheet_by_name(&quot;create_sheet&quot;)    #获得最大行数    row=sheet.max_row    #获得最大列数    column=sheet.max_column    #循环插入一列数据    for i in range(row):        #列数+1转换为字母        h_col = get_column_letter(column+1)        #行数从1开始,从0会报错        xx=h_col+str(i+1)        #可以使用sheet[xx].value=xx方式进行赋值        # sheet[xx].value=xx        #row是数字，column是数字，都是从1开始        sheet.cell(row=(i+1),column=column+1).value=xx    wb.save(&quot;create_excel.xlsx&quot;)</span><br></pre></td></tr></table></figure>
-
-<p>调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addExcel()</span><br></pre></td></tr></table></figure>
-
-
-
-<p>2、 openpyxl删除数据</p>
-<p>目标:调用一次，最后一行删除一行</p>
-<p>思路：</p>
-<p>openpyxl本身不提供删除，原因在于删除涉及移动数据，但是如果行或者列的数据本身都为None时候，默认这行就是没有的，利用这个规则，可以把一行或者一列的数据全部设置为None即可删除</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def deleteExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;, data_only=True)  # data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet = wb.get_sheet_by_name(&quot;create_sheet&quot;)    # 获得最大行数    row = sheet.max_row    # 获得最大列数    column = sheet.max_column    print(column)    # 删除最后一列数据    #for i in range(row):    #    sheet.cell(row=(i+1), column=column).value = None    # 删除最后一行数据    for i in range(column):        sheet.cell(row=row,column=i+1).value=None    wb.save(&quot;create_excel.xlsx&quot;)</span><br></pre></td></tr></table></figure>
-
-<p>调用删除数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deleteExcel()</span><br></pre></td></tr></table></figure>
-
-
-
-<p>3、  更新数据</p>
-<p>目标:修改任意数据，进行保存</p>
-<p>思路</p>
-<p>基本思路和增加是一样的，但是比较简单的是不获取一列数据，而是单独的一个cell</p>
-<p>对单独cell赋值后进行保存，即可完成更新</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def updateExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;, data_only=True)  # data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet = wb.get_sheet_by_name(&quot;create_sheet&quot;)    sheet[&apos;C3&apos;] = &apos;new data&apos;    wb.save(&quot;create_excel.xlsx&quot;)</span><br></pre></td></tr></table></figure>
-
-<p>调用更新数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">updateExcel()</span><br></pre></td></tr></table></figure>
-
-
-
-<p>4、 查找数据</p>
-<p>目标:查找所有数据</p>
-<p>思路</p>
-<p>获得最大列和最大行，进行遍历，需要注意行和列都是从1开始的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def selectExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;,data_only=True) #data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet=wb.get_sheet_by_name(&quot;create_sheet&quot;)    # 获取A1格的值    print(&quot;A1的值  &quot;,sheet[&apos;A1&apos;].value)    # 获取表的内容的最大工作行数    print(&quot;表最大工作行数  &quot;,sheet.max_row)    # 获取表的内容的最大工作列数    print(&quot;表最大工作列数  &quot;,sheet.max_column)    # 遍历表中所有内容    for row in sheet.rows:        #row是每一行中的数据        for cell in row:            print(cell.value,end=&quot; &quot;)        print(&quot;&quot;)</span><br></pre></td></tr></table></figure>
-
-
-
-<p>调用查询</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">selectExcel()</span><br></pre></td></tr></table></figure>
             <hr>
           </div>
           <br>
           <div>
             
-              <p>
-                <i class="iconfont icon-inbox"></i>
-                
-                  <a class="hover-with-bg" href="/categories/Excel">Excel</a>
-                  &nbsp;
-                
-                  <a class="hover-with-bg" href="/categories/Excel-openpyxl-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5">Excel-openpyxl-增删改查</a>
-                  &nbsp;
-                
-              </p>
-            
             <p>
               <i class="iconfont icon-tag"></i>
               
-                <a class="hover-with-bg" href="/tags/Excel">Excel</a>
+                <a class="hover-with-bg" href="/tags/%E5%B0%91%E5%84%BF%E7%BC%96%E7%A8%8B">少儿编程</a>
               
-                <a class="hover-with-bg" href="/tags/python">python</a>
-              
-              <span id="/2017/09/30/Excel-openpyxl-3-增删改查/" class="visitors leancloud_visitors" data-flag-title="Excel-openpyxl-3-增删改查">
+              <span id="/2021/06/09/感-《终身幼儿园》/" class="visitors leancloud_visitors" data-flag-title="感-《终身幼儿园》">
                 <em id="visitors-text" class="post-meta-item-text"></em>
                 <i id="visitors-count"></i>
               </span>
@@ -319,7 +284,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Excel-openpyxl-3-增删改查&nbsp;",
+        "感-《终身幼儿园》&nbsp;",
       ],
       cursorChar: "The greatest generosity to the future is to give something",
       typeSpeed: 50,
