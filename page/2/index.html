@@ -1,907 +1,760 @@
-
 <!DOCTYPE html>
-<html lang="zh-CN" class="loading">
+<html lang="zh-CN">
+
+
+
+
+
 <head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>JUNCON个人博客</title>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate">
-    <meta name="keywords" content="TriDiamond Obsidian,"> 
-    
-    <meta name="author" content="Juncon"> 
-    <link rel="alternative" href="atom.xml" title="JUNCON个人博客" type="application/atom+xml"> 
-    <link rel="icon" href="/img/favicon.png"> 
-    <link href="https://fonts.loli.net/css?family=Roboto+Mono|Rubik&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
-    <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
-    <link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
-    <link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
-    <link rel="stylesheet" href="/css/obsidian.css">
-    <link rel="stylesheet" href="/css/ball-atom.min.css">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/e.jpg">
+  <link rel="icon" type="image/png" href="/img/j.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content>
+  <meta name="author" content="Juncon">
+  <meta name="keywords" content>
+  <title>JUNCON个人博客</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css">
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css">
+<link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+  <link rel="stylesheet" href="/lib/prettify/github-v2.min.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css">
+
+
+  
+
+
+
 </head>
-</html>
 
-<body class="loading">
-    <div class="loader">
-        <div class="la-ball-atom la-2x">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-    <span id="config-title" style="display:none">JUNCON个人博客</span>
-    <div id="loader"></div>
-    <div class="nav">
-    <ul id="menu-menu" class="menu">
-        
-        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/whoami/" title="ABOUT">ABOUT</a>
-        </li>
-        
-        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/categories/" title="CATEGORIES">CATEGORIES</a>
-        </li>
-        
-        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/tags/" title="TAGS">TAGS</a>
-        </li>
-        
-        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/archives/" title="ARCHIVES">ARCHIVES</a>
-        </li>
-        
-    </ul>
-    <p class="copyright" id="copyright">
-        &copy; 2021 Juncon.
-        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
-        Theme <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
-    </p>
-</div>
 
-<div id="container">
-    
-<div class="search-box">
-    <form class="site-search-form">
-        <span class="iconfont icon-search"></span>
-        <input type="text" id="local-search-input" class="st-search-input" />
-        <div class="iconfont icon-cross search-box-close"></div>
-    </form>
-    <div class="search-scrollable">
-        <div id="local-search-result" class="local-search-result-cls" data-initialise="首次搜索，正在载入索引文件，请稍后……"
-            data-start="输入关键词搜索。" data-empty="没有找到内容，请尝试更换检索词。">
-            <span>输入关键词搜索。</span>
-        </div>
-    </div>
-</div>
-<div id="header">
-    <div>
-        <div class="logo animated fadeInDown">
-            <img src="/img/favicon.png" alt="">
-            <a class="image-logo" href="/"></a>
-        </div>
-        <ul id="menu-menu" class="menu text-menu">
-            
-            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-                <a href="/whoami/" title="ABOUT" class="menu-link">ABOUT</a>
-            </li>
-            
-            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-                <a href="/categories/" title="CATEGORIES" class="menu-link">CATEGORIES</a>
-            </li>
-            
-            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-                <a href="/tags/" title="TAGS" class="menu-link">TAGS</a>
-            </li>
-            
-            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-                <a href="/archives/" title="ARCHIVES" class="menu-link">ARCHIVES</a>
-            </li>
-            
-            
-        </ul>
-        <div class="iconfont icon-menu switchmenu gradient-text animated fadeInDown"></div>
-    </div>
-</div>
-<div id="screen">
-    <div id="mark">
-        <div class="cover animated fadeIn" style="
-            animation-delay: 900ms;
-            animation-duration: 2.8s;
-            background-image:
-                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(/img/cover.jpg);">
-        </div>
-    </div>
-    
-    <div id="post0" class="else">
-        <p class="animated fadeInDown">
-            
-            <a href="/categories/docker"><b>「
-                </b>DOCKER<b> 」</b></a>
-            
-            十一月 02, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown">
-            <a href="/2018/11/02/docker容器网页远程访问桌面/" title="docker容器网页远程访问桌面" class="posttitle">docker容器网页远程访问桌面</a></h3>
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>JUNCON个人博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-        <p class="post-count animated fadeInDown">
-            
-            <span>
-                <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                2.6k
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/rom.jpg')no-repeat center center;
+           background-size: cover;
+           background-attachment: scroll;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
             </span>
-            
-            
-            <span>
-                <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                2 mins.
-            </span>
-            
-            
-        </p>
-        
-        
-        <ul class="animated fadeInDown post-tags-list"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/docker/">docker</a></li></ul>
-        
-        <div class="md-content animated fadeIn">
-            
-            <p>前言：</p>
-<p>说在前面，目前市面上的docker images界面都是基于xfce的，我们通常安装的Ubuntu都是Unity的，二者安装完后不一样，会对学生学习造成很大困扰，所以在这里介绍一下如何安装基于...</p>
-            
-            <span class="read-more"><a href="/2018/11/02/docker容器网页远程访问桌面/" title="查看全文" class="posttitle">查看全文</a>
-                <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-    
-</div>
 
-<div class="screen-gradient-after">
-    <div class="screen-gradient-content">
-        <div class="screen-gradient-content-inside">
-            <div class="bold-underline-links screen-gradient-sponsor">
-                <p>
-                    <span class="typed-text"></span>
-                </p>
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="fa fa-angle-down scroll-down-arrow"></i>
             </div>
+          
         </div>
+      </div>
     </div>
-</div>
+  </header>
 
-    <div id="primary">
-        
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/docker">
-                  <b>「 </b>DOCKER<b> 」</b>
-                </a>
-            
-            十一月 02, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/11/02/docker容器网页远程访问桌面/" title="docker容器网页远程访问桌面" class="posttitle">docker容器网页远程访问桌面</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2.6k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        2 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/docker/">docker</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>前言：</p>
-<p>说在前面，目前市面上的docker images界面都是基于xfce的，我们通常安装的Ubuntu都是Unity的，二者安装完后不一样，会对学生学习造成很大困扰，所以在这里介绍一下如何安装基于Unity的镜像</p>
-<p>一、主要功能:</p>
-<p>通过网页访问docker容器的界面，达到图形化操作</p>
-<p>二、专业名词</p>
-<p>docker:一个管理容器的东西，类似虚拟机的概念，但是比虚拟机更加快捷方便，多用于部署使用</p>
-<p>VNCServer:主要用于启动服务，使用VNCViewer可以直接远程访问</p>
-<p>VNCViewer：客户端程...</p>
-            
-            <span class="read-more"><a href="/2018/11/02/docker容器网页远程访问桌面/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/python">
-                  <b>「 </b>PYTHON<b> 」</b>
-                </a>
-            
-            十月 21, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/10/21/python内置函数整理/" title="python内置函数整理" class="posttitle">python内置函数整理</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        17k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        15 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/python/">python</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>内置函数就是python给你提供的, 拿来直接用的函数，比如print.，input等。<strong>截止到python版本3.6.2 python一共提供了68个内置函数。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#68个内置函数# abs()         　　dict()      　　help()       　　min()       　　setattr()# all()         　　dir()       　　hex()        　　next()      　　slice() # any()         　　divmod()    　　id()         　　object()    　　sorted() # ascii()       　　enumerate() ...</span></pre></td></tr></table></figure>
-            
-            <span class="read-more"><a href="/2018/10/21/python内置函数整理/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/bug">
-                  <b>「 </b>BUG<b> 」</b>
-                </a>
-            
-            八月 25, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/08/25/mysql-win/" title="mysql_win" class="posttitle">mysql_win</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2.4k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        2 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/mysql/">mysql</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>严格意义上来说mysql8和win10都是大坑，里面有着无数不一样的地方</p>
-<p>1：首先去官网下载安装包</p>
-<p>下载地址：<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/</a></p>
-<p>选择对应5.7.24版本的</p>
-<p>2：将解压文件解压到你安装的目录：E:\mysql-5.7.24-winx64  （我这是放在E盘根目录，不要放在有中文名字和空格的的目录下.例如</p>
-<p></p>
-<p>3：在mysql-5.7.24-winx64文件夹下面新建一个my.ini文件和一个data文件夹，(注意my.ini后缀名是ini,别...</p>
-            
-            <span class="read-more"><a href="/2018/08/25/mysql-win/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/环境配置">
-                  <b>「 </b>环境配置<b> 」</b>
-                </a>
-            
-            八月 12, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/08/12/Ubuntu-MongoDB数据库的安装及使用/" title="Ubuntu MongoDB数据库的安装和使用" class="posttitle">Ubuntu MongoDB数据库的安装和使用</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        11k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        10 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MongoDB数据库/">MongoDB数据库</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/环境配置/">环境配置</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>本博文介绍了MongoDB，并详细指引读者在Ubuntu下MongoDB的安装和使用。本教程在Ubuntu14.04下测试通过。 </p>
-<p>MongoDB 是一个是一个基于分布式文件存储的数据库，介于关系数据库和非关系数据库之间，是非关系数据库当中功能最丰富，最像关系数据库的。他支持的数据结构非常松散，是类似json的bson格式，因此可以存储比较复杂的数据类型。Mongo最大的特点是他支持的查询语言非常强大，其语法有点类似于面向对象的查询语言，几乎可以实现类似关系数据库单表查询的绝大部分功能，而且还支...</p>
-            
-            <span class="read-more"><a href="/2018/08/12/Ubuntu-MongoDB数据库的安装及使用/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Excel">
-                  <b>「 </b>EXCEL<b> 」</b>
-                </a>
-            
-            九月 30, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/09/30/Excel-openpyxl-3-增删改查/" title="Excel-openpyxl-3-增删改查" class="posttitle">Excel-openpyxl-3-增删改查</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        5.4k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        5 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Excel/">Excel</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/python/">python</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>通过这篇文章，你能学习到以下内容<br>1、openpyxl的增加数据<br>2、openpyxl删除数据<br>3、更新数据<br>4、查找数据</p>
-<p>1、openpyxl的增加数据</p>
-<p>使用上一个文件创建的create_excel.xlsx</p>
-<p><a href="http://47.93.248.15/wp-content/uploads/2018/05/create_excel.xlsx" target="_blank" rel="noopener">create_excel </a>     原始文件，数据源</p>
-<p><a href="http://47.93.248.15/wp-content/uploads/2018/05/openpyxledit.py_.zip" target="_blank" rel="noopener">openpyxledit.py</a>   相关代码</p>
-<p></p>
-<p>每次调用，在最后一列，多增加一列数据</p>
-<p>引用模块openpyxl</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from openpyxl import load_workbookfrom openpyxl import Workbook# 一个eggache...</span></pre></td></tr></table></figure>
-            
-            <span class="read-more"><a href="/2017/09/30/Excel-openpyxl-3-增删改查/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Excel">
-                  <b>「 </b>EXCEL<b> 」</b>
-                </a>
-            
-            九月 26, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/09/26/Excel-openpyxl-数据梳理/" title="Excel-openpyxl--数据梳理" class="posttitle">Excel-openpyxl--数据梳理</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        25k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        23 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Excel/">Excel</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/python/">python</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>通过这篇文章，你能学习到以下内容</p>
-<p>1、读取文件<br>2、整理数据结构:字典类型 key是班级id value 是数组类型，数组里面对应的是字典，对应每一行数据<br>3、遍历所有value，读取的数组传入到一个函数中<br>4、函数中处理计数变量，开始遍历数组<br>5、在函数中操作全局变量，记录整理好的数据<br>6、把整理好的数据写入</p>
-<p>1、需求：</p>
-<p>读取<a href="http://47.93.248.15/wp-content/uploads/2018/05/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE.xlsx" target="_blank" rel="noopener">基础数据</a>然后按照<a href="http://47.93.248.15/wp-content/uploads/2018/05/%E7%BB%93%E6%9E%9C%E6%A8%A1%E6%9D%BF.xlsx" target="_blank" rel="noopener">结果模板</a>进行处理，数据中是按照班级进行分组统计</p>
-<p>基础数据一次运算消耗时间太大，简化数据，使用<a href="http://47.93.248.15/wp-content/uploads/2018/05/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE1.xlsx" target="_blank" rel="noopener">基础数据1</a>来调试程序</p>
-<p>2、思路：</p>
-<p>2.1、读取文件<br>2.2、整理数据结构:...</p>
-            
-            <span class="read-more"><a href="/2017/09/26/Excel-openpyxl-数据梳理/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Excel">
-                  <b>「 </b>EXCEL<b> 」</b>
-                </a>
-            
-            八月 05, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/08/05/Excel-openpyxl-创建和读取/" title="Excel-openpyxl-创建和读取" class="posttitle">Excel-openpyxl-创建和读取</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        3.7k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Excel/">Excel</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/python/">python</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>####Excel-openpyxl-创建和读取</p>
-<p>通过这篇文章你能够学习到以下内容**</p>
-<ol>
-<li>操作excel有哪些库</li>
-<li>openpyxl是什么</li>
-<li>openpyxl读取、创建excel</li>
-</ol>
-<p><strong>1、操作**</strong>excel<strong>**有哪些库</strong></p>
-<p></p>
-<p>wlrd：只能处理65535行内的数据，如果数据量超过65535行，则会出现报错</p>
-<p><strong>2、openpyxl是什么</strong></p>
-<p>openpyxl模块是一个对Excel操作Python库，能够处理更多数据的内容，但是相对与xlrd，openpyxl的读取效率要远远低于xlrd</p>
-<p>以上需要根据实际业务需求进...</p>
-            
-            <span class="read-more"><a href="/2017/08/05/Excel-openpyxl-创建和读取/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="javascript:;"><b>「 </b>文章<b> 」</b></a>
-            
-            六月 25, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/06/25/mysql-docker/" title="mysql_docker" class="posttitle">mysql_docker</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2.2k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        2 mins.
-                    </span>
-                
-                
-            </p>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>docker run -d -it -p 805:80 -p 5002:5000 -p 10027:22 -p 20001:8888 -p 20002:3306 –name centos_master –privileged=true -v /var/run/docker.sock:/var/run/docker.sock -v /zc:/zc -e LANG=zh_CN.utf8 zhangcheng0111/centos7-webssh-dockermanager-ssh   /usr/sbin...</p>
-            
-            <span class="read-more"><a href="/2017/06/25/mysql-docker/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/爬虫">
-                  <b>「 </b>爬虫<b> 」</b>
-                </a>
-            
-            五月 03, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/05/03/scrapy-5-文件图片下载/" title="scrapy-5-文件图片下载" class="posttitle">scrapy-5-文件图片下载</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        19k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        17 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/python/">python</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/scrapy/">scrapy</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/scrapy-5-文件图片下载/">scrapy-5-文件图片下载</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>在scrapy中提供了2种下载通道</p>
-<p>FilesPipeline    提供文件下载</p>
-<p>ImagesPipline  提供图片的下载，额外提供缩略图</p>
-<p>这2个ItemPipline作为特殊的下载器，用户使用时，只需要通过item的一个特殊字段，将要下载文件或图片url进行赋值，他们就会自动将文件或者图片下载本地。并将下载结果信息存入到item的另一个特殊字段中</p>
-<p>FilePipline的使用</p>
-<p>导入路径  scrapy.pipelines.files.FilesPipeline</p>
-<p>Item字段  file_urls,files...</p>
-            
-            <span class="read-more"><a href="/2017/05/03/scrapy-5-文件图片下载/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/bug">
-                  <b>「 </b>BUG<b> 」</b>
-                </a>
-            
-            四月 25, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/04/25/docker/" title="docker" class="posttitle">docker</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        10k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        9 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/docker/">docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/python/">python</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>####Python操作docker</p>
-<p>通过python调用docker，需要和docker在同一个服务器上才可以</p>
-<p>也可以通过传递</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unix:///var/run1/docker.sock</span><br></pre></td></tr></table></figure>
-
-<p>来进行在容器内操作你指定想要连接的docker，这个共享需要在容器最开始创建时候，让容器和外部一个文件进行关联才可以，具体可以参照一下</p>
-<p>docker run -d -it -p 805:80 -p 5002:5000 -p 10027:22 -p 20001:8888 -p 20002:3306 –name ...</p>
-            
-            <span class="read-more"><a href="/2017/04/25/docker/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-    </div>
+  <main>
     
-    <div id="pager"><a href="/page/3/" class="more" data-loading="加载中..." data-load-more="加载更多">加载更多</a></div>
-    
-</div>
-<div id="preview"></div>
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
 
-    <div id="back-to-top" class="animated fadeIn faster">
-        <div class="flow"></div>
-        <span class="percentage animated fadeIn faster">0%</span>
-        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/12/03/selenium安装与使用/">
+        <p class="h4 index-header">爬虫+selenium</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">爬虫使用selenium进行爬取，借助chrome进行调试，
+1pip install selenium
+
+代码测试
+1from selenium import webdriver browser = webdriver.Chrome()browser.get(&apos;http://www.baidu.com/&apos;)
+
+你会欣喜若狂的运行一下，如果你是初次使用，会报错，需要下载一个webdriver的文件，这个文件要放在chrome浏览器下，最坑的是这个文件需要对应你的浏览器版本才可以
+可以访问以下地址查看对应
+https://blog.csdn.net/huilan_same/article/details/51896672
+1、windows下找chrome的安装位置
+2、mac下找chrome.app
+右键显示包内容,实际上这个文件chromedriver 在最新的mac上，需要在/usr/local/bin下也弄一份同样的文件，这样还不够，还需要赋值权限chmod 777 /xxxx/xxxx/xxx/chromedriver才可以
+3、linux下找到安装位置
+以</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-12-03&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Selenium">Selenium</a>&nbsp;
+          
+            <a href="/categories/%E7%88%AC%E8%99%AB+selenium">爬虫+selenium</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/python">python</a>&nbsp;
+          
+            <a href="/tags/selenium">selenium</a>&nbsp;
+          
+            <a href="/tags/%E7%88%AC%E8%99%AB+selenium">爬虫+selenium</a>&nbsp;
+          
+        
+      </div>
     </div>
-</body>
-<footer>
-    <p class="copyright" id="copyright">
-        &copy; 2021
-        <span class="gradient-text">
-            Juncon
-        </span>.
-        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
-        Theme
-        <span class="gradient-text">
-            <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
-        </span>
-        <small><a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/CHANGELOG.md" title="v1.4.3" target="_blank" rel="noopener">v1.4.3</a></small>
-    </p>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/11/02/docker容器网页远程访问桌面/">
+        <p class="h4 index-header">docker容器网页远程访问桌面</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">docker容器网页远程访问桌面前言：
+说在前面，目前市面上的docker images界面都是基于xfce的，我们通常安装的Ubuntu都是Unity的，二者安装完后不一样，会对学生学习造成很大困扰，所以在这里介绍一下如何安装基于Unity的镜像
+一、主要功能:
+通过网页访问docker容器的界面，达到图形化操作
+二、专业名词
+docker:一个管理容器的东西，类似虚拟机的概念，但是比虚拟机更加快捷方便，多用于部署使用
+VNCServer:主要用于启动服务，使用VNCViewer可以直接远程访问
+VNCViewer：客户端程序，用于任意的远程连接VNCServer启动的服务
+noVNC：主要和VNCServer一起，为VNCServer提供网页访问支持
+三、部署
+sudo docker run -itd -p 6080:6080 -e PASSWORD=1 -e SUDO=yes –name zc004 land007/ubuntu-unity-novnc
+启动后访问以下地址即可远程显示，密码是1。这个1即是vnc连接的1，也是root密码
+http://localhost:6080</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-11-02&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/docker">docker</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/docker">docker</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/10/21/python内置函数整理/">
+        <p class="h4 index-header">python内置函数整理</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">内置函数就是python给你提供的, 拿来直接用的函数，比如print.，input等。截止到python版本3.6.2 python一共提供了68个内置函数。
+1#68个内置函数# abs()         　　dict()      　　help()       　　min()       　　setattr()# all()         　　dir()       　　hex()        　　next()      　　slice() # any()         　　divmod()    　　id()         　　object()    　　sorted() # ascii()       　　enumerate() 　　input()      　　oct()       　　staticmethod() # bin()         　　eval()      　　int()        　　open()      　　str() # bool()        　　exec()      　　isinstance() 　　ord()      </div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-10-21&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/python">python</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/python">python</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/08/25/mysql-win/">
+        <p class="h4 index-header">mysql_win</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">严格意义上来说mysql8和win10都是大坑，里面有着无数不一样的地方
+1：首先去官网下载安装包
+下载地址：https://dev.mysql.com/downloads/mysql/
+选择对应5.7.24版本的
+2：将解压文件解压到你安装的目录：E:\mysql-5.7.24-winx64  （我这是放在E盘根目录，不要放在有中文名字和空格的的目录下.例如
+
+3：在mysql-5.7.24-winx64文件夹下面新建一个my.ini文件和一个data文件夹，(注意my.ini后缀名是ini,别弄个my.ini.txt我也为你准备了这个文件，记得下载下来以后解压缩) 注意我这里里面写的路径和版本号你需要修改下
+my.ini
+不想下载，可以创建my.ini,复制以下内容
+my.ini内容：
+5：以管理员的身份打开cmd窗口跳转路径到E:\mysql-8.0.11-winx64\bin
+初始化命令
+1./mysqld --initialize --user=mysql --console
+
+(记住一定要进行初始化，很多人不进行初始化，就出现了1067错误，怎么弄都搞不定)
+初始化完成之后</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-08-25&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/bug">bug</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/mysql">mysql</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/08/12/Ubuntu-MongoDB数据库的安装及使用/">
+        <p class="h4 index-header">Ubuntu MongoDB数据库的安装和使用</p>
+        
+        
+          
+          
+        
+        <div class="index-excerpt" style="max-height: none;">
+          <div class="index-text mb-1">本博文介绍了MongoDB，并详细指引读者在Ubuntu下MongoDB的安装和使用。本教程在Ubuntu14.04下测试通过。 
+一、MongoDB介绍MongoDB 是一个是一个基于分布式文件存储的数据库，介于关系数据库和非关系数据库之间，是非关系数据库当中功能最丰富，最像关系数据库的。他支持的数据结构非常松散，是类似json的bson格式，因此可以存储比较复杂的数据类型。Mongo最大的特点是他支持的查询语言非常强大，其语法有点类似于面向对象的查询语言，几乎可以实现类似关系数据库单表查询的绝大部分功能，而且还支持对数据建立索引。...</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-08-12&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">环境配置</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">环境配置</a>&nbsp;
+          
+            <a href="/tags/MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93">MongoDB数据库</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2017/09/30/Excel-openpyxl-3-增删改查/">
+        <p class="h4 index-header">Excel-openpyxl-3-增删改查</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Excel-openpyxl-3-增删改查通过这篇文章，你能学习到以下内容1、openpyxl的增加数据2、openpyxl删除数据3、更新数据4、查找数据
+1、openpyxl的增加数据
+使用上一个文件创建的create_excel.xlsx
+create_excel      原始文件，数据源
+openpyxledit.py   相关代码
+
+每次调用，在最后一列，多增加一列数据
+引用模块openpyxl
+1from openpyxl import load_workbookfrom openpyxl import Workbook# 一个eggache的数字转为列字母的方法from openpyxl.utils import get_column_letter
+
+目标:调用一次，最后一列增加一列
+思路:
+获得最后一列或者一行的位置
+增加一列:通过cell指定最后一列的位置增加1，依次对这一列的每一行赋值
+增加一行:通过cell指定最后一行位置增加1，依次对这行的每一列进行赋值
+1#增加数据def addExcel():    # 打开一个工作薄    wb = load_workb</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2017-09-30&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Excel">Excel</a>&nbsp;
+          
+            <a href="/categories/Excel-openpyxl-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5">Excel-openpyxl-增删改查</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/python">python</a>&nbsp;
+          
+            <a href="/tags/Excel">Excel</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2017/09/26/Excel-openpyxl-数据梳理/">
+        <p class="h4 index-header">Excel-openpyxl--数据梳理</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">通过这篇文章，你能学习到以下内容
+1、读取文件2、整理数据结构:字典类型 key是班级id value 是数组类型，数组里面对应的是字典，对应每一行数据3、遍历所有value，读取的数组传入到一个函数中4、函数中处理计数变量，开始遍历数组5、在函数中操作全局变量，记录整理好的数据6、把整理好的数据写入
+1、需求：
+读取基础数据然后按照结果模板进行处理，数据中是按照班级进行分组统计
+基础数据一次运算消耗时间太大，简化数据，使用基础数据1来调试程序
+2、思路：
+2.1、读取文件2.2、整理数据结构:字典类型 key是班级id value 是数组类型，数组里面对应的是字典，对应每一行数据2.3、遍历所有value，读取的数组传入到一个函数中2.4、函数中处理计数变量，开始遍历数组2.5、在函数中操作全局变量，记录整理好的数据2.6、把整理好的数据写入
+3、实现
+完整代码
+读取Excel数据，梳理数据，把id相同的保存在一起，以每行数据作为一个对象，统一操作
+1234567import sysimport osfrom openpyxl import load_workbookfrom ope</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2017-09-26&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Excel">Excel</a>&nbsp;
+          
+            <a href="/categories/Excel-openpyxl--%E6%95%B0%E6%8D%AE%E6%A2%B3%E7%90%86">Excel-openpyxl--数据梳理</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/python">python</a>&nbsp;
+          
+            <a href="/tags/Excel">Excel</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2017/08/05/Excel-openpyxl-创建和读取/">
+        <p class="h4 index-header">Excel-openpyxl-创建和读取</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">####Excel-openpyxl-创建和读取
+通过这篇文章你能够学习到以下内容**
+
+操作excel有哪些库
+openpyxl是什么
+openpyxl读取、创建excel
+
+1、操作**excel**有哪些库
+
+wlrd：只能处理65535行内的数据，如果数据量超过65535行，则会出现报错
+2、openpyxl是什么
+openpyxl模块是一个对Excel操作Python库，能够处理更多数据的内容，但是相对与xlrd，openpyxl的读取效率要远远低于xlrd
+以上需要根据实际业务需求进行选择，这里主要讲解openpyxl库
+首先先清楚一些excel的基本概念：
+在openpyxl中，主要用到三个概念：Workbooks，Sheets，Cells。Workbook就是一个excel工作表；Sheet是工作表中的一张表页；Cell就是简单的一个格。openpyxl就是围绕着这三个概念进行的，不管读写都是“三板斧”：打开Workbook，定位Sheet，操作Cell。
+总结:
+
+workbooks是excel一个工作表，一个工作表包含多个页，即包含多个sheet
+sheet是exc</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2017-08-05&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Excel">Excel</a>&nbsp;
+          
+            <a href="/categories/Excel-openpyxl-%E5%88%9B%E5%BB%BA%E5%92%8C%E8%AF%BB%E5%8F%96">Excel-openpyxl-创建和读取</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/python">python</a>&nbsp;
+          
+            <a href="/tags/Excel">Excel</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2017/06/25/mysql-docker/">
+        <p class="h4 index-header">mysql_docker</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">docker的centos7.2下安装mysql启动容器docker run -d -it -p 805:80 -p 5002:5000 -p 10027:22 -p 20001:8888 -p 20002:3306 –name centos_master –privileged=true -v /var/run/docker.sock:/var/run/docker.sock -v /zc:/zc -e LANG=zh_CN.utf8 zhangcheng0111/centos7-webssh-dockermanager-ssh   /usr/sbin/init
+进入容器
+docker exec -it centos_master bash
+yum install -y wget
+wget -i -c http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm
+yum -y install mysql57-community-release-el7-10.noarch.rpm
+yum install -y </div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2017-06-25&nbsp;&nbsp;
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2017/05/03/scrapy-5-文件图片下载/">
+        <p class="h4 index-header">scrapy-5-文件图片下载</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">在scrapy中提供了2种下载通道
+FilesPipeline    提供文件下载
+ImagesPipline  提供图片的下载，额外提供缩略图
+这2个ItemPipline作为特殊的下载器，用户使用时，只需要通过item的一个特殊字段，将要下载文件或图片url进行赋值，他们就会自动将文件或者图片下载本地。并将下载结果信息存入到item的另一个特殊字段中
+FilePipline的使用
+导入路径  scrapy.pipelines.files.FilesPipeline
+Item字段  file_urls,files
+下载目录  FILES_STORE
+请看一下前端页面
+12345678&lt;html&gt; &lt;body&gt; &lt;a href='/book/sg.pdf'&gt;下载三国演义&lt;/a&gt; &lt;a href='/book/shz.pdf'&gt;下载水浒传&lt;/a&gt; &lt;a href='/book/hlm.pdf'&gt;下载红楼梦&lt;/a&gt; &lt;a href='/book/xyj.pdf'&gt;下载西游记&lt;/</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2017-05-03&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%88%AC%E8%99%AB">爬虫</a>&nbsp;
+          
+            <a href="/categories/scrapy-5-%E6%96%87%E4%BB%B6%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD">scrapy-5-文件图片下载</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/python">python</a>&nbsp;
+          
+            <a href="/tags/%E7%88%AC%E8%99%AB">爬虫</a>&nbsp;
+          
+            <a href="/tags/scrapy">scrapy</a>&nbsp;
+          
+            <a href="/tags/scrapy-5-%E6%96%87%E4%BB%B6%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD">scrapy-5-文件图片下载</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="index posts navigation">
+    <ul class="pagination pg-blue justify-content-center mt-5">
+      
+        <li class="page-item">
+          <a class="page-link" href="/#board">Previous</a>
+        </li>
+      
+      
+        <li class="page-item">
+          <a class="page-link" href="/page/3/#board">Next</a>
+        </li>
+      
+    </ul>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+    
+  </div>
 </footer>
 
-<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<script>
-  MathJax.Hub.Config({
-    "HTML-CSS": {
-      preferredFont: "TeX",
-      availableFonts: ["STIX", "TeX"],
-      linebreaks: {
-        automatic: true
-      },
-      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-      inlineMath: [
-        ["$", "$"],
-        ["\\(", "\\)"]
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "&nbsp;",
       ],
-      processEscapes: true,
-      ignoreClass: "tex2jax_ignore|dno",
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      noUndefined: {
-        attributes: {
-          mathcolor: "red",
-          mathbackground: "#FFEEEE",
-          mathsize: "90%"
-        }
-      },
-      Macros: {
-        href: "{}"
-      }
-    },
-    messageStyle: "none"
-  });
-</script>
-<script>
-  function initialMathJax() {
-    MathJax.Hub.Queue(function () {
-      var all = MathJax.Hub.getAllJax(),
-        i;
-      // console.log(all);
-      for (i = 0; i < all.length; i += 1) {
-        console.log(all[i].SourceElement().parentNode)
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
+      cursorChar: "The greatest generosity to the future is to give something",
+      typeSpeed: 50,
+      loop: false,
     });
-  }
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
 
-  function reprocessMathJax() {
-    if (typeof MathJax !== 'undefined') {
-      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "true",
+      
+      icon: "§"
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
     }
-  }
-</script>
+    anchors.add(res.join(", "))
+  </script>
 
 
 
-    <link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
-    <script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/obsidian.js"></script>
-<script src="/js/jquery.truncate.js"></script>
-<script src="/js/search.js"></script>
-<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
-<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-
-<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
-
-    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
-
-    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
-
-    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
-
-    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
-
-    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
-
-    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
-
-    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
-
-    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
-
-
-
-    <script src="/js/busuanzi.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            if ($('span[id^="busuanzi_"]').length) {
-                initialBusuanzi();
-            }
-        });
-    </script>
-
-
-<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
-<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
-<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
-<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="//www.googletagmanager.com/gtag/js?id=UA-149874671-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-149874671-1');
-    </script>
-
-
-
-
-
-<script>
-    function initialTyped () {
-        var typedTextEl = $('.typed-text');
-        if (typedTextEl && typedTextEl.length > 0) {
-            var typed = new Typed('.typed-text', {
-                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
-                typeSpeed: 90,
-                loop: true,
-                loopCount: Infinity,
-                backSpeed: 20,
-            });
-        }
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
     }
-
-    if ($('.article-header') && $('.article-header').length) {
-        $(document).ready(function () {
-            initialTyped();
-        });
-    }
-</script>
+  </script>
 
 
 
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $('#post').find('img').each(
+      function () {
+        var _this = $(this);
+        var _src = _this.attr("src");
+        _this.wrap('<a data-fancybox="images" href="' + _src + '" ></a>');
+      }
+    );
+  </script>
 
+
+
+
+</body>
 </html>
