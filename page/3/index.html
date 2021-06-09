@@ -137,51 +137,6 @@
     
     
     <div class="col-12 col-md-8 m-auto">
-      <a href="/2017/04/25/docker/">
-        <p class="h4 index-header">docker</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">####Python操作docker
-通过python调用docker，需要和docker在同一个服务器上才可以
-也可以通过传递
-1unix:///var/run1/docker.sock
-
-来进行在容器内操作你指定想要连接的docker，这个共享需要在容器最开始创建时候，让容器和外部一个文件进行关联才可以，具体可以参照一下
-docker run -d -it -p 805:80 -p 5002:5000 -p 10027:22 -p 20001:8888 -p 20002:3306 –name centos_master –privileged=true -v /var/run/docker.sock:/var/run/docker.sock -v /zc:/zc -e LANG=zh_CN.utf8 zhangcheng0111/centos7-webssh-dockermanager-ssh /usr/sbin/init
-其中比较关键的是-v /var/run/docker.sock:/var/run/docker.sock  映射了容器内部和外部的关联文件
-以下介绍通过pyth</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2017-04-25&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/bug">bug</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/python">python</a>&nbsp;
-          
-            <a href="/tags/docker">docker</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
       <a href="/2017/04/05/scrapy-4-链接提取器/">
         <p class="h4 index-header">scrapy-4-链接提取器</p>
         

@@ -175,46 +175,6 @@
     
     
     <div class="col-12 col-md-8 m-auto">
-      <a href="/2020/05/21/什么才算是真正的编程能力？/">
-        <p class="h4 index-header">什么才算是真正的编程能力？</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">什么才算是真正的编程能力？计算机科学有两类根本问题。一类是理论：算法，数据结构，复杂度，机器学习，模式识别，等等等。一类是系统：操作系统，网络系统，分布式系统，存储系统，游戏引擎，等等等等。
-理论走的是深度，是在追问在给定的计算能力约束下如何把一个问题解决得更快更好。而系统走的是广度，是在追问对于一个现实的需求如何在众多的技术中设计出最多快好省的技术组合。
-搞ACM的人，只练第一类。像你这样的更偏向于第二类。其实挺难得的，但很可惜的是第二类能力没有简单高效的测量考察方法，不像算法和数据结构有ACM竞赛，所以很多系统的苗子都因为缺少激励和正确引导慢慢就消隐了。
-所以比尔盖茨才会说，看到现在学编程的人经常都把编程看作解各种脑筋急转弯的问题，他觉得很遗憾。
-做系统，确实不提倡“重复发明轮子”。但注意，是不提倡“重复发明”，不是不提倡“重新制造”。恰恰相反的，我以为，系统的编程能力正体现在“重新制造”的能力。
-能把已有的部件接起来，这很好。但当你恰好缺一种关键的胶水的时候，你能写出来吗？当一个已有的部件不完全符合你的需求的时候，你能改进它吗？如果你用的部件中有bug，你能把它修好吗？在网上繁多</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-21&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%B5%85%E8%B0%88">浅谈</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%B5%85%E8%B0%88">浅谈</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
       <a href="/2019/12/24/关于爬虫的几种常见的反爬/">
         <p class="h4 index-header">关于爬虫的几种常见的反爬</p>
         
@@ -574,6 +534,60 @@ cd /usr/local/mysql/bin/
             <a href="/tags/Bug">Bug</a>&nbsp;
           
             <a href="/tags/mysql">mysql</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/12/03/selenium安装与使用/">
+        <p class="h4 index-header">爬虫+selenium</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">爬虫使用selenium进行爬取，借助chrome进行调试，
+1pip install selenium
+
+代码测试
+1from selenium import webdriver browser = webdriver.Chrome()browser.get(&apos;http://www.baidu.com/&apos;)
+
+你会欣喜若狂的运行一下，如果你是初次使用，会报错，需要下载一个webdriver的文件，这个文件要放在chrome浏览器下，最坑的是这个文件需要对应你的浏览器版本才可以
+可以访问以下地址查看对应
+https://blog.csdn.net/huilan_same/article/details/51896672
+1、windows下找chrome的安装位置
+2、mac下找chrome.app
+右键显示包内容,实际上这个文件chromedriver 在最新的mac上，需要在/usr/local/bin下也弄一份同样的文件，这样还不够，还需要赋值权限chmod 777 /xxxx/xxxx/xxx/chromedriver才可以
+3、linux下找到安装位置
+以</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-12-03&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Selenium">Selenium</a>&nbsp;
+          
+            <a href="/categories/%E7%88%AC%E8%99%AB+selenium">爬虫+selenium</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/python">python</a>&nbsp;
+          
+            <a href="/tags/selenium">selenium</a>&nbsp;
+          
+            <a href="/tags/%E7%88%AC%E8%99%AB+selenium">爬虫+selenium</a>&nbsp;
           
         
       </div>
