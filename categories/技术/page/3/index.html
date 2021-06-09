@@ -149,6 +149,124 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-02-27T02:18:57.000Z">2017-02-27</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/技术/">技术</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    9 分钟 读完 (大约 1396 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2017/02/27/scrapy-2-数据解析/">scrapy-2-数据解析</a>
+            
+        </h1>
+        <div class="content">
+            <p>1、Request和Respose对象</p>
+<p>2、Selector对象</p>
+<p>3、xpath使用</p>
+<p>4、css选择器</p>
+<p>一、Request和Respose对象</p>
+<p><strong>1.1 Request对象</strong></p>
+<p>Request对象是要请求一个连接所使用的对象</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Request(url[,call,method=‘GET’,headers,body,cookies,meta,encoding=‘utf<span class="hljs-number">-8</span>’,priority=<span class="hljs-number">0</span>,dont_filter=<span class="hljs-literal">False</span>,errback])</span><br></pre></td></tr></table></figure>
+
+<p>Url是请求地址</p>
+<p>callback是页面回调地址</p>
+<p>method是请求方法，get或者post</p>
+<p>headers是请求头</p>
+<p>body是html正文</p>
+<p>cookies字典类型</p>
+<p>Meta字典类型</p>
+<p>encoding是编码格式</p>
+<p>priority优先级 0是最高级</p>
+<p>dont_filter=False对重复地址自动过滤，如果设置为True会强制请求，适合重复地址随时间变化的</p>
+<p>errback请求错误</p>
+<p><strong>1.2 Respose对象</strong></p>
+<p>Respose对象是当发起请求后，返回的对象，比如下列代码中parse参数中的response</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookSpider</span><span class="hljs-params">(scrapy.spiders.Spider)</span>:</span>     </span><br><span class="line">    name = <span class="hljs-string">'book'</span>     </span><br><span class="line">    start_urls = [<span class="hljs-string">'http://books.toscrape.com/'</span>]     </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">parse</span><span class="hljs-params">(self,response)</span>:</span>         </span><br><span class="line">        print(<span class="hljs-string">"收到数据"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Url  响应地址</p>
+<p>status 状态码</p>
+<p>headers 获得响应头</p>
+<p>Body 响应的正文  bytes类型</p>
+<p>Text 文本形式str类型，是有body解码获得的，</p>
+<p>实现方式response.text=respose.body.decode(response.encoding)</p>
+<p><strong>1.3 start_request(self)方法</strong></p>
+<p>当start_urls这个数组无法满足你，你就需要自定义这个start_urls，通过重写start_request的方法来完成</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">demoSpider</span><span class="hljs-params">(RedisSpider)</span>:</span>    </span><br><span class="line">    name = <span class="hljs-string">"demospider"</span>    </span><br><span class="line">    redis_key = <span class="hljs-string">'demospider:start_urls'</span>    </span><br><span class="line">    start_urls = [<span class="hljs-string">'http://www.example.com'</span>]    </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">start_requests</span><span class="hljs-params">(self)</span>:</span>        </span><br><span class="line">        pages=[]        </span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>):            </span><br><span class="line">            url=<span class="hljs-string">'http://www.mmonly.cc/mmtp/xgmn/126808_%s.html'</span> % i           page=scrapy.Request(url)            </span><br><span class="line">            pages.append(page)        </span><br><span class="line">            <span class="hljs-keyword">return</span> pages</span><br></pre></td></tr></table></figure>
+
+<p>注意:这个start_request只会调用一次,并且在重写了start_request后，start_urls就无效了</p>
+<p>二、Selector对象</p>
+<p>Html转换为对象，转换方法有很多种  BeautifulSoup  lxml</p>
+<p>在scrapy中自带selector 可以对html的字符串进行格式</p>
+<p>比如text是我们的html字符串</p>
+<p>导入包</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> scrapy.selector <span class="hljs-keyword">import</span> Selector</span><br><span class="line">text=<span class="hljs-string">"&lt;html&gt;&lt;body&gt;今天天气很好&lt;/body&gt;&lt;/html&gt;"</span></span><br><span class="line">selector = Selector(text=text)</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以对selector使用xpath和css方法读取数据了</p>
+<p>//h1  选中文档内所有的h1标签</p>
+<p>text()  获得text属性值</p>
+<p>.//li/b/text() 获得当前标签下的所有li下的b标签的text</p>
+<p>提取内容</p>
+<p>extract、re    这2个返回数组内容</p>
+<p>extract_first、re_first 这2个返回第一个标签内容</p>
+<p>具体实例</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#获得当前标签下的h1下的text内容</span></span><br><span class="line">response.xpath(<span class="hljs-string">'.//h1/text()'</span>).extrat()</span><br></pre></td></tr></table></figure>
+
+<p>注：Selector主要是在后面使用requests对获得html解析的时候使用的，单纯使用scrapy的时候，是不需要去手动创建Selector</p>
+<p>三、xpath基本使用</p>
+<p>3.1 xpath语法</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/  选中文档的根    </span><br><span class="line">. 选中当前节点     </span><br><span class="line">.. 选中当前节点的父节点ELEMENT 选中子节点的所有ELEMENT元素节点</span><br><span class="line">//ELEMENT 选中后代节点中所有ELEMENT元素节点</span><br><span class="line">* 选中所有元素子节点  不常用</span><br><span class="line">text()选中所有文本子节点</span><br><span class="line"><span class="hljs-meta">@ATTR 选中所有属性节点</span></span><br><span class="line"><span class="hljs-meta">@* 选中所有属性节点  不常用</span></span><br><span class="line">[谓语]  谓语用来查找某个特定的节点或者包含某个特定值的节点</span><br></pre></td></tr></table></figure>
+
+<p>使用示例</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/body/div/a    选取body下的div下的a标签</span><br><span class="line">//a               基于当前节点下提取所有a标签</span><br><span class="line">/body//img   在body下的所有img标签</span><br><span class="line">//a/text()      获得所有a标签下的文字节点</span><br><span class="line">/body/div//*  选中div下的所有后代元素，一般结合后续筛选,不会作为单独使用</span><br><span class="line">//div/*/img 获得div孙节点下所有的img标签</span><br><span class="line">//img/@src  选中所有img的src属性</span><br><span class="line">//@href  选中文档中所有的ATTR属性</span><br><span class="line">//a[<span class="hljs-number">1</span>]/img/@*  获得第一个a下的img的所有属性</span><br><span class="line">.  用来描述当前节点，也就是表示一个相对路径</span><br><span class="line">.. 用来获得上一层节点的路径</span><br><span class="line">//img/..  获得所有img，读取img上一层的节点</span><br><span class="line">//a[last()] 获得所有的a标签，选中最后一个</span><br><span class="line">//a[position()&lt;=<span class="hljs-number">3</span>] 使用position()  选中前三个</span><br><span class="line">//div[@id] 选中所有包含id属性的div</span><br><span class="line">//div[@id=images]  选择所有id属性，且值为images的div</span><br></pre></td></tr></table></figure>
+
+<p>注意:/和//的区别  在于/是基于当前节点下，不会继续向下穿透其他节点，而//会向下穿透获得所有这个节点</p>
+<p>3.2 XPath常用函数</p>
+<p>string</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sel.xpath(<span class="hljs-string">'/body/a//text()'</span>)  获得的是每个a标签内容</span><br><span class="line">sel.xpath(<span class="hljs-string">'string(/body/a)'</span>)   string是把每个a标签内容进行拼接</span><br></pre></td></tr></table></figure>
+
+<p><strong>四、CSS选择器</strong></p>
+<figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">* 选中所有元素</span><br><span class="line">p  选中p元素</span><br><span class="line">div,p 选中div和p元素</span><br><span class="line">div p  选中div后代元素中的p元素</span><br><span class="line">div&gt;p  选中div子元素中的p元素</span><br><span class="line">p+div  选中p标签的兄弟元素中的div元素</span><br><span class="line">.info    选中class属性包含info的元素</span><br><span class="line">#main  选中id属性为main的元素</span><br><span class="line">[href]   选中属性为href的元素</span><br><span class="line">[href='www.baidu.com'] 选中属性为href元素，并且值为www.baidu.com的元素</span><br><span class="line">[href~='baidu'] 选中属性为href元素，并且值包含为baidu的元素</span><br><span class="line">p::text  选中p元素的文本节点</span><br><span class="line">a:nth-child(1)  选中a元素，且该元素必须是其父元素的第1个子元素</span><br><span class="line">a:nth-last-child(2)  选中a元素，且该元素必须是其父元素的倒数第2个子元素</span><br><span class="line">a:first-child(1) 选中a元素，且该元素必须是其父元素的第1个子元素</span><br><span class="line">a:last-child(2)  选中a元素，且该元素必须是其父元素的倒数第2个子元素</span><br></pre></td></tr></table></figure>
+
+<p>使用示例</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#获得当前li标签下的text    </span></span><br><span class="line">response.css(<span class="hljs-string">'li::text'</span>).extrat()</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在下一章节介绍数据解析完成后，如何处理</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2017-01-26T05:23:42.000Z">2017-01-26</time>
                 
                 <div class="level-item">
@@ -556,7 +674,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        4
+                        2
                     </p>
                 </div>
             </div>
@@ -625,28 +743,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/smscode/">
-            <span class="level-start">
-                <span class="level-item">smscode</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/smscode/sendemail/">
-            <span class="level-start">
-                <span class="level-item">sendemail</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/技术/">
             <span class="level-start">
                 <span class="level-item">技术</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">23</span>
+                <span class="level-item tag">24</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/浅谈少儿编程/">
