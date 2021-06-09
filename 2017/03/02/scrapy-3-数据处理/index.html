@@ -17,7 +17,7 @@
 <meta property="og:description" content="####itemPipeline数据处理 介绍 启动方式 导出数据 一、介绍 在scrapy中，数据经过spider请求解析后，就需要进行对应模型化处理，在scrapy中itemPipeline负责数据处理    itemPipeline相当于数据处理的过滤器一样，可以配置多个，每一个itemPipline处理完成return后，会进入下一个itemPipeline中，如果不return，则表示放">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-10-21T10:01:57.887Z">
+<meta property="og:updated_time" content="2021-06-09T11:02:21.527Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="scrapy-3-数据处理">
 <meta name="twitter:description" content="####itemPipeline数据处理 介绍 启动方式 导出数据 一、介绍 在scrapy中，数据经过spider请求解析后，就需要进行对应模型化处理，在scrapy中itemPipeline负责数据处理    itemPipeline相当于数据处理的过滤器一样，可以配置多个，每一个itemPipline处理完成return后，会进入下一个itemPipeline中，如果不return，则表示放">
@@ -149,7 +149,7 @@
                 <time class="level-item has-text-grey" datetime="2017-03-02T14:16:57.000Z">2017-03-02</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/爬虫/">爬虫</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/爬虫/scrapy-3-数据处理/">scrapy-3-数据处理</a>
+                <a class="has-link-grey -link" href="/categories/技术/">技术</a>
                 </div>
                 
                 
@@ -183,19 +183,19 @@
 <p>二、启动方式</p>
 <p>启动方式有2种方式，一种在setting.py进行配置，一种在爬虫文件中配置</p>
 <p>方式1 在setting.py中进行配置</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;<span class="string">'example.pipelines.PriceConverterPipeline'</span>:<span class="number">300</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;<span class="hljs-string">'example.pipelines.PriceConverterPipeline'</span>:<span class="hljs-number">300</span>&#125;</span><br></pre></td></tr></table></figure>
 
 <p>example是工程名字，pipelines是所在文件夹，PriceConverterPipeline自定义的itemPipeline，300是优先级，数值越小优先度越大</p>
 <p>多个ItemPipLine的应用，可以使用去重操作，在自定义的ItemPipLine中init初始化时候，初始一个set集合，在每次响应process_item时候对比name，从set中进行对比即可</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DuplicatesPipeline</span><span class="params">(object)</span>:</span>   </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>      </span><br><span class="line">        self.book_set=set()   </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self,item,spider)</span>:</span>      </span><br><span class="line">            name=item[<span class="string">'name'</span>]      </span><br><span class="line">            <span class="keyword">if</span> name <span class="keyword">in</span> self.book_set:      </span><br><span class="line">                <span class="comment">#数据重复不进行返回即可      </span></span><br><span class="line">                self.book_sett.add(name)      </span><br><span class="line">                <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DuplicatesPipeline</span><span class="hljs-params">(object)</span>:</span>   </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>      </span><br><span class="line">        self.book_set=set()   </span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_item</span><span class="hljs-params">(self,item,spider)</span>:</span>      </span><br><span class="line">            name=item[<span class="hljs-string">'name'</span>]      </span><br><span class="line">            <span class="hljs-keyword">if</span> name <span class="hljs-keyword">in</span> self.book_set:      </span><br><span class="line">                <span class="hljs-comment">#数据重复不进行返回即可      </span></span><br><span class="line">                self.book_sett.add(name)      </span><br><span class="line">                <span class="hljs-keyword">return</span> item</span><br></pre></td></tr></table></figure>
 
 <p>建立完成DuplicatesPipeline后需要在Setting.py中配置</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;<span class="string">'example.pipelines,PriceConverterPipeline'</span>:<span class="number">300</span>,<span class="string">'example.pipelines.TestPipeline'</span>:<span class="number">400</span>,&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;<span class="hljs-string">'example.pipelines,PriceConverterPipeline'</span>:<span class="hljs-number">300</span>,<span class="hljs-string">'example.pipelines.TestPipeline'</span>:<span class="hljs-number">400</span>,&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 <p>方式2 在Spider文件中可以指定</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class Spider1(scrapy.Spider):     </span><br><span class="line">    name = <span class="string">'book1'</span>     </span><br><span class="line">    custom_settings = &#123;     <span class="string">'ITEM_PIPELINES'</span>:&#123;<span class="string">'pipelineClass1'</span>: <span class="number">300</span>,<span class="string">'pipelineClass2'</span>: <span class="number">400</span>&#125;,                   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class Spider1(scrapy.Spider):     </span><br><span class="line">    name = <span class="hljs-string">'book1'</span>     </span><br><span class="line">    custom_settings = &#123;     <span class="hljs-string">'ITEM_PIPELINES'</span>:&#123;<span class="hljs-string">'pipelineClass1'</span>: <span class="hljs-number">300</span>,<span class="hljs-string">'pipelineClass2'</span>: <span class="hljs-number">400</span>&#125;,                   &#125;</span><br></pre></td></tr></table></figure>
 
 <p>这样可以解决多个Spider1时候指定ITEM_PIPELINES的问题，可以为每一个Spider指定数据处理的方式</p>
 <p>需要注意的是最后一个ItemPipLine处理完成后，会根据命令行来进行处理后输出到哪里</p>
@@ -213,36 +213,36 @@
 <p>如何导出？</p>
 <p>方式一   命令行参数</p>
 <p>-o -t参数指定导出文件路径和导出格式，通常t可以由o进行推测完成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books -o books.csv</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books -o books.csv</span><br></pre></td></tr></table></figure>
 
 <p>scrapy crawl 是固定的</p>
 <p>books是spider中的name</p>
 <p>-o是输出的路径</p>
 <p>books.csv 没有指定其他路径，就是在当前路径下，没有使用o,但是会根据提供的路径，推测出是csv</p>
 <p>以下是指定明确的输出格式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books -t json -o books.data</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books -t json -o books.data</span><br></pre></td></tr></table></figure>
 
 <p>这种数据导出，是依赖什么来进行完成的？</p>
 <p>在配置字典FEED_EXPORTERS中搜索Exporter，FEED_EXPORTERS的内容中搜索Exporter，FEED_EXPORTERS的内容由以下二个字典的内容合并而成</p>
 <p>默认配置文件中的FEED_EXPORTERS_BASE</p>
 <p>用户配置文件中的FEED_EXPORTERS</p>
 <p>前者包含内部支持的数据格式，后者包含用户自定义的导出数据格式，以下是Scrapy源码中定义的FEED_EXPORTERS_BASE，它位于scrapy.settings.default_settings模块：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORTERS_BASE=&#123;<span class="string">'json'</span>:<span class="string">'scrapy.exporters.JsonItemExporter'</span>,<span class="string">'jsonlines'</span>:<span class="string">'scrapy.exporters.JsonLinesItemExporter'</span>,<span class="string">'jl'</span>:<span class="string">'scrapy.exporters.JsonLinesItemExporter'</span>,<span class="string">'csv'</span>:<span class="string">'scrapy.exporters.CsvItemExporter'</span>,<span class="string">'xml'</span>:<span class="string">'scrapy.exporters.XmlItemExporter'</span>,<span class="string">'marshal'</span>:<span class="string">'scrapy.exporters.MarshalItemExporter'</span>,<span class="string">'pickle'</span>:<span class="string">'scrapy.exporters.PickleItemExporter'</span>,&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORTERS_BASE=&#123;<span class="hljs-string">'json'</span>:<span class="hljs-string">'scrapy.exporters.JsonItemExporter'</span>,<span class="hljs-string">'jsonlines'</span>:<span class="hljs-string">'scrapy.exporters.JsonLinesItemExporter'</span>,<span class="hljs-string">'jl'</span>:<span class="hljs-string">'scrapy.exporters.JsonLinesItemExporter'</span>,<span class="hljs-string">'csv'</span>:<span class="hljs-string">'scrapy.exporters.CsvItemExporter'</span>,<span class="hljs-string">'xml'</span>:<span class="hljs-string">'scrapy.exporters.XmlItemExporter'</span>,<span class="hljs-string">'marshal'</span>:<span class="hljs-string">'scrapy.exporters.MarshalItemExporter'</span>,<span class="hljs-string">'pickle'</span>:<span class="hljs-string">'scrapy.exporters.PickleItemExporter'</span>,&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在这里严重不建议修改源码，因为程序最终是要配置在服务器上面的，服务器上面的环境修改源码，可就没那么简单了</p>
 <p>用户添加新的导出格式，通常是在配置文件setting.py中定义FEED_EXPORTERS，比如导出Excel</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORTERS=&#123;<span class="string">'excel'</span>:<span class="string">'my_project.my_exporters.ExcelItemExporter'</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORTERS=&#123;<span class="hljs-string">'excel'</span>:<span class="hljs-string">'my_project.my_exporters.ExcelItemExporter'</span>&#125;</span><br></pre></td></tr></table></figure>
 
 <p>指定导出文件路径，支持%(name)s和%(time)s这2个特殊变量</p>
 <p>%(name)s 会被替换为Spider的名字</p>
 <p>%(time)s 会被替换为文件创建时间</p>
 <p>假设一个项目爬取的有书籍、游戏信息、新闻3个spider</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books  -o <span class="string">'/export_data/%(name)s/%(time)s.csv'</span></span><br><span class="line">scrapy crawl games  -o <span class="string">'/export_data/%(name)s/%(time)s.csv'</span></span><br><span class="line">scrapy crawl news  -o <span class="string">'/export_data/%(name)s/%(time)s.csv'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books  -o <span class="hljs-string">'/export_data/%(name)s/%(time)s.csv'</span></span><br><span class="line">scrapy crawl games  -o <span class="hljs-string">'/export_data/%(name)s/%(time)s.csv'</span></span><br><span class="line">scrapy crawl news  -o <span class="hljs-string">'/export_data/%(name)s/%(time)s.csv'</span></span><br></pre></td></tr></table></figure>
 
 <p>以上是爬取的内容，根据书名存放在export_data文件夹下的对应书名目录下，每个目录下根据时间进行保存</p>
 <p>方式二 配置文件方式</p>
 <p>在setting.py中设置以下参数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FEED_URI=<span class="string">'export_data/%(name)s.data'</span>            导出数据的位置</span><br><span class="line">FEED_FORMAT=<span class="string">'csv'</span>                               导出数据的格式</span><br><span class="line">FEED_EXPORT_ENCODING=<span class="string">'gbk'</span>                      导出数据的编码</span><br><span class="line">FEED_EXPORT_FIELDS=[<span class="string">'name'</span>,<span class="string">'author'</span>,<span class="string">'price'</span>]    导出数据的字段</span><br><span class="line">FEED_EXPORTERS=&#123;<span class="string">'excel'</span>:<span class="string">'my_project.my_exporters.ExcelItemExporter'</span>&#125;   新添加导出的格式</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FEED_URI=<span class="hljs-string">'export_data/%(name)s.data'</span>            导出数据的位置</span><br><span class="line">FEED_FORMAT=<span class="hljs-string">'csv'</span>                               导出数据的格式</span><br><span class="line">FEED_EXPORT_ENCODING=<span class="hljs-string">'gbk'</span>                      导出数据的编码</span><br><span class="line">FEED_EXPORT_FIELDS=[<span class="hljs-string">'name'</span>,<span class="hljs-string">'author'</span>,<span class="hljs-string">'price'</span>]    导出数据的字段</span><br><span class="line">FEED_EXPORTERS=&#123;<span class="hljs-string">'excel'</span>:<span class="hljs-string">'my_project.my_exporters.ExcelItemExporter'</span>&#125;   新添加导出的格式</span><br></pre></td></tr></table></figure>
 
 <p>如何实现一个自定义的导出的Excel类</p>
 <p>1、继承BaseItemExporter</p>
@@ -251,13 +251,13 @@
 <p>start_exporting(self)   在导出开始时被调用，可在该方法执行某些初始化工作</p>
 <p>finish_exporting(self) 在导出完成时候被调用，可在该方法中执行某些清理工作</p>
 <p>以下实现一个导出Excel,注意这里使用的是xlwt，这个库最多只能在一个sheet中插入65535行数据，如果要插入更多数据，需要切换为openxl来进行</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.exporters <span class="keyword">import</span> BaseItemExporter</span><br><span class="line"> </span><br><span class="line">impoort xlwt</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExcelItemExporter</span><span class="params">(BaseItemExporter)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,file,**kwargs)</span>:</span></span><br><span class="line">       self._configure(kwargs)</span><br><span class="line">       self.file=file</span><br><span class="line">       self.wbook=xlwt.Workbook()</span><br><span class="line">       self.wsheet=self.wbook.add_sheet(<span class="string">'scrapy'</span>)</span><br><span class="line">       self.row=<span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">finish_exporting</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.wbook.save(self.file)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">export_item</span><span class="params">(self,item)</span>:</span></span><br><span class="line">        fields=self._get_serialized_fields(item)</span><br><span class="line">    <span class="keyword">for</span> col,v <span class="keyword">in</span> enumerate(x <span class="keyword">for</span> _,x <span class="keyword">in</span> fields):</span><br><span class="line">        self.wsheet.write(self.row,col,v)</span><br><span class="line"> </span><br><span class="line">    self.row +=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> scrapy.exporters <span class="hljs-keyword">import</span> BaseItemExporter</span><br><span class="line"> </span><br><span class="line">impoort xlwt</span><br><span class="line"> </span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExcelItemExporter</span><span class="hljs-params">(BaseItemExporter)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self,file,**kwargs)</span>:</span></span><br><span class="line">       self._configure(kwargs)</span><br><span class="line">       self.file=file</span><br><span class="line">       self.wbook=xlwt.Workbook()</span><br><span class="line">       self.wsheet=self.wbook.add_sheet(<span class="hljs-string">'scrapy'</span>)</span><br><span class="line">       self.row=<span class="hljs-number">0</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">finish_exporting</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        self.wbook.save(self.file)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">export_item</span><span class="hljs-params">(self,item)</span>:</span></span><br><span class="line">        fields=self._get_serialized_fields(item)</span><br><span class="line">    <span class="hljs-keyword">for</span> col,v <span class="hljs-keyword">in</span> enumerate(x <span class="hljs-keyword">for</span> _,x <span class="hljs-keyword">in</span> fields):</span><br><span class="line">        self.wsheet.write(self.row,col,v)</span><br><span class="line"> </span><br><span class="line">    self.row +=<span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
 
 <p>编写完成后再setting.py中添加这个类</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORTERS=&#123;<span class="string">'excel'</span>:<span class="string">'my_project.my_exporters.ExcelItemExporter'</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORTERS=&#123;<span class="hljs-string">'excel'</span>:<span class="hljs-string">'my_project.my_exporters.ExcelItemExporter'</span>&#125;</span><br></pre></td></tr></table></figure>
 
 <p>之后终端命令行</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books -t excel -o books.xls</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books -t excel -o books.xls</span><br></pre></td></tr></table></figure>
 
 <p>这样就导出excel了，当然你可以封装一个Excel导出类，这样可以更加通用，在web框架下，爬虫框架下都可以使用</p>
 
@@ -385,7 +385,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        22
+                        4
                     </p>
                 </div>
             </div>
@@ -465,94 +465,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Django/">
-            <span class="level-start">
-                <span class="level-item">Django</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Excel/">
-            <span class="level-start">
-                <span class="level-item">Excel</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-数据梳理/">
-            <span class="level-start">
-                <span class="level-item">Excel-openpyxl--数据梳理</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-创建和读取/">
-            <span class="level-start">
-                <span class="level-item">Excel-openpyxl-创建和读取</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-增删改查/">
-            <span class="level-start">
-                <span class="level-item">Excel-openpyxl-增删改查</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/Selenium/">
-            <span class="level-start">
-                <span class="level-item">Selenium</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/Selenium/爬虫-selenium/">
-            <span class="level-start">
-                <span class="level-item">爬虫+selenium</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/bug/">
-            <span class="level-start">
-                <span class="level-item">bug</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/docker/">
-            <span class="level-start">
-                <span class="level-item">docker</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/mysql/">
-            <span class="level-start">
-                <span class="level-item">mysql</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/python/">
-            <span class="level-start">
-                <span class="level-item">python</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">4</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/smscode/">
             <span class="level-start">
                 <span class="level-item">smscode</span>
@@ -569,76 +481,20 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/技术/">
+            <span class="level-start">
+                <span class="level-item">技术</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">23</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/浅谈少儿编程/">
             <span class="level-start">
                 <span class="level-item">浅谈少儿编程</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">5</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/">
-            <span class="level-start">
-                <span class="level-item">爬虫</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">6</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-1-快速入门/">
-            <span class="level-start">
-                <span class="level-item">scrapy-1-快速入门</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-2-数据解析/">
-            <span class="level-start">
-                <span class="level-item">scrapy-2-数据解析</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-3-数据处理/">
-            <span class="level-start">
-                <span class="level-item">scrapy-3-数据处理</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-4-链接提取器/">
-            <span class="level-start">
-                <span class="level-item">scrapy-4-链接提取器</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-5-文件图片下载/">
-            <span class="level-start">
-                <span class="level-item">scrapy-5-文件图片下载</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/反爬/">
-            <span class="level-start">
-                <span class="level-item">反爬</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/环境配置/">
-            <span class="level-start">
-                <span class="level-item">环境配置</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
             </span>
         </a></li>
             </ul>
@@ -723,7 +579,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-24T11:29:19.000Z">2019-12-24</time></div>
                     <a href="/2019/12/24/关于爬虫的几种常见的反爬/" class="has-link-black-ter is-size-6">关于爬虫的几种常见的反爬</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/爬虫/">爬虫</a> / <a class="has-link-grey -link" href="/categories/爬虫/反爬/">反爬</a>
+                        <a class="has-link-grey -link" href="/categories/技术/">技术</a>
                     </p>
                 </div>
             </div>

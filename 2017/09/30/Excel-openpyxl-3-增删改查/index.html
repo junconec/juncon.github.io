@@ -17,7 +17,7 @@
 <meta property="og:description" content="Excel-openpyxl-3-增删改查通过这篇文章，你能学习到以下内容1、openpyxl的增加数据2、openpyxl删除数据3、更新数据4、查找数据 1、openpyxl的增加数据 使用上一个文件创建的create_excel.xlsx create_excel      原始文件，数据源 openpyxledit.py   相关代码  每次调用，在最后一列，多增加一列数据 引用模块ope">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-10-21T10:04:06.456Z">
+<meta property="og:updated_time" content="2021-06-09T11:00:59.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Excel-openpyxl-3-增删改查">
 <meta name="twitter:description" content="Excel-openpyxl-3-增删改查通过这篇文章，你能学习到以下内容1、openpyxl的增加数据2、openpyxl删除数据3、更新数据4、查找数据 1、openpyxl的增加数据 使用上一个文件创建的create_excel.xlsx create_excel      原始文件，数据源 openpyxledit.py   相关代码  每次调用，在最后一列，多增加一列数据 引用模块ope">
@@ -149,7 +149,7 @@
                 <time class="level-item has-text-grey" datetime="2017-09-30T14:10:08.000Z">2017-09-30</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Excel/">Excel</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Excel/Excel-openpyxl-增删改查/">Excel-openpyxl-增删改查</a>
+                <a class="has-link-grey -link" href="/categories/技术/">技术</a>
                 </div>
                 
                 
@@ -177,17 +177,17 @@
 <p><img src="http://47.93.248.15/wp-content/uploads/2018/05/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-05-09-%E4%B8%8B%E5%8D%883.25.27.png" alt="img"></p>
 <p>每次调用，在最后一列，多增加一列数据</p>
 <p>引用模块openpyxl</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from openpyxl import load_workbookfrom openpyxl import Workbook# 一个eggache的数字转为列字母的方法from openpyxl.utils import get_column_letter</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from openpyxl import load_workbookfrom openpyxl import Workbook# 一个eggache的数字转为列字母的方法from openpyxl.utils import get_column_letter</span><br></pre></td></tr></table></figure>
 
 <p>目标:调用一次，最后一列增加一列</p>
 <p>思路:</p>
 <p>获得最后一列或者一行的位置</p>
 <p>增加一列:通过cell指定最后一列的位置增加1，依次对这一列的每一行赋值</p>
 <p>增加一行:通过cell指定最后一行位置增加1，依次对这行的每一列进行赋值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#增加数据def addExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;, data_only=True)  # data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet = wb.get_sheet_by_name(&quot;create_sheet&quot;)    #获得最大行数    row=sheet.max_row    #获得最大列数    column=sheet.max_column    #循环插入一列数据    for i in range(row):        #列数+1转换为字母        h_col = get_column_letter(column+1)        #行数从1开始,从0会报错        xx=h_col+str(i+1)        #可以使用sheet[xx].value=xx方式进行赋值        # sheet[xx].value=xx        #row是数字，column是数字，都是从1开始        sheet.cell(row=(i+1),column=column+1).value=xx    wb.save(&quot;create_excel.xlsx&quot;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#增加数据def addExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;, data_only=True)  # data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet = wb.get_sheet_by_name(&quot;create_sheet&quot;)    #获得最大行数    row=sheet.max_row    #获得最大列数    column=sheet.max_column    #循环插入一列数据    for i in range(row):        #列数+1转换为字母        h_col = get_column_letter(column+1)        #行数从1开始,从0会报错        xx=h_col+str(i+1)        #可以使用sheet[xx].value=xx方式进行赋值        # sheet[xx].value=xx        #row是数字，column是数字，都是从1开始        sheet.cell(row=(i+1),column=column+1).value=xx    wb.save(&quot;create_excel.xlsx&quot;)</span><br></pre></td></tr></table></figure>
 
 <p>调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addExcel()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addExcel()</span><br></pre></td></tr></table></figure>
 
 
 
@@ -195,10 +195,10 @@
 <p>目标:调用一次，最后一行删除一行</p>
 <p>思路：</p>
 <p>openpyxl本身不提供删除，原因在于删除涉及移动数据，但是如果行或者列的数据本身都为None时候，默认这行就是没有的，利用这个规则，可以把一行或者一列的数据全部设置为None即可删除</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def deleteExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;, data_only=True)  # data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet = wb.get_sheet_by_name(&quot;create_sheet&quot;)    # 获得最大行数    row = sheet.max_row    # 获得最大列数    column = sheet.max_column    print(column)    # 删除最后一列数据    #for i in range(row):    #    sheet.cell(row=(i+1), column=column).value = None    # 删除最后一行数据    for i in range(column):        sheet.cell(row=row,column=i+1).value=None    wb.save(&quot;create_excel.xlsx&quot;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def deleteExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;, data_only=True)  # data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet = wb.get_sheet_by_name(&quot;create_sheet&quot;)    # 获得最大行数    row = sheet.max_row    # 获得最大列数    column = sheet.max_column    print(column)    # 删除最后一列数据    #for i in range(row):    #    sheet.cell(row=(i+1), column=column).value = None    # 删除最后一行数据    for i in range(column):        sheet.cell(row=row,column=i+1).value=None    wb.save(&quot;create_excel.xlsx&quot;)</span><br></pre></td></tr></table></figure>
 
 <p>调用删除数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deleteExcel()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deleteExcel()</span><br></pre></td></tr></table></figure>
 
 
 
@@ -207,10 +207,10 @@
 <p>思路</p>
 <p>基本思路和增加是一样的，但是比较简单的是不获取一列数据，而是单独的一个cell</p>
 <p>对单独cell赋值后进行保存，即可完成更新</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def updateExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;, data_only=True)  # data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet = wb.get_sheet_by_name(&quot;create_sheet&quot;)    sheet[&apos;C3&apos;] = &apos;new data&apos;    wb.save(&quot;create_excel.xlsx&quot;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def updateExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;, data_only=True)  # data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet = wb.get_sheet_by_name(&quot;create_sheet&quot;)    sheet[&apos;C3&apos;] = &apos;new data&apos;    wb.save(&quot;create_excel.xlsx&quot;)</span><br></pre></td></tr></table></figure>
 
 <p>调用更新数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">updateExcel()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">updateExcel()</span><br></pre></td></tr></table></figure>
 
 
 
@@ -218,12 +218,12 @@
 <p>目标:查找所有数据</p>
 <p>思路</p>
 <p>获得最大列和最大行，进行遍历，需要注意行和列都是从1开始的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def selectExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;,data_only=True) #data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet=wb.get_sheet_by_name(&quot;create_sheet&quot;)    # 获取A1格的值    print(&quot;A1的值  &quot;,sheet[&apos;A1&apos;].value)    # 获取表的内容的最大工作行数    print(&quot;表最大工作行数  &quot;,sheet.max_row)    # 获取表的内容的最大工作列数    print(&quot;表最大工作列数  &quot;,sheet.max_column)    # 遍历表中所有内容    for row in sheet.rows:        #row是每一行中的数据        for cell in row:            print(cell.value,end=&quot; &quot;)        print(&quot;&quot;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def selectExcel():    # 打开一个工作薄    wb = load_workbook(&apos;create_excel.xlsx&apos;,data_only=True) #data_only=True是关键，显示公式结果    # 获取一张表，需要对应那个表的name，之前取的是create_sheet    sheet=wb.get_sheet_by_name(&quot;create_sheet&quot;)    # 获取A1格的值    print(&quot;A1的值  &quot;,sheet[&apos;A1&apos;].value)    # 获取表的内容的最大工作行数    print(&quot;表最大工作行数  &quot;,sheet.max_row)    # 获取表的内容的最大工作列数    print(&quot;表最大工作列数  &quot;,sheet.max_column)    # 遍历表中所有内容    for row in sheet.rows:        #row是每一行中的数据        for cell in row:            print(cell.value,end=&quot; &quot;)        print(&quot;&quot;)</span><br></pre></td></tr></table></figure>
 
 
 
 <p>调用查询</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">selectExcel()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">selectExcel()</span><br></pre></td></tr></table></figure>
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -348,7 +348,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        22
+                        4
                     </p>
                 </div>
             </div>
@@ -432,94 +432,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Django/">
-            <span class="level-start">
-                <span class="level-item">Django</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Excel/">
-            <span class="level-start">
-                <span class="level-item">Excel</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-数据梳理/">
-            <span class="level-start">
-                <span class="level-item">Excel-openpyxl--数据梳理</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-创建和读取/">
-            <span class="level-start">
-                <span class="level-item">Excel-openpyxl-创建和读取</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-增删改查/">
-            <span class="level-start">
-                <span class="level-item">Excel-openpyxl-增删改查</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/Selenium/">
-            <span class="level-start">
-                <span class="level-item">Selenium</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/Selenium/爬虫-selenium/">
-            <span class="level-start">
-                <span class="level-item">爬虫+selenium</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/bug/">
-            <span class="level-start">
-                <span class="level-item">bug</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/docker/">
-            <span class="level-start">
-                <span class="level-item">docker</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/mysql/">
-            <span class="level-start">
-                <span class="level-item">mysql</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/python/">
-            <span class="level-start">
-                <span class="level-item">python</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">4</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/smscode/">
             <span class="level-start">
                 <span class="level-item">smscode</span>
@@ -536,76 +448,20 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/技术/">
+            <span class="level-start">
+                <span class="level-item">技术</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">23</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/浅谈少儿编程/">
             <span class="level-start">
                 <span class="level-item">浅谈少儿编程</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">5</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/">
-            <span class="level-start">
-                <span class="level-item">爬虫</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">6</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-1-快速入门/">
-            <span class="level-start">
-                <span class="level-item">scrapy-1-快速入门</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-2-数据解析/">
-            <span class="level-start">
-                <span class="level-item">scrapy-2-数据解析</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-3-数据处理/">
-            <span class="level-start">
-                <span class="level-item">scrapy-3-数据处理</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-4-链接提取器/">
-            <span class="level-start">
-                <span class="level-item">scrapy-4-链接提取器</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-5-文件图片下载/">
-            <span class="level-start">
-                <span class="level-item">scrapy-5-文件图片下载</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/反爬/">
-            <span class="level-start">
-                <span class="level-item">反爬</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/环境配置/">
-            <span class="level-start">
-                <span class="level-item">环境配置</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
             </span>
         </a></li>
             </ul>
@@ -690,7 +546,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-24T11:29:19.000Z">2019-12-24</time></div>
                     <a href="/2019/12/24/关于爬虫的几种常见的反爬/" class="has-link-black-ter is-size-6">关于爬虫的几种常见的反爬</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/爬虫/">爬虫</a> / <a class="has-link-grey -link" href="/categories/爬虫/反爬/">反爬</a>
+                        <a class="has-link-grey -link" href="/categories/技术/">技术</a>
                     </p>
                 </div>
             </div>

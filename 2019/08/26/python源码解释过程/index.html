@@ -17,7 +17,7 @@
 <meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839首先你可以观察一下程序的运行过程，具体步骤如下：1、编写py文件 A2、在编写一个py文件 B3、在A中import B2、运行py文件A结果：在运行py文件A的时候，会产生一个B的pyc文件，加速装载，但是A在每次使用的时候，由于只装载一次，所以没有pyc以上">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-08-26T00:13:46.353Z">
+<meta property="og:updated_time" content="2021-06-09T11:01:58.288Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python源码解释过程">
 <meta name="twitter:description" content="123456789101112131415161718192021222324252627282930313233343536373839首先你可以观察一下程序的运行过程，具体步骤如下：1、编写py文件 A2、在编写一个py文件 B3、在A中import B2、运行py文件A结果：在运行py文件A的时候，会产生一个B的pyc文件，加速装载，但是A在每次使用的时候，由于只装载一次，所以没有pyc以上">
@@ -149,7 +149,7 @@
                 <time class="level-item has-text-grey" datetime="2019-08-26T00:10:31.000Z">2019-08-26</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/python/">python</a>
+                <a class="has-link-grey -link" href="/categories/技术/">技术</a>
                 </div>
                 
                 
@@ -169,7 +169,7 @@
             
         </h1>
         <div class="content">
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">首先你可以观察一下程序的运行过程，具体步骤如下：</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、编写py文件 A</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、在编写一个py文件 B</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、在A中<span class="keyword">import</span> B</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、运行py文件A</span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line"></span><br><span class="line">在运行py文件A的时候，会产生一个B的pyc文件，加速装载，但是A在每次使用的时候，由于只装载一次，所以没有pyc</span><br><span class="line"></span><br><span class="line">以上是对<span class="keyword">import</span>解释</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">整体过程解释</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>Python先把代码（.py文件）编译成字节码，交给字节码虚拟机，然后虚拟机一条一条执行字节码指令，从而完成程序的执行。</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 字节码</span><br><span class="line"></span><br><span class="line">字节码在Python虚拟机程序里对应的是PyCodeObject对象。</span><br><span class="line"></span><br><span class="line">.pyc文件是字节码在磁盘上的表现形式。</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> pyc文件</span><br><span class="line"></span><br><span class="line">PyCodeObject对象的创建时机是模块加载的时候，即<span class="keyword">import</span>。</span><br><span class="line"></span><br><span class="line">Python test.py会对test.py进行编译成字节码并解释执行，但是不会生成test.pyc。</span><br><span class="line"></span><br><span class="line">如果test.py加载了其他模块，如<span class="keyword">import</span> util，Python会对util.py进行编译成字节码，生成util.pyc，然后对字节码解释执行。</span><br><span class="line"></span><br><span class="line">如果想生成test.pyc，我们可以使用Python内置模块py_compile来编译。</span><br><span class="line"></span><br><span class="line">加载模块时，如果同时存在.py和.pyc，Python会尝试使用.pyc，如果.pyc的编译时间早于.py的修改时间，则重新编译.py并更新.pyc。</span><br></pre></td></tr></table></figure>
+            <figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">首先你可以观察一下程序的运行过程，具体步骤如下：</span><br><span class="line"></span><br><span class="line"><span class="hljs-number">1</span>、编写py文件 A</span><br><span class="line"></span><br><span class="line"><span class="hljs-number">2</span>、在编写一个py文件 B</span><br><span class="line"></span><br><span class="line"><span class="hljs-number">3</span>、在A中<span class="hljs-keyword">import</span> B</span><br><span class="line"></span><br><span class="line"><span class="hljs-number">2</span>、运行py文件A</span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line"></span><br><span class="line">在运行py文件A的时候，会产生一个B的pyc文件，加速装载，但是A在每次使用的时候，由于只装载一次，所以没有pyc</span><br><span class="line"></span><br><span class="line">以上是对<span class="hljs-keyword">import</span>解释</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">整体过程解释</span><br><span class="line"></span><br><span class="line"><span class="hljs-number">1.</span>Python先把代码（.py文件）编译成字节码，交给字节码虚拟机，然后虚拟机一条一条执行字节码指令，从而完成程序的执行。</span><br><span class="line"></span><br><span class="line"><span class="hljs-number">2.</span> 字节码</span><br><span class="line"></span><br><span class="line">字节码在Python虚拟机程序里对应的是PyCodeObject对象。</span><br><span class="line"></span><br><span class="line">.pyc文件是字节码在磁盘上的表现形式。</span><br><span class="line"></span><br><span class="line"><span class="hljs-number">3.</span> pyc文件</span><br><span class="line"></span><br><span class="line">PyCodeObject对象的创建时机是模块加载的时候，即<span class="hljs-keyword">import</span>。</span><br><span class="line"></span><br><span class="line">Python test.py会对test.py进行编译成字节码并解释执行，但是不会生成test.pyc。</span><br><span class="line"></span><br><span class="line">如果test.py加载了其他模块，如<span class="hljs-keyword">import</span> util，Python会对util.py进行编译成字节码，生成util.pyc，然后对字节码解释执行。</span><br><span class="line"></span><br><span class="line">如果想生成test.pyc，我们可以使用Python内置模块py_compile来编译。</span><br><span class="line"></span><br><span class="line">加载模块时，如果同时存在.py和.pyc，Python会尝试使用.pyc，如果.pyc的编译时间早于.py的修改时间，则重新编译.py并更新.pyc。</span><br></pre></td></tr></table></figure>
 
 
         </div>
@@ -296,7 +296,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        22
+                        4
                     </p>
                 </div>
             </div>
@@ -376,94 +376,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Django/">
-            <span class="level-start">
-                <span class="level-item">Django</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Excel/">
-            <span class="level-start">
-                <span class="level-item">Excel</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-数据梳理/">
-            <span class="level-start">
-                <span class="level-item">Excel-openpyxl--数据梳理</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-创建和读取/">
-            <span class="level-start">
-                <span class="level-item">Excel-openpyxl-创建和读取</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-增删改查/">
-            <span class="level-start">
-                <span class="level-item">Excel-openpyxl-增删改查</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/Selenium/">
-            <span class="level-start">
-                <span class="level-item">Selenium</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/Selenium/爬虫-selenium/">
-            <span class="level-start">
-                <span class="level-item">爬虫+selenium</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/bug/">
-            <span class="level-start">
-                <span class="level-item">bug</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/docker/">
-            <span class="level-start">
-                <span class="level-item">docker</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/mysql/">
-            <span class="level-start">
-                <span class="level-item">mysql</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/python/">
-            <span class="level-start">
-                <span class="level-item">python</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">4</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/smscode/">
             <span class="level-start">
                 <span class="level-item">smscode</span>
@@ -480,76 +392,20 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/技术/">
+            <span class="level-start">
+                <span class="level-item">技术</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">23</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/浅谈少儿编程/">
             <span class="level-start">
                 <span class="level-item">浅谈少儿编程</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">5</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/">
-            <span class="level-start">
-                <span class="level-item">爬虫</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">6</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-1-快速入门/">
-            <span class="level-start">
-                <span class="level-item">scrapy-1-快速入门</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-2-数据解析/">
-            <span class="level-start">
-                <span class="level-item">scrapy-2-数据解析</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-3-数据处理/">
-            <span class="level-start">
-                <span class="level-item">scrapy-3-数据处理</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-4-链接提取器/">
-            <span class="level-start">
-                <span class="level-item">scrapy-4-链接提取器</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-5-文件图片下载/">
-            <span class="level-start">
-                <span class="level-item">scrapy-5-文件图片下载</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/反爬/">
-            <span class="level-start">
-                <span class="level-item">反爬</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/环境配置/">
-            <span class="level-start">
-                <span class="level-item">环境配置</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
             </span>
         </a></li>
             </ul>
@@ -634,7 +490,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-24T11:29:19.000Z">2019-12-24</time></div>
                     <a href="/2019/12/24/关于爬虫的几种常见的反爬/" class="has-link-black-ter is-size-6">关于爬虫的几种常见的反爬</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/爬虫/">爬虫</a> / <a class="has-link-grey -link" href="/categories/爬虫/反爬/">反爬</a>
+                        <a class="has-link-grey -link" href="/categories/技术/">技术</a>
                     </p>
                 </div>
             </div>

@@ -151,7 +151,7 @@
                 <time class="level-item has-text-grey" datetime="2019-12-24T11:29:19.000Z">2019-12-24</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/爬虫/">爬虫</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/爬虫/反爬/">反爬</a>
+                <a class="has-link-grey -link" href="/categories/技术/">技术</a>
                 </div>
                 
                 
@@ -175,14 +175,14 @@
 <p>我提供给大家两种方案，</p>
 <p><strong>方案</strong>一：</p>
 <p>将常见的User-Agent封装到一个.py文件中，命名为useragent.py</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 列表存储不同的User-Agent,这里仅示例三个,详情可百度百度搜索,链接在代码下方</span><br><span class="line">ua_list = [&apos;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1&apos;,</span><br><span class="line">            &apos;Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0&apos;,</span><br><span class="line">            &apos;Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; InfoPath.3)&apos;</span><br><span class="line">        ]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 列表存储不同的User-Agent,这里仅示例三个,详情可百度百度搜索,链接在代码下方</span><br><span class="line">ua_list = [&apos;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1&apos;,</span><br><span class="line">            &apos;Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0&apos;,</span><br><span class="line">            &apos;Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; InfoPath.3)&apos;</span><br><span class="line">        ]</span><br></pre></td></tr></table></figure>
 
 <p>他人为我们总结的常用User-Agent获取链接：<a href="https://www.cnblogs.com/zrmw/p/9332801.html" target="_blank" rel="noopener">https://www.cnblogs.com/zrmw/p/9332801.html</a></p>
 <p>在爬虫过程中导入useragent.py文件，随机选择ua_list中的user-agent。<br>代码示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import random</span><br><span class="line"># 导入自己定义的useragents.py中的ua_list</span><br><span class="line">from .useragents import ua_list</span><br><span class="line">#随机获取User-Agent</span><br><span class="line">headers = &#123;&apos;User-Agent&apos;:random.choice(ua_list)&#125;</span><br><span class="line">req = request.Request(</span><br><span class="line">            url=&apos;https://...&apos;,</span><br><span class="line">            headers=headers</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import random</span><br><span class="line"># 导入自己定义的useragents.py中的ua_list</span><br><span class="line">from .useragents import ua_list</span><br><span class="line">#随机获取User-Agent</span><br><span class="line">headers = &#123;&apos;User-Agent&apos;:random.choice(ua_list)&#125;</span><br><span class="line">req = request.Request(</span><br><span class="line">            url=&apos;https://...&apos;,</span><br><span class="line">            headers=headers</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
 
 <p><strong>方法二：</strong><br>Python中加载fake_useragent库，随机生成User-Agent添加到headers中。<br>代码示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from fake_useragent import UserAgent</span><br><span class="line"># 测试fake-useragent</span><br><span class="line">ua = UserAgent()</span><br><span class="line">print(ua.random)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from fake_useragent import UserAgent</span><br><span class="line"># 测试fake-useragent</span><br><span class="line">ua = UserAgent()</span><br><span class="line">print(ua.random)</span><br></pre></td></tr></table></figure>
 
 <p>####2.基于IP反爬机制</p>
 <p>思想：后台服务器对访问进行统计，单位时间内同一IP访问的次数超过一个特定的值（阀值），就会不同程度的禁封IP，导致无法进行爬虫操作。</p>
@@ -212,7 +212,7 @@
                 <time class="level-item has-text-grey" datetime="2017-05-03T01:10:10.000Z">2017-05-03</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/爬虫/">爬虫</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/爬虫/scrapy-5-文件图片下载/">scrapy-5-文件图片下载</a>
+                <a class="has-link-grey -link" href="/categories/技术/">技术</a>
                 </div>
                 
                 
@@ -241,16 +241,16 @@
 <p>Item字段  file_urls,files</p>
 <p>下载目录  FILES_STORE</p>
 <p>请看一下前端页面</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'/book/sg.pdf'</span>&gt;</span>下载三国演义<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'/book/shz.pdf'</span>&gt;</span>下载水浒传<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'/book/hlm.pdf'</span>&gt;</span>下载红楼梦<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'/book/xyj.pdf'</span>&gt;</span>下载西游记<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span></span><br><span class="line"> <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span><br><span class="line"> <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">'/book/sg.pdf'</span>&gt;</span>下载三国演义<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"> <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">'/book/shz.pdf'</span>&gt;</span>下载水浒传<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"> <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">'/book/hlm.pdf'</span>&gt;</span>下载红楼梦<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"> <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">'/book/xyj.pdf'</span>&gt;</span>下载西游记<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"> <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>使用FilePipLine通常置于其他ItemPipline之前</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;<span class="string">'scrapy.pipelines.files.FilesPipeline'</span>:<span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;<span class="hljs-string">'scrapy.pipelines.files.FilesPipeline'</span>:<span class="hljs-number">1</span>&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在配置文件setting.py中使用FILES_STORE指定文件下载目录</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FILES_STORE=<span class="string">'/home/zhangcheng/Download/scrapy'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FILES_STORE=<span class="hljs-string">'/home/zhangcheng/Download/scrapy'</span></span><br></pre></td></tr></table></figure>
 
 <p>在Spider解析一个包含文件下载链接的页面时，将所有需要下载的文件的url地址收集到一个列表，赋给item的file_urls字段(item[‘file_urls’]) FilesPipeline在处理每一项item时，会读取item[‘file_urls’],对其中每一个url进行下载</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DownloadBookSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(response)</span>:</span></span><br><span class="line"> item=&#123;&#125;</span><br><span class="line"> <span class="comment">#下载列表</span></span><br><span class="line"> item[<span class="string">'file_urls'</span>]=[]</span><br><span class="line"> <span class="keyword">for</span> url <span class="keyword">in</span> response.xpath(<span class="string">'//a/@href'</span>).extract():</span><br><span class="line"> download_url=response.urljoin(url)</span><br><span class="line"> <span class="comment">#将url填入下载列表</span></span><br><span class="line"> item[<span class="string">'file_urls'</span>].append(download_url)</span><br><span class="line"> <span class="keyword">yield</span> item</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DownloadBookSpider</span><span class="hljs-params">(scrapy.Spider)</span>:</span></span><br><span class="line"> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">parse</span><span class="hljs-params">(response)</span>:</span></span><br><span class="line"> item=&#123;&#125;</span><br><span class="line"> <span class="hljs-comment">#下载列表</span></span><br><span class="line"> item[<span class="hljs-string">'file_urls'</span>]=[]</span><br><span class="line"> <span class="hljs-keyword">for</span> url <span class="hljs-keyword">in</span> response.xpath(<span class="hljs-string">'//a/@href'</span>).extract():</span><br><span class="line"> download_url=response.urljoin(url)</span><br><span class="line"> <span class="hljs-comment">#将url填入下载列表</span></span><br><span class="line"> item[<span class="hljs-string">'file_urls'</span>].append(download_url)</span><br><span class="line"> <span class="hljs-keyword">yield</span> item</span><br></pre></td></tr></table></figure>
 
 <p>当FilesPipeline下载完item[‘file_urls’]中的所有文件后，会将各文件的下载结果信息收集到另一个列表，赋给item的files字段(item[‘files’])，下载结果包括以下内容</p>
 <p>Path 文件下载到本地的路径</p>
@@ -263,69 +263,69 @@
 <p>ImagesPipeline是在FilesPipeline基础上针对图片图片增加了一些特有功能</p>
 <p>为图片生成缩略图</p>
 <p>开启该功能，需要在setting中设置IMAGES_THUMBS  是一个字典，每一项的值是缩略图的尺寸</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IMAGES_THUMBS=&#123; <span class="string">'small'</span>:(<span class="number">50</span>,<span class="number">50</span>), <span class="string">'big'</span>:(<span class="number">270</span>,<span class="number">270</span>),&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IMAGES_THUMBS=&#123; <span class="hljs-string">'small'</span>:(<span class="hljs-number">50</span>,<span class="hljs-number">50</span>), <span class="hljs-string">'big'</span>:(<span class="hljs-number">270</span>,<span class="hljs-number">270</span>),&#125;</span><br></pre></td></tr></table></figure>
 
 <p>开启该功能后，下载一张图片，本地会出现三张图片，分别在full、thumbs/small下 thumbs/big下</p>
 <p>过滤掉尺寸过小的图片</p>
 <p>在setting.py中设置IMAGES_MIN_WIDTH和IMAGES_MIN_HEIGHT</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IMAGES_MIN_WIDTH=<span class="number">110</span>IMAGES_MIN_HEIGHT=<span class="number">110</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IMAGES_MIN_WIDTH=<span class="hljs-number">110</span>IMAGES_MIN_HEIGHT=<span class="hljs-number">110</span></span><br></pre></td></tr></table></figure>
 
 <p>开启该功能后，如果下载了一张105<img src="https://s.w.org/images/core/emoji/11/svg/2716.svg" alt="✖">200的图片，该图片就会被抛弃掉，因为宽度不符合</p>
 <p>文件下载例子</p>
 <p>爬取matplotlib网站源码文件  html解析下载文件</p>
 <p>创建项目</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject matplotlib_examples</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject matplotlib_examples</span><br></pre></td></tr></table></figure>
 
 <p>到项目目录下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd matplotlib_examples/</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd matplotlib_examples/</span><br></pre></td></tr></table></figure>
 
 <p>爬虫模板</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy genspider examples matplotlib.org</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy genspider examples matplotlib.org</span><br></pre></td></tr></table></figure>
 
 <p><img src="http://47.93.248.15/wp-content/uploads/2018/05/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-05-02-%E4%B8%8B%E5%8D%886.07.23.png" alt="img"></p>
 <p>编辑items.py增加模型</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">     file_urls=scrapy.Field()</span><br><span class="line">     files=scrapy.Field()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExampleItem</span><span class="hljs-params">(scrapy.Item)</span>:</span></span><br><span class="line">     file_urls=scrapy.Field()</span><br><span class="line">     files=scrapy.Field()</span><br></pre></td></tr></table></figure>
 
 <p>编辑examples.py实现爬虫逻辑</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"> <span class="keyword">from</span> scrapy.linkextractors <span class="keyword">import</span> LinkExtractor</span><br><span class="line"> <span class="keyword">from</span> matplotlib_examples.items <span class="keyword">import</span> ExampleItem</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">ExamplesSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">     name = <span class="string">'examples'</span></span><br><span class="line">     allowed_domains = [<span class="string">'matplotlib.org'</span>]</span><br><span class="line">     start_urls = [<span class="string">'http://matplotlib.org/examples/index.html'</span>]</span><br><span class="line"> </span><br><span class="line">     <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">         le =LinkExtractor(restrict_css=<span class="string">'div.toctree-wrapper.compound'</span>,deny=<span class="string">'/index.html$'</span>)</span><br><span class="line">         <span class="keyword">for</span> link <span class="keyword">in</span> le.extract_links(response):</span><br><span class="line">             <span class="keyword">yield</span> scrapy.Request(link.url,callback=self.parse_example)</span><br><span class="line"> </span><br><span class="line">     <span class="function"><span class="keyword">def</span> <span class="title">parse_example</span><span class="params">(self,response)</span>:</span></span><br><span class="line">         href = response.css(<span class="string">'a.reference.external::attr(href)'</span>).extract_first()</span><br><span class="line">         url =response.urljoin(href)</span><br><span class="line">         example=ExampleItem()</span><br><span class="line">         print(url)</span><br><span class="line">         example[<span class="string">'file_urls'</span>]=[url]</span><br><span class="line">         <span class="keyword">return</span> example</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> scrapy</span><br><span class="line"> <span class="hljs-keyword">from</span> scrapy.linkextractors <span class="hljs-keyword">import</span> LinkExtractor</span><br><span class="line"> <span class="hljs-keyword">from</span> matplotlib_examples.items <span class="hljs-keyword">import</span> ExampleItem</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExamplesSpider</span><span class="hljs-params">(scrapy.Spider)</span>:</span></span><br><span class="line">     name = <span class="hljs-string">'examples'</span></span><br><span class="line">     allowed_domains = [<span class="hljs-string">'matplotlib.org'</span>]</span><br><span class="line">     start_urls = [<span class="hljs-string">'http://matplotlib.org/examples/index.html'</span>]</span><br><span class="line"> </span><br><span class="line">     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">parse</span><span class="hljs-params">(self, response)</span>:</span></span><br><span class="line">         le =LinkExtractor(restrict_css=<span class="hljs-string">'div.toctree-wrapper.compound'</span>,deny=<span class="hljs-string">'/index.html$'</span>)</span><br><span class="line">         <span class="hljs-keyword">for</span> link <span class="hljs-keyword">in</span> le.extract_links(response):</span><br><span class="line">             <span class="hljs-keyword">yield</span> scrapy.Request(link.url,callback=self.parse_example)</span><br><span class="line"> </span><br><span class="line">     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">parse_example</span><span class="hljs-params">(self,response)</span>:</span></span><br><span class="line">         href = response.css(<span class="hljs-string">'a.reference.external::attr(href)'</span>).extract_first()</span><br><span class="line">         url =response.urljoin(href)</span><br><span class="line">         example=ExampleItem()</span><br><span class="line">         print(url)</span><br><span class="line">         example[<span class="hljs-string">'file_urls'</span>]=[url]</span><br><span class="line">         <span class="hljs-keyword">return</span> example</span><br></pre></td></tr></table></figure>
 
 <p>在setting.py中增加下载模块，下载模块会自动寻找file_urls字段</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;</span><br><span class="line">     <span class="string">'scrapy.pipelines.files.FilesPipeline'</span>:<span class="number">1</span></span><br><span class="line"> &#125;</span><br><span class="line"> FILES_STORE=<span class="string">'examples_src'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;</span><br><span class="line">     <span class="hljs-string">'scrapy.pipelines.files.FilesPipeline'</span>:<span class="hljs-number">1</span></span><br><span class="line"> &#125;</span><br><span class="line"> FILES_STORE=<span class="hljs-string">'examples_src'</span></span><br></pre></td></tr></table></figure>
 
 <p>增加run.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"> <span class="keyword">from</span>  scrapy.cmdline <span class="keyword">import</span> execute</span><br><span class="line"> execute(<span class="string">'scrapy crawl examples -o examples.json'</span>.split())</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#coding:utf8</span></span><br><span class="line"> <span class="hljs-keyword">from</span>  scrapy.cmdline <span class="hljs-keyword">import</span> execute</span><br><span class="line"> execute(<span class="hljs-string">'scrapy crawl examples -o examples.json'</span>.split())</span><br></pre></td></tr></table></figure>
 
 <p>运行run.py</p>
 <p>最后产生一个examples.json文件和一个examples_src文件夹，examples.json文件保存抓取下的数据,文件夹中保存的下载后的文件</p>
 <p><img src="http://47.93.248.15/wp-content/uploads/2018/05/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-05-02-%E4%B8%8B%E5%8D%886.08.16.png" alt="img"></p>
 <p>但是下载的内容，会全部保存在full这个我们指定的文件夹下，但是文件名称为一段很长的sha散列值的文件，这是为了防止文件覆盖，但是这样很不方便阅读</p>
 <p>我们期望每个文件都存入我们指定的地方，实际上FilesPipline里面的file_path方法决定了文件名，所以就需要我们继承FilesPipline重写file_path的方法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> urlparse</span><br><span class="line"> <span class="keyword">from</span> os.path <span class="keyword">import</span>  basename,dirname,join</span><br><span class="line"> <span class="keyword">from</span> scrapy.pipelines.files <span class="keyword">import</span> FilesPipeline</span><br><span class="line"> </span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">MyFilePipeline</span><span class="params">(FilesPipeline)</span>:</span></span><br><span class="line">     <span class="function"><span class="keyword">def</span> <span class="title">file_path</span><span class="params">(self, request, response=None, info=None)</span>:</span></span><br><span class="line">         path=urlparse(request.url).path</span><br><span class="line">         <span class="keyword">return</span> join(basename(dirname(path)),basename(path))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> urllib.parse <span class="hljs-keyword">import</span> urlparse</span><br><span class="line"> <span class="hljs-keyword">from</span> os.path <span class="hljs-keyword">import</span>  basename,dirname,join</span><br><span class="line"> <span class="hljs-keyword">from</span> scrapy.pipelines.files <span class="hljs-keyword">import</span> FilesPipeline</span><br><span class="line"> </span><br><span class="line"> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyFilePipeline</span><span class="hljs-params">(FilesPipeline)</span>:</span></span><br><span class="line">     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">file_path</span><span class="hljs-params">(self, request, response=None, info=None)</span>:</span></span><br><span class="line">         path=urlparse(request.url).path</span><br><span class="line">         <span class="hljs-keyword">return</span> join(basename(dirname(path)),basename(path))</span><br></pre></td></tr></table></figure>
 
 <p>在setting.py中添加的</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;     <span class="comment"># 'scrapy.pipelines.files.FilesPipeline':1     'toscrape_book.pipelines.MyFilesPipeline': 300,  &#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;     <span class="hljs-comment"># 'scrapy.pipelines.files.FilesPipeline':1     'toscrape_book.pipelines.MyFilesPipeline': 300,  &#125;</span></span><br></pre></td></tr></table></figure>
 
 <p>重新运行后，则展示了对应的文件在对应的文件夹下</p>
 <p>此例子可以应用在下载对应的组图中</p>
 <p>360图片下载项目   json+下载项目</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject so_image</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject so_image</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd so_image</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd so_image</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy genspider images image.so.com</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy genspider images image.so.com</span><br></pre></td></tr></table></figure>
 
 <p>使用pycharm打开</p>
 <p>在setting.py中添加ImagesPipeline</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;     </span><br><span class="line"><span class="string">'scrapy.pipelines.images.ImagesPipeline'</span>:<span class="number">1</span> </span><br><span class="line">&#125; IMAGES_STORE=<span class="string">'download_images'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;     </span><br><span class="line"><span class="hljs-string">'scrapy.pipelines.images.ImagesPipeline'</span>:<span class="hljs-number">1</span> </span><br><span class="line">&#125; IMAGES_STORE=<span class="hljs-string">'download_images'</span></span><br></pre></td></tr></table></figure>
 
 <p>实现imagesSpider.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"> <span class="keyword">import</span> json</span><br><span class="line"> <span class="keyword">from</span> scrapy <span class="keyword">import</span>  Request</span><br><span class="line"> </span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">ImagesSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">     BASE_URL=<span class="string">'http://image.so.com/zj?ch=art&amp;sn=%s&amp;listtype=new&amp;temp=1'</span></span><br><span class="line">     <span class="comment">#限制最大下载量，防止磁盘用量过大</span></span><br><span class="line">     MAX_DOWNLOAD_NUM=<span class="number">1000</span></span><br><span class="line">     name = <span class="string">'images'</span></span><br><span class="line">     allowed_domains = [<span class="string">'image.so.com'</span>]</span><br><span class="line">     start_urls = [BASE_URL%<span class="number">0</span>]</span><br><span class="line"> </span><br><span class="line">     <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">         <span class="comment">#使用json模块解析响应结果</span></span><br><span class="line">         infos= json.loads(response.body.decode(<span class="string">'utf-8'</span>))</span><br><span class="line">         <span class="comment">#提取所有的图片下载url到一个列表，赋值给item的image_urls字段</span></span><br><span class="line">         <span class="keyword">yield</span> &#123;<span class="string">'image_urls'</span>:[info[<span class="string">'qhimg_url'</span>] <span class="keyword">for</span> info <span class="keyword">in</span> infos[<span class="string">'list'</span>]]&#125;</span><br><span class="line">         <span class="comment">#如count字段大于0，并且下载数据不足MAX_DOWNLOAD_NUM,继续获取下一页图片信息</span></span><br><span class="line">         self.start_index+=infos[<span class="string">'count'</span>]</span><br><span class="line">         <span class="keyword">if</span> infos[<span class="string">'count'</span>] &gt;<span class="number">0</span> <span class="keyword">and</span> self.start_index&lt;self.MAX_DOWNLOAD_NUM:</span><br><span class="line">             <span class="keyword">yield</span> Request(self.BASE_URL%self.start_index)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> scrapy</span><br><span class="line"> <span class="hljs-keyword">import</span> json</span><br><span class="line"> <span class="hljs-keyword">from</span> scrapy <span class="hljs-keyword">import</span>  Request</span><br><span class="line"> </span><br><span class="line"> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImagesSpider</span><span class="hljs-params">(scrapy.Spider)</span>:</span></span><br><span class="line">     BASE_URL=<span class="hljs-string">'http://image.so.com/zj?ch=art&amp;sn=%s&amp;listtype=new&amp;temp=1'</span></span><br><span class="line">     <span class="hljs-comment">#限制最大下载量，防止磁盘用量过大</span></span><br><span class="line">     MAX_DOWNLOAD_NUM=<span class="hljs-number">1000</span></span><br><span class="line">     name = <span class="hljs-string">'images'</span></span><br><span class="line">     allowed_domains = [<span class="hljs-string">'image.so.com'</span>]</span><br><span class="line">     start_urls = [BASE_URL%<span class="hljs-number">0</span>]</span><br><span class="line"> </span><br><span class="line">     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">parse</span><span class="hljs-params">(self, response)</span>:</span></span><br><span class="line">         <span class="hljs-comment">#使用json模块解析响应结果</span></span><br><span class="line">         infos= json.loads(response.body.decode(<span class="hljs-string">'utf-8'</span>))</span><br><span class="line">         <span class="hljs-comment">#提取所有的图片下载url到一个列表，赋值给item的image_urls字段</span></span><br><span class="line">         <span class="hljs-keyword">yield</span> &#123;<span class="hljs-string">'image_urls'</span>:[info[<span class="hljs-string">'qhimg_url'</span>] <span class="hljs-keyword">for</span> info <span class="hljs-keyword">in</span> infos[<span class="hljs-string">'list'</span>]]&#125;</span><br><span class="line">         <span class="hljs-comment">#如count字段大于0，并且下载数据不足MAX_DOWNLOAD_NUM,继续获取下一页图片信息</span></span><br><span class="line">         self.start_index+=infos[<span class="hljs-string">'count'</span>]</span><br><span class="line">         <span class="hljs-keyword">if</span> infos[<span class="hljs-string">'count'</span>] &gt;<span class="hljs-number">0</span> <span class="hljs-keyword">and</span> self.start_index&lt;self.MAX_DOWNLOAD_NUM:</span><br><span class="line">             <span class="hljs-keyword">yield</span> Request(self.BASE_URL%self.start_index)</span><br></pre></td></tr></table></figure>
 
 <p>在setting.py中设置</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ROBOTSTXT_OBEY = <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ROBOTSTXT_OBEY = <span class="hljs-literal">False</span></span><br></pre></td></tr></table></figure>
 
 <p>创建运行run.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span>  scrapy.cmdline <span class="keyword">import</span> execute </span><br><span class="line">execute([<span class="string">'scrapy'</span>,<span class="string">'crawl'</span>,<span class="string">'images'</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span>  scrapy.cmdline <span class="hljs-keyword">import</span> execute </span><br><span class="line">execute([<span class="hljs-string">'scrapy'</span>,<span class="hljs-string">'crawl'</span>,<span class="hljs-string">'images'</span>])</span><br></pre></td></tr></table></figure>
 
 <p>查看结果，可以看到下载的图片</p>
 
@@ -352,7 +352,7 @@
                 <time class="level-item has-text-grey" datetime="2017-04-05T08:19:07.000Z">2017-04-05</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/爬虫/">爬虫</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/爬虫/scrapy-4-链接提取器/">scrapy-4-链接提取器</a>
+                <a class="has-link-grey -link" href="/categories/技术/">技术</a>
                 </div>
                 
                 
@@ -375,10 +375,10 @@
             <p>链接提取器，设置规则后，进行批量提取所有连接，主要用于是在CrawlSpider模板中使用的居多</p>
 <p>比如提取某个网站上所有数据</p>
 <p>使用LinkExtractor需要添加相关头文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.linkextractors <span class="keyword">import</span> LinkExtractor</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> scrapy.linkextractors <span class="hljs-keyword">import</span> LinkExtractor</span><br></pre></td></tr></table></figure>
 
 <p>以下代码进行整站爬取。通过Rule+LinkExtractor结合进行提取了所有页面的数据，CrawlSpider想进行整站所有a标签提取，但是Rule+LinkExtractor进行了限制，筛选出符合我规则的数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">from</span> scrapy.spiders <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> scrapy.linkextractors <span class="keyword">import</span> LinkExtractor</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ItcastSpider</span><span class="params">(scrapy.spiders.CrawlSpider)</span>:</span></span><br><span class="line">     name = <span class="string">'book'</span></span><br><span class="line">     start_urls = [<span class="string">'http://books.toscrape.com/'</span>]</span><br><span class="line">     img_urls = []</span><br><span class="line">     rules = (Rule(LinkExtractor(allow=(<span class="string">'http://books.toscrape.com/catalogue/page-\d&#123;1,6&#125;'</span>+<span class="string">'.html'</span>,)),</span><br><span class="line">                  callback=<span class="string">'parse_item'</span>, follow=<span class="literal">True</span>),)</span><br><span class="line">     <span class="function"><span class="keyword">def</span> <span class="title">parse_item</span><span class="params">(self,response)</span>:</span></span><br><span class="line">         print(<span class="string">"收到数据"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> scrapy</span><br><span class="line"><span class="hljs-keyword">from</span> scrapy.spiders <span class="hljs-keyword">import</span> *</span><br><span class="line"><span class="hljs-keyword">from</span> scrapy.linkextractors <span class="hljs-keyword">import</span> LinkExtractor</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ItcastSpider</span><span class="hljs-params">(scrapy.spiders.CrawlSpider)</span>:</span></span><br><span class="line">     name = <span class="hljs-string">'book'</span></span><br><span class="line">     start_urls = [<span class="hljs-string">'http://books.toscrape.com/'</span>]</span><br><span class="line">     img_urls = []</span><br><span class="line">     rules = (Rule(LinkExtractor(allow=(<span class="hljs-string">'http://books.toscrape.com/catalogue/page-\d&#123;1,6&#125;'</span>+<span class="hljs-string">'.html'</span>,)),</span><br><span class="line">                  callback=<span class="hljs-string">'parse_item'</span>, follow=<span class="hljs-literal">True</span>),)</span><br><span class="line">     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">parse_item</span><span class="hljs-params">(self,response)</span>:</span></span><br><span class="line">         print(<span class="hljs-string">"收到数据"</span>)</span><br></pre></td></tr></table></figure>
 
 <p>注意：连接提取器中的里面的逗号是不能少的，因为Rule接受的是一个可迭代的对象元组</p>
 <p>这个方法比较适合对整站数据的规则爬取，不需要自己设置反复爬取的地址了</p>
@@ -386,23 +386,23 @@
 <p>allow  接收一个正则表达式的地址，用于过滤出符合条件的地址</p>
 <p>deny  与allow相反，接收一个正则表达式，排除符合条件的地址</p>
 <p>allow_domains 接收一个域名或一个域名列表，提取到指定域的链接</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.linkextractors <span class="keyword">import</span> LinkExtractor</span><br><span class="line">domains=[<span class="string">'github.com'</span>,<span class="string">'baidu.com'</span>]</span><br><span class="line">le = LinkExtractor(allow_domains=domains)</span><br><span class="line">links = le.extract_links(response)</span><br><span class="line">[link.url <span class="keyword">for</span> link <span class="keyword">in</span> links]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> scrapy.linkextractors <span class="hljs-keyword">import</span> LinkExtractor</span><br><span class="line">domains=[<span class="hljs-string">'github.com'</span>,<span class="hljs-string">'baidu.com'</span>]</span><br><span class="line">le = LinkExtractor(allow_domains=domains)</span><br><span class="line">links = le.extract_links(response)</span><br><span class="line">[link.url <span class="hljs-keyword">for</span> link <span class="hljs-keyword">in</span> links]</span><br></pre></td></tr></table></figure>
 
 <p>其中response是获得请求后的结果</p>
 <p>deny_domains 与allow_domains相反，排除指定域的连接</p>
 <p>restruct_xpaths 接收一个XPath表达式</p>
 <p>提取指定页面下的<div id="”top”">元素下的所有链接</div></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.linkextractors <span class="keyword">import</span> LinkExtractor</span><br><span class="line">le = LinkExtractor(restruct_xpaths=<span class="string">'//div[@id="top"]'</span>)</span><br><span class="line">links = le.extract_links(response)</span><br><span class="line">[link.url <span class="keyword">for</span> link <span class="keyword">in</span> links]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> scrapy.linkextractors <span class="hljs-keyword">import</span> LinkExtractor</span><br><span class="line">le = LinkExtractor(restruct_xpaths=<span class="hljs-string">'//div[@id="top"]'</span>)</span><br><span class="line">links = le.extract_links(response)</span><br><span class="line">[link.url <span class="hljs-keyword">for</span> link <span class="hljs-keyword">in</span> links]</span><br></pre></td></tr></table></figure>
 
 <p>其中response是获得请求后的结果</p>
 <p>restruct_css 接收一个css选择器或者选择器列表</p>
 <p>提取指定页面下<div id="”bottom”">下的链接</div></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.linkextractors <span class="keyword">import</span> LinkExtractor</span><br><span class="line">le = LinkExtractor(restruct_css=<span class="string">'div#bottom"]'</span>)</span><br><span class="line">links = le.extract_links(response)</span><br><span class="line">[link.url <span class="keyword">for</span> link <span class="keyword">in</span> links]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> scrapy.linkextractors <span class="hljs-keyword">import</span> LinkExtractor</span><br><span class="line">le = LinkExtractor(restruct_css=<span class="hljs-string">'div#bottom"]'</span>)</span><br><span class="line">links = le.extract_links(response)</span><br><span class="line">[link.url <span class="hljs-keyword">for</span> link <span class="hljs-keyword">in</span> links]</span><br></pre></td></tr></table></figure>
 
 
 
 <p>提取JavaScript文件的连接</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.linkextractors <span class="keyword">import</span> LinkExtractor</span><br><span class="line">le = LinkExtractor(tags=<span class="string">'script'</span>,attrs=<span class="string">'src'</span>)</span><br><span class="line">links = le.extract_links(response)</span><br><span class="line">[link.url <span class="keyword">for</span> link <span class="keyword">in</span> links]</span><br><span class="line">process_value</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> scrapy.linkextractors <span class="hljs-keyword">import</span> LinkExtractor</span><br><span class="line">le = LinkExtractor(tags=<span class="hljs-string">'script'</span>,attrs=<span class="hljs-string">'src'</span>)</span><br><span class="line">links = le.extract_links(response)</span><br><span class="line">[link.url <span class="hljs-keyword">for</span> link <span class="hljs-keyword">in</span> links]</span><br><span class="line">process_value</span><br></pre></td></tr></table></figure>
 
 <p>接收一个函数，用于处理连接地址，如果返回none则抛弃这个地址</p>
 
@@ -429,7 +429,7 @@
                 <time class="level-item has-text-grey" datetime="2017-03-02T14:16:57.000Z">2017-03-02</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/爬虫/">爬虫</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/爬虫/scrapy-3-数据处理/">scrapy-3-数据处理</a>
+                <a class="has-link-grey -link" href="/categories/技术/">技术</a>
                 </div>
                 
                 
@@ -463,19 +463,19 @@
 <p>二、启动方式</p>
 <p>启动方式有2种方式，一种在setting.py进行配置，一种在爬虫文件中配置</p>
 <p>方式1 在setting.py中进行配置</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;<span class="string">'example.pipelines.PriceConverterPipeline'</span>:<span class="number">300</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;<span class="hljs-string">'example.pipelines.PriceConverterPipeline'</span>:<span class="hljs-number">300</span>&#125;</span><br></pre></td></tr></table></figure>
 
 <p>example是工程名字，pipelines是所在文件夹，PriceConverterPipeline自定义的itemPipeline，300是优先级，数值越小优先度越大</p>
 <p>多个ItemPipLine的应用，可以使用去重操作，在自定义的ItemPipLine中init初始化时候，初始一个set集合，在每次响应process_item时候对比name，从set中进行对比即可</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DuplicatesPipeline</span><span class="params">(object)</span>:</span>   </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>      </span><br><span class="line">        self.book_set=set()   </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self,item,spider)</span>:</span>      </span><br><span class="line">            name=item[<span class="string">'name'</span>]      </span><br><span class="line">            <span class="keyword">if</span> name <span class="keyword">in</span> self.book_set:      </span><br><span class="line">                <span class="comment">#数据重复不进行返回即可      </span></span><br><span class="line">                self.book_sett.add(name)      </span><br><span class="line">                <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DuplicatesPipeline</span><span class="hljs-params">(object)</span>:</span>   </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>      </span><br><span class="line">        self.book_set=set()   </span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_item</span><span class="hljs-params">(self,item,spider)</span>:</span>      </span><br><span class="line">            name=item[<span class="hljs-string">'name'</span>]      </span><br><span class="line">            <span class="hljs-keyword">if</span> name <span class="hljs-keyword">in</span> self.book_set:      </span><br><span class="line">                <span class="hljs-comment">#数据重复不进行返回即可      </span></span><br><span class="line">                self.book_sett.add(name)      </span><br><span class="line">                <span class="hljs-keyword">return</span> item</span><br></pre></td></tr></table></figure>
 
 <p>建立完成DuplicatesPipeline后需要在Setting.py中配置</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;<span class="string">'example.pipelines,PriceConverterPipeline'</span>:<span class="number">300</span>,<span class="string">'example.pipelines.TestPipeline'</span>:<span class="number">400</span>,&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES=&#123;<span class="hljs-string">'example.pipelines,PriceConverterPipeline'</span>:<span class="hljs-number">300</span>,<span class="hljs-string">'example.pipelines.TestPipeline'</span>:<span class="hljs-number">400</span>,&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 <p>方式2 在Spider文件中可以指定</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class Spider1(scrapy.Spider):     </span><br><span class="line">    name = <span class="string">'book1'</span>     </span><br><span class="line">    custom_settings = &#123;     <span class="string">'ITEM_PIPELINES'</span>:&#123;<span class="string">'pipelineClass1'</span>: <span class="number">300</span>,<span class="string">'pipelineClass2'</span>: <span class="number">400</span>&#125;,                   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class Spider1(scrapy.Spider):     </span><br><span class="line">    name = <span class="hljs-string">'book1'</span>     </span><br><span class="line">    custom_settings = &#123;     <span class="hljs-string">'ITEM_PIPELINES'</span>:&#123;<span class="hljs-string">'pipelineClass1'</span>: <span class="hljs-number">300</span>,<span class="hljs-string">'pipelineClass2'</span>: <span class="hljs-number">400</span>&#125;,                   &#125;</span><br></pre></td></tr></table></figure>
 
 <p>这样可以解决多个Spider1时候指定ITEM_PIPELINES的问题，可以为每一个Spider指定数据处理的方式</p>
 <p>需要注意的是最后一个ItemPipLine处理完成后，会根据命令行来进行处理后输出到哪里</p>
@@ -493,36 +493,36 @@
 <p>如何导出？</p>
 <p>方式一   命令行参数</p>
 <p>-o -t参数指定导出文件路径和导出格式，通常t可以由o进行推测完成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books -o books.csv</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books -o books.csv</span><br></pre></td></tr></table></figure>
 
 <p>scrapy crawl 是固定的</p>
 <p>books是spider中的name</p>
 <p>-o是输出的路径</p>
 <p>books.csv 没有指定其他路径，就是在当前路径下，没有使用o,但是会根据提供的路径，推测出是csv</p>
 <p>以下是指定明确的输出格式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books -t json -o books.data</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books -t json -o books.data</span><br></pre></td></tr></table></figure>
 
 <p>这种数据导出，是依赖什么来进行完成的？</p>
 <p>在配置字典FEED_EXPORTERS中搜索Exporter，FEED_EXPORTERS的内容中搜索Exporter，FEED_EXPORTERS的内容由以下二个字典的内容合并而成</p>
 <p>默认配置文件中的FEED_EXPORTERS_BASE</p>
 <p>用户配置文件中的FEED_EXPORTERS</p>
 <p>前者包含内部支持的数据格式，后者包含用户自定义的导出数据格式，以下是Scrapy源码中定义的FEED_EXPORTERS_BASE，它位于scrapy.settings.default_settings模块：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORTERS_BASE=&#123;<span class="string">'json'</span>:<span class="string">'scrapy.exporters.JsonItemExporter'</span>,<span class="string">'jsonlines'</span>:<span class="string">'scrapy.exporters.JsonLinesItemExporter'</span>,<span class="string">'jl'</span>:<span class="string">'scrapy.exporters.JsonLinesItemExporter'</span>,<span class="string">'csv'</span>:<span class="string">'scrapy.exporters.CsvItemExporter'</span>,<span class="string">'xml'</span>:<span class="string">'scrapy.exporters.XmlItemExporter'</span>,<span class="string">'marshal'</span>:<span class="string">'scrapy.exporters.MarshalItemExporter'</span>,<span class="string">'pickle'</span>:<span class="string">'scrapy.exporters.PickleItemExporter'</span>,&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORTERS_BASE=&#123;<span class="hljs-string">'json'</span>:<span class="hljs-string">'scrapy.exporters.JsonItemExporter'</span>,<span class="hljs-string">'jsonlines'</span>:<span class="hljs-string">'scrapy.exporters.JsonLinesItemExporter'</span>,<span class="hljs-string">'jl'</span>:<span class="hljs-string">'scrapy.exporters.JsonLinesItemExporter'</span>,<span class="hljs-string">'csv'</span>:<span class="hljs-string">'scrapy.exporters.CsvItemExporter'</span>,<span class="hljs-string">'xml'</span>:<span class="hljs-string">'scrapy.exporters.XmlItemExporter'</span>,<span class="hljs-string">'marshal'</span>:<span class="hljs-string">'scrapy.exporters.MarshalItemExporter'</span>,<span class="hljs-string">'pickle'</span>:<span class="hljs-string">'scrapy.exporters.PickleItemExporter'</span>,&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在这里严重不建议修改源码，因为程序最终是要配置在服务器上面的，服务器上面的环境修改源码，可就没那么简单了</p>
 <p>用户添加新的导出格式，通常是在配置文件setting.py中定义FEED_EXPORTERS，比如导出Excel</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORTERS=&#123;<span class="string">'excel'</span>:<span class="string">'my_project.my_exporters.ExcelItemExporter'</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORTERS=&#123;<span class="hljs-string">'excel'</span>:<span class="hljs-string">'my_project.my_exporters.ExcelItemExporter'</span>&#125;</span><br></pre></td></tr></table></figure>
 
 <p>指定导出文件路径，支持%(name)s和%(time)s这2个特殊变量</p>
 <p>%(name)s 会被替换为Spider的名字</p>
 <p>%(time)s 会被替换为文件创建时间</p>
 <p>假设一个项目爬取的有书籍、游戏信息、新闻3个spider</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books  -o <span class="string">'/export_data/%(name)s/%(time)s.csv'</span></span><br><span class="line">scrapy crawl games  -o <span class="string">'/export_data/%(name)s/%(time)s.csv'</span></span><br><span class="line">scrapy crawl news  -o <span class="string">'/export_data/%(name)s/%(time)s.csv'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books  -o <span class="hljs-string">'/export_data/%(name)s/%(time)s.csv'</span></span><br><span class="line">scrapy crawl games  -o <span class="hljs-string">'/export_data/%(name)s/%(time)s.csv'</span></span><br><span class="line">scrapy crawl news  -o <span class="hljs-string">'/export_data/%(name)s/%(time)s.csv'</span></span><br></pre></td></tr></table></figure>
 
 <p>以上是爬取的内容，根据书名存放在export_data文件夹下的对应书名目录下，每个目录下根据时间进行保存</p>
 <p>方式二 配置文件方式</p>
 <p>在setting.py中设置以下参数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FEED_URI=<span class="string">'export_data/%(name)s.data'</span>            导出数据的位置</span><br><span class="line">FEED_FORMAT=<span class="string">'csv'</span>                               导出数据的格式</span><br><span class="line">FEED_EXPORT_ENCODING=<span class="string">'gbk'</span>                      导出数据的编码</span><br><span class="line">FEED_EXPORT_FIELDS=[<span class="string">'name'</span>,<span class="string">'author'</span>,<span class="string">'price'</span>]    导出数据的字段</span><br><span class="line">FEED_EXPORTERS=&#123;<span class="string">'excel'</span>:<span class="string">'my_project.my_exporters.ExcelItemExporter'</span>&#125;   新添加导出的格式</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FEED_URI=<span class="hljs-string">'export_data/%(name)s.data'</span>            导出数据的位置</span><br><span class="line">FEED_FORMAT=<span class="hljs-string">'csv'</span>                               导出数据的格式</span><br><span class="line">FEED_EXPORT_ENCODING=<span class="hljs-string">'gbk'</span>                      导出数据的编码</span><br><span class="line">FEED_EXPORT_FIELDS=[<span class="hljs-string">'name'</span>,<span class="hljs-string">'author'</span>,<span class="hljs-string">'price'</span>]    导出数据的字段</span><br><span class="line">FEED_EXPORTERS=&#123;<span class="hljs-string">'excel'</span>:<span class="hljs-string">'my_project.my_exporters.ExcelItemExporter'</span>&#125;   新添加导出的格式</span><br></pre></td></tr></table></figure>
 
 <p>如何实现一个自定义的导出的Excel类</p>
 <p>1、继承BaseItemExporter</p>
@@ -531,13 +531,13 @@
 <p>start_exporting(self)   在导出开始时被调用，可在该方法执行某些初始化工作</p>
 <p>finish_exporting(self) 在导出完成时候被调用，可在该方法中执行某些清理工作</p>
 <p>以下实现一个导出Excel,注意这里使用的是xlwt，这个库最多只能在一个sheet中插入65535行数据，如果要插入更多数据，需要切换为openxl来进行</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.exporters <span class="keyword">import</span> BaseItemExporter</span><br><span class="line"> </span><br><span class="line">impoort xlwt</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExcelItemExporter</span><span class="params">(BaseItemExporter)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,file,**kwargs)</span>:</span></span><br><span class="line">       self._configure(kwargs)</span><br><span class="line">       self.file=file</span><br><span class="line">       self.wbook=xlwt.Workbook()</span><br><span class="line">       self.wsheet=self.wbook.add_sheet(<span class="string">'scrapy'</span>)</span><br><span class="line">       self.row=<span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">finish_exporting</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.wbook.save(self.file)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">export_item</span><span class="params">(self,item)</span>:</span></span><br><span class="line">        fields=self._get_serialized_fields(item)</span><br><span class="line">    <span class="keyword">for</span> col,v <span class="keyword">in</span> enumerate(x <span class="keyword">for</span> _,x <span class="keyword">in</span> fields):</span><br><span class="line">        self.wsheet.write(self.row,col,v)</span><br><span class="line"> </span><br><span class="line">    self.row +=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> scrapy.exporters <span class="hljs-keyword">import</span> BaseItemExporter</span><br><span class="line"> </span><br><span class="line">impoort xlwt</span><br><span class="line"> </span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExcelItemExporter</span><span class="hljs-params">(BaseItemExporter)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self,file,**kwargs)</span>:</span></span><br><span class="line">       self._configure(kwargs)</span><br><span class="line">       self.file=file</span><br><span class="line">       self.wbook=xlwt.Workbook()</span><br><span class="line">       self.wsheet=self.wbook.add_sheet(<span class="hljs-string">'scrapy'</span>)</span><br><span class="line">       self.row=<span class="hljs-number">0</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">finish_exporting</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        self.wbook.save(self.file)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">export_item</span><span class="hljs-params">(self,item)</span>:</span></span><br><span class="line">        fields=self._get_serialized_fields(item)</span><br><span class="line">    <span class="hljs-keyword">for</span> col,v <span class="hljs-keyword">in</span> enumerate(x <span class="hljs-keyword">for</span> _,x <span class="hljs-keyword">in</span> fields):</span><br><span class="line">        self.wsheet.write(self.row,col,v)</span><br><span class="line"> </span><br><span class="line">    self.row +=<span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
 
 <p>编写完成后再setting.py中添加这个类</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORTERS=&#123;<span class="string">'excel'</span>:<span class="string">'my_project.my_exporters.ExcelItemExporter'</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORTERS=&#123;<span class="hljs-string">'excel'</span>:<span class="hljs-string">'my_project.my_exporters.ExcelItemExporter'</span>&#125;</span><br></pre></td></tr></table></figure>
 
 <p>之后终端命令行</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books -t excel -o books.xls</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books -t excel -o books.xls</span><br></pre></td></tr></table></figure>
 
 <p>这样就导出excel了，当然你可以封装一个Excel导出类，这样可以更加通用，在web框架下，爬虫框架下都可以使用</p>
 
@@ -564,7 +564,7 @@
                 <time class="level-item has-text-grey" datetime="2017-02-27T02:18:57.000Z">2017-02-27</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/爬虫/">爬虫</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/爬虫/scrapy-2-数据解析/">scrapy-2-数据解析</a>
+                <a class="has-link-grey -link" href="/categories/技术/">技术</a>
                 </div>
                 
                 
@@ -591,7 +591,7 @@
 <p>一、Request和Respose对象</p>
 <p><strong>1.1 Request对象</strong></p>
 <p>Request对象是要请求一个连接所使用的对象</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Request(url[,call,method=‘GET’,headers,body,cookies,meta,encoding=‘utf<span class="number">-8</span>’,priority=<span class="number">0</span>,dont_filter=<span class="literal">False</span>,errback])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Request(url[,call,method=‘GET’,headers,body,cookies,meta,encoding=‘utf<span class="hljs-number">-8</span>’,priority=<span class="hljs-number">0</span>,dont_filter=<span class="hljs-literal">False</span>,errback])</span><br></pre></td></tr></table></figure>
 
 <p>Url是请求地址</p>
 <p>callback是页面回调地址</p>
@@ -606,7 +606,7 @@
 <p>errback请求错误</p>
 <p><strong>1.2 Respose对象</strong></p>
 <p>Respose对象是当发起请求后，返回的对象，比如下列代码中parse参数中的response</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookSpider</span><span class="params">(scrapy.spiders.Spider)</span>:</span>     </span><br><span class="line">    name = <span class="string">'book'</span>     </span><br><span class="line">    start_urls = [<span class="string">'http://books.toscrape.com/'</span>]     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self,response)</span>:</span>         </span><br><span class="line">        print(<span class="string">"收到数据"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookSpider</span><span class="hljs-params">(scrapy.spiders.Spider)</span>:</span>     </span><br><span class="line">    name = <span class="hljs-string">'book'</span>     </span><br><span class="line">    start_urls = [<span class="hljs-string">'http://books.toscrape.com/'</span>]     </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">parse</span><span class="hljs-params">(self,response)</span>:</span>         </span><br><span class="line">        print(<span class="hljs-string">"收到数据"</span>)</span><br></pre></td></tr></table></figure>
 
 <p>Url  响应地址</p>
 <p>status 状态码</p>
@@ -616,7 +616,7 @@
 <p>实现方式response.text=respose.body.decode(response.encoding)</p>
 <p><strong>1.3 start_request(self)方法</strong></p>
 <p>当start_urls这个数组无法满足你，你就需要自定义这个start_urls，通过重写start_request的方法来完成</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">demoSpider</span><span class="params">(RedisSpider)</span>:</span>    </span><br><span class="line">    name = <span class="string">"demospider"</span>    </span><br><span class="line">    redis_key = <span class="string">'demospider:start_urls'</span>    </span><br><span class="line">    start_urls = [<span class="string">'http://www.example.com'</span>]    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span>        </span><br><span class="line">        pages=[]        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">10</span>):            </span><br><span class="line">            url=<span class="string">'http://www.mmonly.cc/mmtp/xgmn/126808_%s.html'</span> % i           page=scrapy.Request(url)            </span><br><span class="line">            pages.append(page)        </span><br><span class="line">            <span class="keyword">return</span> pages</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">demoSpider</span><span class="hljs-params">(RedisSpider)</span>:</span>    </span><br><span class="line">    name = <span class="hljs-string">"demospider"</span>    </span><br><span class="line">    redis_key = <span class="hljs-string">'demospider:start_urls'</span>    </span><br><span class="line">    start_urls = [<span class="hljs-string">'http://www.example.com'</span>]    </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">start_requests</span><span class="hljs-params">(self)</span>:</span>        </span><br><span class="line">        pages=[]        </span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>):            </span><br><span class="line">            url=<span class="hljs-string">'http://www.mmonly.cc/mmtp/xgmn/126808_%s.html'</span> % i           page=scrapy.Request(url)            </span><br><span class="line">            pages.append(page)        </span><br><span class="line">            <span class="hljs-keyword">return</span> pages</span><br></pre></td></tr></table></figure>
 
 <p>注意:这个start_request只会调用一次,并且在重写了start_request后，start_urls就无效了</p>
 <p>二、Selector对象</p>
@@ -624,7 +624,7 @@
 <p>在scrapy中自带selector 可以对html的字符串进行格式</p>
 <p>比如text是我们的html字符串</p>
 <p>导入包</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.selector <span class="keyword">import</span> Selector</span><br><span class="line">text=<span class="string">"&lt;html&gt;&lt;body&gt;今天天气很好&lt;/body&gt;&lt;/html&gt;"</span></span><br><span class="line">selector = Selector(text=text)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> scrapy.selector <span class="hljs-keyword">import</span> Selector</span><br><span class="line">text=<span class="hljs-string">"&lt;html&gt;&lt;body&gt;今天天气很好&lt;/body&gt;&lt;/html&gt;"</span></span><br><span class="line">selector = Selector(text=text)</span><br></pre></td></tr></table></figure>
 
 <p>这样就可以对selector使用xpath和css方法读取数据了</p>
 <p>//h1  选中文档内所有的h1标签</p>
@@ -634,26 +634,26 @@
 <p>extract、re    这2个返回数组内容</p>
 <p>extract_first、re_first 这2个返回第一个标签内容</p>
 <p>具体实例</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获得当前标签下的h1下的text内容</span></span><br><span class="line">response.xpath(<span class="string">'.//h1/text()'</span>).extrat()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#获得当前标签下的h1下的text内容</span></span><br><span class="line">response.xpath(<span class="hljs-string">'.//h1/text()'</span>).extrat()</span><br></pre></td></tr></table></figure>
 
 <p>注：Selector主要是在后面使用requests对获得html解析的时候使用的，单纯使用scrapy的时候，是不需要去手动创建Selector</p>
 <p>三、xpath基本使用</p>
 <p>3.1 xpath语法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/  选中文档的根    </span><br><span class="line">. 选中当前节点     </span><br><span class="line">.. 选中当前节点的父节点ELEMENT 选中子节点的所有ELEMENT元素节点</span><br><span class="line">//ELEMENT 选中后代节点中所有ELEMENT元素节点</span><br><span class="line">* 选中所有元素子节点  不常用</span><br><span class="line">text()选中所有文本子节点</span><br><span class="line"><span class="meta">@ATTR 选中所有属性节点</span></span><br><span class="line"><span class="meta">@* 选中所有属性节点  不常用</span></span><br><span class="line">[谓语]  谓语用来查找某个特定的节点或者包含某个特定值的节点</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/  选中文档的根    </span><br><span class="line">. 选中当前节点     </span><br><span class="line">.. 选中当前节点的父节点ELEMENT 选中子节点的所有ELEMENT元素节点</span><br><span class="line">//ELEMENT 选中后代节点中所有ELEMENT元素节点</span><br><span class="line">* 选中所有元素子节点  不常用</span><br><span class="line">text()选中所有文本子节点</span><br><span class="line"><span class="hljs-meta">@ATTR 选中所有属性节点</span></span><br><span class="line"><span class="hljs-meta">@* 选中所有属性节点  不常用</span></span><br><span class="line">[谓语]  谓语用来查找某个特定的节点或者包含某个特定值的节点</span><br></pre></td></tr></table></figure>
 
 <p>使用示例</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/body/div/a    选取body下的div下的a标签</span><br><span class="line">//a               基于当前节点下提取所有a标签</span><br><span class="line">/body//img   在body下的所有img标签</span><br><span class="line">//a/text()      获得所有a标签下的文字节点</span><br><span class="line">/body/div//*  选中div下的所有后代元素，一般结合后续筛选,不会作为单独使用</span><br><span class="line">//div/*/img 获得div孙节点下所有的img标签</span><br><span class="line">//img/@src  选中所有img的src属性</span><br><span class="line">//@href  选中文档中所有的ATTR属性</span><br><span class="line">//a[<span class="number">1</span>]/img/@*  获得第一个a下的img的所有属性</span><br><span class="line">.  用来描述当前节点，也就是表示一个相对路径</span><br><span class="line">.. 用来获得上一层节点的路径</span><br><span class="line">//img/..  获得所有img，读取img上一层的节点</span><br><span class="line">//a[last()] 获得所有的a标签，选中最后一个</span><br><span class="line">//a[position()&lt;=<span class="number">3</span>] 使用position()  选中前三个</span><br><span class="line">//div[@id] 选中所有包含id属性的div</span><br><span class="line">//div[@id=images]  选择所有id属性，且值为images的div</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/body/div/a    选取body下的div下的a标签</span><br><span class="line">//a               基于当前节点下提取所有a标签</span><br><span class="line">/body//img   在body下的所有img标签</span><br><span class="line">//a/text()      获得所有a标签下的文字节点</span><br><span class="line">/body/div//*  选中div下的所有后代元素，一般结合后续筛选,不会作为单独使用</span><br><span class="line">//div/*/img 获得div孙节点下所有的img标签</span><br><span class="line">//img/@src  选中所有img的src属性</span><br><span class="line">//@href  选中文档中所有的ATTR属性</span><br><span class="line">//a[<span class="hljs-number">1</span>]/img/@*  获得第一个a下的img的所有属性</span><br><span class="line">.  用来描述当前节点，也就是表示一个相对路径</span><br><span class="line">.. 用来获得上一层节点的路径</span><br><span class="line">//img/..  获得所有img，读取img上一层的节点</span><br><span class="line">//a[last()] 获得所有的a标签，选中最后一个</span><br><span class="line">//a[position()&lt;=<span class="hljs-number">3</span>] 使用position()  选中前三个</span><br><span class="line">//div[@id] 选中所有包含id属性的div</span><br><span class="line">//div[@id=images]  选择所有id属性，且值为images的div</span><br></pre></td></tr></table></figure>
 
 <p>注意:/和//的区别  在于/是基于当前节点下，不会继续向下穿透其他节点，而//会向下穿透获得所有这个节点</p>
 <p>3.2 XPath常用函数</p>
 <p>string</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sel.xpath(<span class="string">'/body/a//text()'</span>)  获得的是每个a标签内容</span><br><span class="line">sel.xpath(<span class="string">'string(/body/a)'</span>)   string是把每个a标签内容进行拼接</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sel.xpath(<span class="hljs-string">'/body/a//text()'</span>)  获得的是每个a标签内容</span><br><span class="line">sel.xpath(<span class="hljs-string">'string(/body/a)'</span>)   string是把每个a标签内容进行拼接</span><br></pre></td></tr></table></figure>
 
 <p><strong>四、CSS选择器</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">* 选中所有元素</span><br><span class="line">p  选中p元素</span><br><span class="line">div,p 选中div和p元素</span><br><span class="line">div p  选中div后代元素中的p元素</span><br><span class="line">div&gt;p  选中div子元素中的p元素</span><br><span class="line">p+div  选中p标签的兄弟元素中的div元素</span><br><span class="line">.info    选中class属性包含info的元素</span><br><span class="line">#main  选中id属性为main的元素</span><br><span class="line">[href]   选中属性为href的元素</span><br><span class="line">[href='www.baidu.com'] 选中属性为href元素，并且值为www.baidu.com的元素</span><br><span class="line">[href~='baidu'] 选中属性为href元素，并且值包含为baidu的元素</span><br><span class="line">p::text  选中p元素的文本节点</span><br><span class="line">a:nth-child(1)  选中a元素，且该元素必须是其父元素的第1个子元素</span><br><span class="line">a:nth-last-child(2)  选中a元素，且该元素必须是其父元素的倒数第2个子元素</span><br><span class="line">a:first-child(1) 选中a元素，且该元素必须是其父元素的第1个子元素</span><br><span class="line">a:last-child(2)  选中a元素，且该元素必须是其父元素的倒数第2个子元素</span><br></pre></td></tr></table></figure>
+<figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">* 选中所有元素</span><br><span class="line">p  选中p元素</span><br><span class="line">div,p 选中div和p元素</span><br><span class="line">div p  选中div后代元素中的p元素</span><br><span class="line">div&gt;p  选中div子元素中的p元素</span><br><span class="line">p+div  选中p标签的兄弟元素中的div元素</span><br><span class="line">.info    选中class属性包含info的元素</span><br><span class="line">#main  选中id属性为main的元素</span><br><span class="line">[href]   选中属性为href的元素</span><br><span class="line">[href='www.baidu.com'] 选中属性为href元素，并且值为www.baidu.com的元素</span><br><span class="line">[href~='baidu'] 选中属性为href元素，并且值包含为baidu的元素</span><br><span class="line">p::text  选中p元素的文本节点</span><br><span class="line">a:nth-child(1)  选中a元素，且该元素必须是其父元素的第1个子元素</span><br><span class="line">a:nth-last-child(2)  选中a元素，且该元素必须是其父元素的倒数第2个子元素</span><br><span class="line">a:first-child(1) 选中a元素，且该元素必须是其父元素的第1个子元素</span><br><span class="line">a:last-child(2)  选中a元素，且该元素必须是其父元素的倒数第2个子元素</span><br></pre></td></tr></table></figure>
 
 <p>使用示例</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获得当前li标签下的text    </span></span><br><span class="line">response.css(<span class="string">'li::text'</span>).extrat()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#获得当前li标签下的text    </span></span><br><span class="line">response.css(<span class="hljs-string">'li::text'</span>).extrat()</span><br></pre></td></tr></table></figure>
 
 
 
@@ -682,7 +682,7 @@
                 <time class="level-item has-text-grey" datetime="2017-01-26T02:18:57.000Z">2017-01-26</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/爬虫/">爬虫</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/爬虫/scrapy-1-快速入门/">scrapy-1-快速入门</a>
+                <a class="has-link-grey -link" href="/categories/技术/">技术</a>
                 </div>
                 
                 
@@ -711,29 +711,29 @@
 <p>注：scrapy创建工程和运行程序，都是需要通过终端来完成的，无法通过可视化界面来创建</p>
 <p><strong>一、基本入门</strong></p>
 <p>安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install scrapy</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install scrapy</span><br></pre></td></tr></table></figure>
 
 <p>安装有可能会出错，更新一下pip</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install --upgrade pip</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install --upgrade pip</span><br></pre></td></tr></table></figure>
 
 <p>在终端中输入python回车，输入一下内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import scrapyscrapy.version_info</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import scrapyscrapy.version_info</span><br></pre></td></tr></table></figure>
 
 <p>以上编译通过不报错即可</p>
 <p>创建项目</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject demo</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject demo</span><br></pre></td></tr></table></figure>
 
 <p>demo是你工程的名字,默认创建在你当前终端所在的路径上</p>
 <p>为了方便后续开发，可以使用pycharm打开这个工程</p>
 <p>spider文件夹下创建爬虫文件bookspider.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ItcastSpider</span><span class="params">(scrapy.spiders.Spider)</span>:</span>     </span><br><span class="line">    name = <span class="string">'book'</span>     </span><br><span class="line">    start_urls = [<span class="string">'http://books.toscrape.com/'</span>]     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self,response)</span>:</span>         </span><br><span class="line">        print(<span class="string">"收到数据"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ItcastSpider</span><span class="hljs-params">(scrapy.spiders.Spider)</span>:</span>     </span><br><span class="line">    name = <span class="hljs-string">'book'</span>     </span><br><span class="line">    start_urls = [<span class="hljs-string">'http://books.toscrape.com/'</span>]     </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">parse</span><span class="hljs-params">(self,response)</span>:</span>         </span><br><span class="line">        print(<span class="hljs-string">"收到数据"</span>)</span><br></pre></td></tr></table></figure>
 
 <p>说明其中几点</p>
 <p>name是这个爬虫的名字，一个scrapy可以有多个爬虫项目，启动时候也是这个name为标记</p>
 <p>start_urls是其实url，默认回调是parse函数，是获得的结果</p>
 <p>parse中的response  是获得的html结果</p>
 <p>运行爬虫</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books</span><br></pre></td></tr></table></figure>
 
 <h6 id="运行后，会打印response"><a href="#运行后，会打印response" class="headerlink" title="运行后，会打印response"></a>运行后，会打印response</h6><p>以下内容简单介绍，后续有实际案例</p>
 <p><strong>如何爬取下一页内容</strong></p>
@@ -747,12 +747,12 @@
 <p>但是返回到哪里了?实际上是返回到item中进行处理了</p>
 <p><strong>如何输出数据</strong></p>
 <p>在运行终端命令时候通过增加参数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books  -o books.csv</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl books  -o books.csv</span><br></pre></td></tr></table></figure>
 
 <p>通过-o books.csv会自动把通过yield返回的item保存到到books.csv中</p>
 <p>以上是通过纯粹终端命令行的方式来运行的</p>
 <p>如果要使用pycharm来启动调试，则需要在程序内创建run.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span>  scrapy.cmdline <span class="keyword">import</span> execute</span><br><span class="line">execute([<span class="string">'scrapy'</span>,<span class="string">'crawl'</span>,<span class="string">'books'</span>,<span class="string">'-o'</span>,<span class="string">'books.csv'</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span>  scrapy.cmdline <span class="hljs-keyword">import</span> execute</span><br><span class="line">execute([<span class="hljs-string">'scrapy'</span>,<span class="hljs-string">'crawl'</span>,<span class="hljs-string">'books'</span>,<span class="hljs-string">'-o'</span>,<span class="hljs-string">'books.csv'</span>])</span><br></pre></td></tr></table></figure>
         </div>
         
         
@@ -820,7 +820,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        22
+                        4
                     </p>
                 </div>
             </div>
@@ -889,94 +889,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Django/">
-            <span class="level-start">
-                <span class="level-item">Django</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Excel/">
-            <span class="level-start">
-                <span class="level-item">Excel</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-数据梳理/">
-            <span class="level-start">
-                <span class="level-item">Excel-openpyxl--数据梳理</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-创建和读取/">
-            <span class="level-start">
-                <span class="level-item">Excel-openpyxl-创建和读取</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-增删改查/">
-            <span class="level-start">
-                <span class="level-item">Excel-openpyxl-增删改查</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/Selenium/">
-            <span class="level-start">
-                <span class="level-item">Selenium</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/Selenium/爬虫-selenium/">
-            <span class="level-start">
-                <span class="level-item">爬虫+selenium</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/bug/">
-            <span class="level-start">
-                <span class="level-item">bug</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/docker/">
-            <span class="level-start">
-                <span class="level-item">docker</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/mysql/">
-            <span class="level-start">
-                <span class="level-item">mysql</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/python/">
-            <span class="level-start">
-                <span class="level-item">python</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">4</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/smscode/">
             <span class="level-start">
                 <span class="level-item">smscode</span>
@@ -993,76 +905,20 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/技术/">
+            <span class="level-start">
+                <span class="level-item">技术</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">23</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/浅谈少儿编程/">
             <span class="level-start">
                 <span class="level-item">浅谈少儿编程</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">5</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/">
-            <span class="level-start">
-                <span class="level-item">爬虫</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">6</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-1-快速入门/">
-            <span class="level-start">
-                <span class="level-item">scrapy-1-快速入门</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-2-数据解析/">
-            <span class="level-start">
-                <span class="level-item">scrapy-2-数据解析</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-3-数据处理/">
-            <span class="level-start">
-                <span class="level-item">scrapy-3-数据处理</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-4-链接提取器/">
-            <span class="level-start">
-                <span class="level-item">scrapy-4-链接提取器</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-5-文件图片下载/">
-            <span class="level-start">
-                <span class="level-item">scrapy-5-文件图片下载</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/反爬/">
-            <span class="level-start">
-                <span class="level-item">反爬</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/环境配置/">
-            <span class="level-start">
-                <span class="level-item">环境配置</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
             </span>
         </a></li>
             </ul>
@@ -1147,7 +1003,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-24T11:29:19.000Z">2019-12-24</time></div>
                     <a href="/2019/12/24/关于爬虫的几种常见的反爬/" class="has-link-black-ter is-size-6">关于爬虫的几种常见的反爬</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/爬虫/">爬虫</a> / <a class="has-link-grey -link" href="/categories/爬虫/反爬/">反爬</a>
+                        <a class="has-link-grey -link" href="/categories/技术/">技术</a>
                     </p>
                 </div>
             </div>

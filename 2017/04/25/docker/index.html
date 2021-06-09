@@ -17,7 +17,7 @@
 <meta property="og:description" content="####Python操作docker 通过python调用docker，需要和docker在同一个服务器上才可以 也可以通过传递 1unix:///var/run1/docker.sock  来进行在容器内操作你指定想要连接的docker，这个共享需要在容器最开始创建时候，让容器和外部一个文件进行关联才可以，具体可以参照一下 docker run -d -it -p 805:80 -p 5002:">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-06-09T10:07:42.613Z">
+<meta property="og:updated_time" content="2021-06-09T11:00:00.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker">
 <meta name="twitter:description" content="####Python操作docker 通过python调用docker，需要和docker在同一个服务器上才可以 也可以通过传递 1unix:///var/run1/docker.sock  来进行在容器内操作你指定想要连接的docker，这个共享需要在容器最开始创建时候，让容器和外部一个文件进行关联才可以，具体可以参照一下 docker run -d -it -p 805:80 -p 5002:">
@@ -149,7 +149,7 @@
                 <time class="level-item has-text-grey" datetime="2017-04-25T13:38:42.000Z">2017-04-25</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/docker/">docker</a>
+                <a class="has-link-grey -link" href="/categories/技术/">技术</a>
                 </div>
                 
                 
@@ -172,7 +172,7 @@
             <p>####Python操作docker</p>
 <p>通过python调用docker，需要和docker在同一个服务器上才可以</p>
 <p>也可以通过传递</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unix:///var/run1/docker.sock</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unix:///var/run1/docker.sock</span><br></pre></td></tr></table></figure>
 
 <p>来进行在容器内操作你指定想要连接的docker，这个共享需要在容器最开始创建时候，让容器和外部一个文件进行关联才可以，具体可以参照一下</p>
 <p>docker run -d -it -p 805:80 -p 5002:5000 -p 10027:22 -p 20001:8888 -p 20002:3306 –name centos_master –privileged=true -v /var/run/docker.sock:/var/run/docker.sock -v /zc:/zc -e LANG=zh_CN.utf8 zhangcheng0111/centos7-webssh-dockermanager-ssh /usr/sbin/init</p>
@@ -181,30 +181,30 @@
 <p>官方文档地址<a href="https://github.com/docker/docker-py" target="_blank" rel="noopener">https://github.com/docker/docker-py</a>  只能作为参考，写的很简单</p>
 <p>docker-py实际上分为很多版本，新版和旧版的api不一样，新版的删除掉了很多实用的方法，并且没有经过实际生产环境验证，无法得知具体使用效果，这里所说的是基于旧版的1.19版本</p>
 <p>安装docker-py</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install docker-py</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install docker-py</span><br></pre></td></tr></table></figure>
 
 <p><img src="http://47.93.248.15/wp-content/uploads/2018/07/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-07-20-%E4%B8%8B%E5%8D%887.17.30.png" alt="img"></p>
 <p>一、初始化docker客户端</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import docker</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import docker</span><br></pre></td></tr></table></figure>
 
 <p>#初始化有2种方式都可以</p>
 <p>#第一种</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client = docker.Client(base_url=&apos;unix:///var/run/docker.sock&apos;,version=&apos;1.19&apos;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client = docker.Client(base_url=&apos;unix:///var/run/docker.sock&apos;,version=&apos;1.19&apos;)</span><br></pre></td></tr></table></figure>
 
 <p>其中version指定使用的版本，很重要！！！一定不能少</p>
 <p>#第二种</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client=docker.from_env(version=&apos;1.19&apos;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client=docker.from_env(version=&apos;1.19&apos;)</span><br></pre></td></tr></table></figure>
 
 <p>#推荐使用第一种方式</p>
 <p>二、获得镜像信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(clinet.images())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(clinet.images())</span><br></pre></td></tr></table></figure>
 
 <p>返回的数据是列表形式</p>
 <p>拉去镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(clinet.pull(&apos;zhangcheng0111/centos7-webssh-dockermanager-ssh&apos;))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(clinet.pull(&apos;zhangcheng0111/centos7-webssh-dockermanager-ssh&apos;))</span><br></pre></td></tr></table></figure>
 
 <p>三、根据镜像创建一个容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.create_container(image=&apos;zhangcheng0111/centos7-webssh-dockermanager-ssh&apos;, name=&apos;test3&apos;,                             ports=[50070,8088,9000,3306,9999,16010,22,5000,8080,80,8888], command=&quot;/usr/sbin/init&quot;,                             environment=&#123;&quot;LANG&quot;: &quot;zh_CN.utf8&quot;&#125;,                             hostname=&apos;zc01&apos;,                             host_config=self.client.create_host_config(privileged=True,port_bindings=dic1))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.create_container(image=&apos;zhangcheng0111/centos7-webssh-dockermanager-ssh&apos;, name=&apos;test3&apos;,                             ports=[50070,8088,9000,3306,9999,16010,22,5000,8080,80,8888], command=&quot;/usr/sbin/init&quot;,                             environment=&#123;&quot;LANG&quot;: &quot;zh_CN.utf8&quot;&#125;,                             hostname=&apos;zc01&apos;,                             host_config=self.client.create_host_config(privileged=True,port_bindings=dic1))</span><br></pre></td></tr></table></figure>
 
 <p>参数说明</p>
 <p>image=’zhangcheng0111/centos7-webssh-dockermanager-ssh’  是你pull的镜像,这个镜像的地址会从hub.docker.com上查找对应的镜像</p>
@@ -218,20 +218,20 @@
 <p>如果自动分配了，我们如何获得这个容器的外部映射端口号呢？后面会说如何查看这个容器配置，包括内网ip和外网ip</p>
 <p>这样我们就创建了一个容器，创建了容器还没有开启</p>
 <p>四、获得所有镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(client.containers(all=True))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(client.containers(all=True))</span><br></pre></td></tr></table></figure>
 
 <p>结果如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#123;u&apos;Status&apos;: u&apos;Exited (0) About a minute ago&apos;, u&apos;Created&apos;: 1532098433, u&apos;Image&apos;: u&apos;sequenceiq/spark:1.6.0&apos;, u&apos;Labels&apos;: &#123;&#125;, u&apos;NetworkSettings&apos;: &#123;u&apos;Networks&apos;: &#123;u&apos;bridge&apos;: &#123;u&apos;NetworkID&apos;: u&apos;66af7ecb2d04d21dba5bb003a21c2adad034430315cc380fff718c9d7f6e29c3&apos;, u&apos;MacAddress&apos;: u&apos;&apos;, u&apos;GlobalIPv6PrefixLen&apos;: 0, u&apos;Links&apos;: None, u&apos;GlobalIPv6Address&apos;: u&apos;&apos;, u&apos;IPv6Gateway&apos;: u&apos;&apos;, u&apos;DriverOpts&apos;: None, u&apos;IPAMConfig&apos;: None, u&apos;EndpointID&apos;: u&apos;&apos;, u&apos;IPPrefixLen&apos;: 0, u&apos;IPAddress&apos;: u&apos;&apos;, u&apos;Gateway&apos;: u&apos;&apos;, u&apos;Aliases&apos;: None&#125;&#125;&#125;, u&apos;HostConfig&apos;: &#123;u&apos;NetworkMode&apos;: u&apos;default&apos;&#125;, u&apos;ImageID&apos;: u&apos;sha256:40a687b3cdccd2224016c07a5ca20aeca0d0ef9f397d11ae6102ee1245d915d6&apos;, u&apos;State&apos;: u&apos;exited&apos;, u&apos;Command&apos;: u&apos;/etc/bootstrap.sh&apos;, u&apos;Names&apos;: [u&apos;/test3&apos;], u&apos;Mounts&apos;: [], u&apos;Id&apos;: u&apos;d322d097f34c0c18cec0a3dcc863ace22ac14c07e4ff3aaeb4f52816e9a87f69&apos;, u&apos;Ports&apos;: []&#125;, &#123;u&apos;Status&apos;: u&apos;Exited (0) 2 hours ago&apos;, u&apos;Created&apos;: 1532097805, u&apos;Image&apos;: u&apos;sequenceiq/spark:1.6.0&apos;, u&apos;Labels&apos;: &#123;&#125;, u&apos;NetworkSettings&apos;: &#123;u&apos;Networks&apos;: &#123;u&apos;bridge&apos;: &#123;u&apos;NetworkID&apos;: u&apos;66af7ecb2d04d21dba5bb003a21c2adad034430315cc380fff718c9d7f6e29c3&apos;, u&apos;MacAddress&apos;: u&apos;&apos;, u&apos;GlobalIPv6PrefixLen&apos;: 0, u&apos;Links&apos;: None, u&apos;GlobalIPv6Address&apos;: u&apos;&apos;, u&apos;IPv6Gateway&apos;: u&apos;&apos;, u&apos;DriverOpts&apos;: None, u&apos;IPAMConfig&apos;: None, u&apos;EndpointID&apos;: u&apos;&apos;, u&apos;IPPrefixLen&apos;: 0, u&apos;IPAddress&apos;: u&apos;&apos;, u&apos;Gateway&apos;: u&apos;&apos;, u&apos;Aliases&apos;: None&#125;&#125;&#125;, u&apos;HostConfig&apos;: &#123;u&apos;NetworkMode&apos;: u&apos;default&apos;&#125;, u&apos;ImageID&apos;: u&apos;sha256:40a687b3cdccd2224016c07a5ca20aeca0d0ef9f397d11ae6102ee1245d915d6&apos;, u&apos;State&apos;: u&apos;exited&apos;, u&apos;Command&apos;: u&apos;/etc/bootstrap.sh&apos;, u&apos;Names&apos;: [u&apos;/test2&apos;], u&apos;Mounts&apos;: [], u&apos;Id&apos;: u&apos;089dbc622b0409ed70fb6c2bdf735e0edc70282aa2c7f4d0d6b4092d74aa05be&apos;, u&apos;Ports&apos;: []&#125;, &#123;u&apos;Status&apos;: u&apos;Exited (137) 2 hours ago&apos;, u&apos;Created&apos;: 1532097064, u&apos;Image&apos;: u&apos;sequenceiq/spark:1.6.0&apos;, u&apos;Labels&apos;: &#123;&#125;, u&apos;NetworkSettings&apos;: &#123;u&apos;Networks&apos;: &#123;u&apos;bridge&apos;: &#123;u&apos;NetworkID&apos;: u&apos;66af7ecb2d04d21dba5bb003a21c2adad034430315cc380fff718c9d7f6e29c3&apos;, u&apos;MacAddress&apos;: u&apos;&apos;, u&apos;GlobalIPv6PrefixLen&apos;: 0, u&apos;Links&apos;: None, u&apos;GlobalIPv6Address&apos;: u&apos;&apos;, u&apos;IPv6Gateway&apos;: u&apos;&apos;, u&apos;DriverOpts&apos;: None, u&apos;IPAMConfig&apos;: None, u&apos;EndpointID&apos;: u&apos;&apos;, u&apos;IPPrefixLen&apos;: 0, u&apos;IPAddress&apos;: u&apos;&apos;, u&apos;Gateway&apos;: u&apos;&apos;, u&apos;Aliases&apos;: None&#125;&#125;&#125;, u&apos;HostConfig&apos;: &#123;u&apos;NetworkMode&apos;: u&apos;default&apos;&#125;, u&apos;ImageID&apos;: u&apos;sha256:40a687b3cdccd2224016c07a5ca20aeca0d0ef9f397d11ae6102ee1245d915d6&apos;, u&apos;State&apos;: u&apos;exited&apos;, u&apos;Command&apos;: u&apos;/etc/bootstrap.sh&apos;, u&apos;Names&apos;: [u&apos;/test1&apos;], u&apos;Mounts&apos;: [], u&apos;Id&apos;: u&apos;a6b4592de281345d4f5c7e3c7254048214fdeb9581bba13d37aa612cfeff7a8d&apos;, u&apos;Ports&apos;: []&#125;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#123;u&apos;Status&apos;: u&apos;Exited (0) About a minute ago&apos;, u&apos;Created&apos;: 1532098433, u&apos;Image&apos;: u&apos;sequenceiq/spark:1.6.0&apos;, u&apos;Labels&apos;: &#123;&#125;, u&apos;NetworkSettings&apos;: &#123;u&apos;Networks&apos;: &#123;u&apos;bridge&apos;: &#123;u&apos;NetworkID&apos;: u&apos;66af7ecb2d04d21dba5bb003a21c2adad034430315cc380fff718c9d7f6e29c3&apos;, u&apos;MacAddress&apos;: u&apos;&apos;, u&apos;GlobalIPv6PrefixLen&apos;: 0, u&apos;Links&apos;: None, u&apos;GlobalIPv6Address&apos;: u&apos;&apos;, u&apos;IPv6Gateway&apos;: u&apos;&apos;, u&apos;DriverOpts&apos;: None, u&apos;IPAMConfig&apos;: None, u&apos;EndpointID&apos;: u&apos;&apos;, u&apos;IPPrefixLen&apos;: 0, u&apos;IPAddress&apos;: u&apos;&apos;, u&apos;Gateway&apos;: u&apos;&apos;, u&apos;Aliases&apos;: None&#125;&#125;&#125;, u&apos;HostConfig&apos;: &#123;u&apos;NetworkMode&apos;: u&apos;default&apos;&#125;, u&apos;ImageID&apos;: u&apos;sha256:40a687b3cdccd2224016c07a5ca20aeca0d0ef9f397d11ae6102ee1245d915d6&apos;, u&apos;State&apos;: u&apos;exited&apos;, u&apos;Command&apos;: u&apos;/etc/bootstrap.sh&apos;, u&apos;Names&apos;: [u&apos;/test3&apos;], u&apos;Mounts&apos;: [], u&apos;Id&apos;: u&apos;d322d097f34c0c18cec0a3dcc863ace22ac14c07e4ff3aaeb4f52816e9a87f69&apos;, u&apos;Ports&apos;: []&#125;, &#123;u&apos;Status&apos;: u&apos;Exited (0) 2 hours ago&apos;, u&apos;Created&apos;: 1532097805, u&apos;Image&apos;: u&apos;sequenceiq/spark:1.6.0&apos;, u&apos;Labels&apos;: &#123;&#125;, u&apos;NetworkSettings&apos;: &#123;u&apos;Networks&apos;: &#123;u&apos;bridge&apos;: &#123;u&apos;NetworkID&apos;: u&apos;66af7ecb2d04d21dba5bb003a21c2adad034430315cc380fff718c9d7f6e29c3&apos;, u&apos;MacAddress&apos;: u&apos;&apos;, u&apos;GlobalIPv6PrefixLen&apos;: 0, u&apos;Links&apos;: None, u&apos;GlobalIPv6Address&apos;: u&apos;&apos;, u&apos;IPv6Gateway&apos;: u&apos;&apos;, u&apos;DriverOpts&apos;: None, u&apos;IPAMConfig&apos;: None, u&apos;EndpointID&apos;: u&apos;&apos;, u&apos;IPPrefixLen&apos;: 0, u&apos;IPAddress&apos;: u&apos;&apos;, u&apos;Gateway&apos;: u&apos;&apos;, u&apos;Aliases&apos;: None&#125;&#125;&#125;, u&apos;HostConfig&apos;: &#123;u&apos;NetworkMode&apos;: u&apos;default&apos;&#125;, u&apos;ImageID&apos;: u&apos;sha256:40a687b3cdccd2224016c07a5ca20aeca0d0ef9f397d11ae6102ee1245d915d6&apos;, u&apos;State&apos;: u&apos;exited&apos;, u&apos;Command&apos;: u&apos;/etc/bootstrap.sh&apos;, u&apos;Names&apos;: [u&apos;/test2&apos;], u&apos;Mounts&apos;: [], u&apos;Id&apos;: u&apos;089dbc622b0409ed70fb6c2bdf735e0edc70282aa2c7f4d0d6b4092d74aa05be&apos;, u&apos;Ports&apos;: []&#125;, &#123;u&apos;Status&apos;: u&apos;Exited (137) 2 hours ago&apos;, u&apos;Created&apos;: 1532097064, u&apos;Image&apos;: u&apos;sequenceiq/spark:1.6.0&apos;, u&apos;Labels&apos;: &#123;&#125;, u&apos;NetworkSettings&apos;: &#123;u&apos;Networks&apos;: &#123;u&apos;bridge&apos;: &#123;u&apos;NetworkID&apos;: u&apos;66af7ecb2d04d21dba5bb003a21c2adad034430315cc380fff718c9d7f6e29c3&apos;, u&apos;MacAddress&apos;: u&apos;&apos;, u&apos;GlobalIPv6PrefixLen&apos;: 0, u&apos;Links&apos;: None, u&apos;GlobalIPv6Address&apos;: u&apos;&apos;, u&apos;IPv6Gateway&apos;: u&apos;&apos;, u&apos;DriverOpts&apos;: None, u&apos;IPAMConfig&apos;: None, u&apos;EndpointID&apos;: u&apos;&apos;, u&apos;IPPrefixLen&apos;: 0, u&apos;IPAddress&apos;: u&apos;&apos;, u&apos;Gateway&apos;: u&apos;&apos;, u&apos;Aliases&apos;: None&#125;&#125;&#125;, u&apos;HostConfig&apos;: &#123;u&apos;NetworkMode&apos;: u&apos;default&apos;&#125;, u&apos;ImageID&apos;: u&apos;sha256:40a687b3cdccd2224016c07a5ca20aeca0d0ef9f397d11ae6102ee1245d915d6&apos;, u&apos;State&apos;: u&apos;exited&apos;, u&apos;Command&apos;: u&apos;/etc/bootstrap.sh&apos;, u&apos;Names&apos;: [u&apos;/test1&apos;], u&apos;Mounts&apos;: [], u&apos;Id&apos;: u&apos;a6b4592de281345d4f5c7e3c7254048214fdeb9581bba13d37aa612cfeff7a8d&apos;, u&apos;Ports&apos;: []&#125;]</span><br></pre></td></tr></table></figure>
 
 <p>五、开启容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.statr(container=&apos;test3&apos;,port_bindings=&#123;80:80,22:2022&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.statr(container=&apos;test3&apos;,port_bindings=&#123;80:80,22:2022&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>container=’test3′ 创建容器设置的name，用于开启容器<br>port_bindings={80:80,22:2022} 设置容器与宿主机端口之间的映射关系，这里port_bindings我测试过只能修改在你创建时候设定的端口，如果没有开放的端口，则无法修改，所以在这里一般没什么卵用<br>publish_all_ports=True  全端口公开，会依次进行映射外部访问<br>以下参数，没搞明白是干啥的<br>lxc_conf=None  不知道啥意思<br>links=None<br>privileged=False<br>dns=None<br>dns_search=None<br>volumes_from=None<br>network_mode=None<br>restart_policy=None<br>cap_add=None<br>cap_drop=None</p>
 <p>六、停止容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.stop(container=&apos;test3&apos;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.stop(container=&apos;test3&apos;)</span><br></pre></td></tr></table></figure>
 
 <p>七、查看容器的具体参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">item = self.client.containers(filters=&#123;&apos;name&apos;: &apos;test3&apos;&#125;)[0]# 遍历获得对应的容器的ip和端口  22和8888的映射端口 ip = item[&apos;NetworkSettings&apos;][&apos;Networks&apos;][&apos;bridge&apos;][&apos;IPAddress&apos;]with open(&quot;/zc/ip.txt&quot;) as f:    wip = f.read().strip(&quot;\n&quot;)print(&apos;外网地址&apos;, wip)print(&apos;内网地址&apos;, ip)# 对应key-value是数字# 遍历获得对应的容器的ip和端口  22和8888的映射端口for port in item[&apos;Ports&apos;]:    dic[port[&apos;PrivatePort&apos;]] = port.get(&apos;PublicPort&apos;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">item = self.client.containers(filters=&#123;&apos;name&apos;: &apos;test3&apos;&#125;)[0]# 遍历获得对应的容器的ip和端口  22和8888的映射端口 ip = item[&apos;NetworkSettings&apos;][&apos;Networks&apos;][&apos;bridge&apos;][&apos;IPAddress&apos;]with open(&quot;/zc/ip.txt&quot;) as f:    wip = f.read().strip(&quot;\n&quot;)print(&apos;外网地址&apos;, wip)print(&apos;内网地址&apos;, ip)# 对应key-value是数字# 遍历获得对应的容器的ip和端口  22和8888的映射端口for port in item[&apos;Ports&apos;]:    dic[port[&apos;PrivatePort&apos;]] = port.get(&apos;PublicPort&apos;)</span><br></pre></td></tr></table></figure>
 
 <p>通过以上我们不难看出通过返回的数据，可以遍历里面的ip地址</p>
 <p>至于/zc/ip.txt是这个什么鬼？这个是我外部与内部共享的一个文件，用于获得外部的ip地址，因为容器本身只能获得自己的内网ip地址，无法得知外网地址</p>
@@ -360,7 +360,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        22
+                        4
                     </p>
                 </div>
             </div>
@@ -440,94 +440,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Django/">
-            <span class="level-start">
-                <span class="level-item">Django</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Excel/">
-            <span class="level-start">
-                <span class="level-item">Excel</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-数据梳理/">
-            <span class="level-start">
-                <span class="level-item">Excel-openpyxl--数据梳理</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-创建和读取/">
-            <span class="level-start">
-                <span class="level-item">Excel-openpyxl-创建和读取</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Excel/Excel-openpyxl-增删改查/">
-            <span class="level-start">
-                <span class="level-item">Excel-openpyxl-增删改查</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/Selenium/">
-            <span class="level-start">
-                <span class="level-item">Selenium</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/Selenium/爬虫-selenium/">
-            <span class="level-start">
-                <span class="level-item">爬虫+selenium</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/bug/">
-            <span class="level-start">
-                <span class="level-item">bug</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/docker/">
-            <span class="level-start">
-                <span class="level-item">docker</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/mysql/">
-            <span class="level-start">
-                <span class="level-item">mysql</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/python/">
-            <span class="level-start">
-                <span class="level-item">python</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">4</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/smscode/">
             <span class="level-start">
                 <span class="level-item">smscode</span>
@@ -544,76 +456,20 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/技术/">
+            <span class="level-start">
+                <span class="level-item">技术</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">23</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/浅谈少儿编程/">
             <span class="level-start">
                 <span class="level-item">浅谈少儿编程</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">5</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/">
-            <span class="level-start">
-                <span class="level-item">爬虫</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">6</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-1-快速入门/">
-            <span class="level-start">
-                <span class="level-item">scrapy-1-快速入门</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-2-数据解析/">
-            <span class="level-start">
-                <span class="level-item">scrapy-2-数据解析</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-3-数据处理/">
-            <span class="level-start">
-                <span class="level-item">scrapy-3-数据处理</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-4-链接提取器/">
-            <span class="level-start">
-                <span class="level-item">scrapy-4-链接提取器</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/scrapy-5-文件图片下载/">
-            <span class="level-start">
-                <span class="level-item">scrapy-5-文件图片下载</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/爬虫/反爬/">
-            <span class="level-start">
-                <span class="level-item">反爬</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/环境配置/">
-            <span class="level-start">
-                <span class="level-item">环境配置</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
             </span>
         </a></li>
             </ul>
@@ -698,7 +554,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-24T11:29:19.000Z">2019-12-24</time></div>
                     <a href="/2019/12/24/关于爬虫的几种常见的反爬/" class="has-link-black-ter is-size-6">关于爬虫的几种常见的反爬</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/爬虫/">爬虫</a> / <a class="has-link-grey -link" href="/categories/爬虫/反爬/">反爬</a>
+                        <a class="has-link-grey -link" href="/categories/技术/">技术</a>
                     </p>
                 </div>
             </div>
